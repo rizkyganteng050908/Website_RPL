@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website RPL 3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f245c, #2563eb);
+            min-height: 100vh;
+        }
+
+        /* ========== HALAMAN LOGIN ========== */
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            padding: 45px 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            text-align: center;
+        }
+
+        .logo-rpl {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #2563eb;
+            margin-bottom: 20px;
+        }
+
+        .login-card h2 {
+            color: #0f245c;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .login-card p {
+            color: #718096;
+            margin-bottom: 28px;
+            font-size: 15px;
+        }
+
+        .pesan-error {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .form-item {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .form-item label {
+            display: block;
+            color: #1e293b;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-item input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .form-item input:focus {
+            outline: none;
+            border-color: #2563eb;
+            background: #f0f7ff;
+        }
+
+        .tombol-masuk {
+            width: 100%;
+            padding: 14px;
+            background: #0f245c;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tombol-masuk:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+
+        /* ========== HALAMAN UTAMA ========== */
+        .halaman-utama {
+            display: none;
+        }
+
+        .nav-bar {
+            background: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .nav-bar h1 {
+            color: #0f245c;
+            font-size: 22px;
+        }
+
+        .tombol-keluar {
+            color: #dc2626;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 24px;
+            border: 2px solid #dc2626;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .tombol-keluar:hover {
+            background: #dc2626;
+            color: white;
+        }
+
+        .konten {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 25px;
+        }
+
+        .selamat-datang {
+            background: white;
+            border-radius: 20px;
+            padding: 45px 35px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 35px;
+        }
+
+        .selamat-datang h2 {
+            color: #0f245c;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .selamat-datang p {
+            color: #4b5563;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .foto-utama {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .daftar-foto {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .kotak-foto {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .kotak-foto:hover {
+            transform: translateY(-5px);
+        }
+
+        .kotak-foto img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .kotak-foto h3 {
+            padding: 18px;
+            color: #0f245c;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HALAMAN LOGIN -->
+    <div class="login-wrapper" id="halamanLogin">
+        <div class="login-card">
+            <img src="https://picsum.photos/id/180/300/300" alt="Logo RPL" class="logo-rpl">
+            <h2>Login RPL 3</h2>
+            <p>Masuk untuk membuka website</p>
+            
+            <div class="pesan-error" id="pesanSalah">
+                ❌ Username atau Password salah!
+            </div>
+
+            <form onsubmit="cekLogin(event)">
+                <div class="form-item">
+                    <label>Username</label>
+                    <input type="text" id="user" placeholder="Ketik: Rpl 3" required>
+                </div>
+                <div class="form-item">
+                    <label>Password</label>
+                    <input type="password" id="pass" placeholder="Ketik: Rpl 3" required>
+                </div>
+                <button type="submit" class="tombol-masuk">MASUK</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- HALAMAN UTAMA SETELAH LOGIN -->
+    <div class="halaman-utama" id="halamanUtama">
+        <nav class="nav-bar">
+            <h1>💻 WEBSITE RPL 3</h1>
+            <a href="#" class="tombol-keluar" onclick="keluar()">KELUAR</a>
+        </nav>
+
+        <div class="konten">
+            <div class="selamat-datang">
+                <h2>Selamat Datang di RPL 3 🎓</h2>
+                <p>Website ini milik kelas RPL 3! Belajar pemrograman, membuat karya, dan jadi orang hebat di masa depan. Semangat terus!</p>
+                <img src="https://picsum.photos/id/0/800/400" alt="Foto RPL" class="foto-utama">
+            </div>
+
+            <div class="daftar-foto">
+                <div class="kotak-foto">
+                    <img src="https://picsum.photos/id/48/400/300" alt="Belajar Koding">
+                    <h3>💻 Belajar Koding</h3>
+                </div>
+                <div class="kotak-foto">
+                    <img src="https://picsum.photos/id/20/400/300" alt="Kerja Sama">
+                    <h3>🤝 Kerja Sama Tim</h3>
+                </div>
+                <div class="kotak-foto">
+                    <img src="https://picsum.photos/id/160/400/300" alt="Kreatif">
+                    <h3>✨ Kreatif & Inovatif</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const userBenar = "Rpl 3";
+    const passBenar = "Rpl 3";
+
+    function cekLogin(e) {
+        e.preventDefault();
+        const userIsi = document.getElementById('user').value.trim();
+        const passIsi = document.getElementById('pass').value.trim();
+
+        if (userIsi === userBenar && passIsi === passBenar) {
+            document.getElementById('halamanLogin').style.display = 'none';
+            document.getElementById('halamanUtama').style.display = 'block';
+            localStorage.setItem('sudahMasuk', 'ya');
+        } else {
+            document.getElementById('pesanSalah').style.display = 'block';
+        }
+    }
+
+    function keluar() {
+        localStorage.removeItem('sudahMasuk');
+        document.getElementById('halamanUtama').style.display = 'none';
+        document.getElementById('halamanLogin').style.display = 'flex';
+        document.getElementById('user').value = '';
+        document.getElementById('pass').value = '';
+        document.getElementById('pesanSalah').style.display = 'none';
+    }
+
+    // Tetap masuk jika sudah pernah login
+    window.onload = function() {
+        if (localStorage.getItem('sudahMasuk') === 'ya') {
+            document.getElementById('halamanLogin').style.display = 'none';
+            document.getElementById('halamanUtama').style.display = 'block';
+        }
+    };
+</script>
+
+</body>
+</html>

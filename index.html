@@ -15,7 +15,6 @@ $role = $_SESSION['role'];
 html{scroll-behavior:smooth}
 body{font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
 
-/* NAVBAR */
 .navbar{
     position:sticky;top:0;z-index:100;width:100%;
     display:flex;align-items:center;justify-content:space-between;
@@ -39,7 +38,6 @@ body{font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
 }
 .upload-btn:hover{background:#059669}
 
-/* HERO */
 .hero{
     padding:80px 20px;text-align:center;
     background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;
@@ -47,10 +45,8 @@ body{font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
 .hero h1{margin-bottom:15px;font-size:45px}
 .hero p{max-width:700px;margin:auto;font-size:18px;line-height:1.7}
 
-/* CONTAINER */
 .container{width:90%;max-width:1100px;margin:auto}
 
-/* INFO */
 .info-section{padding:50px 0}
 .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .info-card{
@@ -61,7 +57,6 @@ body{font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
 .info-card h3{margin-bottom:8px}
 .info-card p{color:#666;line-height:1.5}
 
-/* ADMIN AREA */
 .admin-box{
     padding:25px;border-radius:15px;margin-bottom:40px;
     background:linear-gradient(135deg,#111827,#374151);color:#fff;
@@ -69,7 +64,6 @@ body{font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
 .admin-box h2{margin-bottom:10px}
 .admin-box p{color:#d1d5db;margin-bottom:15px}
 
-/* GALERI */
 .gallery-section{padding:30px 0 70px}
 .gallery-title{margin-bottom:30px;text-align:center}
 .gallery-title h2{margin-bottom:8px;font-size:30px}
@@ -87,7 +81,6 @@ body{font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
     background:#e5e7eb;color:#777;font-size:14px;text-align:center;
 }
 
-/* LIGHTBOX */
 #lightbox{
     position:fixed;inset:0;z-index:1000;display:none;
     align-items:center;justify-content:center;padding:30px;
@@ -102,15 +95,12 @@ body{font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
 .lb-prev{left:20px}
 .lb-next{right:20px}
 
-/* QUOTE */
 .quote{padding:70px 20px;text-align:center;background:#111827;color:#fff}
 .quote blockquote{max-width:800px;margin:auto;font-size:25px;line-height:1.6;font-style:italic}
 .quote p{margin-top:15px;color:#9ca3af}
 
-/* FOOTER */
 footer{padding:25px;background:#0f172a;color:#94a3b8;text-align:center;font-size:14px}
 
-/* RESPONSIF */
 @media(max-width:800px){
     .hero h1{font-size:35px}
     .info-grid{grid-template-columns:1fr}

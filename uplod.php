@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {
         if (move_uploaded_file($tmp, $tujuan)) {
             $pesan = "✅ Foto berhasil diupload sebagai: <strong>$namaBaru</strong><br>Ubah TOTAL_FOTO di config.php agar muncul di galeri!";
         } else {
-            $pesan = '❌ Gagal menyimpan foto!';
+            $pesan = '❌ Gagal menyimpan foto! Pastikan folder Foto bisa ditulis.';
         }
     }
 }

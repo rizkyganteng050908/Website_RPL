@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>RPL 3 - Galeri Kelas</title>
 
 <style>
@@ -13,17 +14,18 @@
 }
 
 body{
-    font-family:Arial,sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#f4f6f8;
     color:#222;
 }
 
-/* LOGIN */
+/* ================= LOGIN ================= */
+
 #loginPage{
     min-height:100vh;
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     padding:20px;
     background:linear-gradient(135deg,#2563eb,#7c3aed);
 }
@@ -31,7 +33,7 @@ body{
 .login-box{
     width:100%;
     max-width:380px;
-    background:white;
+    background:#fff;
     padding:30px;
     border-radius:20px;
     text-align:center;
@@ -55,6 +57,11 @@ body{
     border:1px solid #ddd;
     border-radius:10px;
     font-size:15px;
+    outline:none;
+}
+
+.login-box input:focus{
+    border-color:#2563eb;
 }
 
 .login-box button{
@@ -68,27 +75,38 @@ body{
     cursor:pointer;
 }
 
+.login-box button:hover{
+    background:#1d4ed8;
+}
+
 #errorLogin{
     display:none;
     color:#ef4444;
     margin-top:12px;
+    font-size:14px;
 }
 
-/* WEBSITE */
+/* ================= WEBSITE ================= */
+
 #website{
     display:none;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
+
 nav{
     position:sticky;
     top:0;
     z-index:50;
+
     background:white;
+
     padding:14px 6%;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
@@ -114,19 +132,22 @@ nav{
 
 .logout{
     background:#ef4444;
-    color:white;
+    color:#fff;
     border:0;
     padding:9px 14px;
     border-radius:8px;
     cursor:pointer;
 }
 
-/* HERO */
+/* ================= HERO ================= */
+
 .hero{
     padding:70px 20px;
     text-align:center;
+
     background:linear-gradient(135deg,#2563eb,#7c3aed);
-    color:white;
+
+    color:#fff;
 }
 
 .hero h1{
@@ -138,14 +159,16 @@ nav{
     font-size:18px;
 }
 
-/* CONTAINER */
+/* ================= CONTAINER ================= */
+
 .container{
     max-width:1150px;
     margin:auto;
     padding:45px 20px;
 }
 
-/* INFO */
+/* ================= INFO ================= */
+
 .info-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -154,7 +177,7 @@ nav{
 }
 
 .info-card{
-    background:white;
+    background:#fff;
     padding:25px;
     border-radius:15px;
     text-align:center;
@@ -166,13 +189,19 @@ nav{
     margin-bottom:10px;
 }
 
-/* ADMIN */
+/* ================= ADMIN ================= */
+
 .admin-box{
     display:none;
-    background:white;
+
+    background:#fff;
+
     padding:20px;
+
     border-radius:15px;
+
     margin-bottom:35px;
+
     box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
@@ -180,7 +209,13 @@ nav{
     margin-bottom:10px;
 }
 
-/* CLASS */
+.admin-box p{
+    color:#666;
+    line-height:1.6;
+}
+
+/* ================= KELAS ================= */
+
 .class-section{
     margin-bottom:55px;
 }
@@ -200,7 +235,8 @@ nav{
     margin-top:6px;
 }
 
-/* GALERI */
+/* ================= GALERI ================= */
+
 .gallery{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -208,7 +244,7 @@ nav{
 }
 
 .photo-card{
-    background:white;
+    background:#fff;
     border-radius:12px;
     overflow:hidden;
     box-shadow:0 4px 15px rgba(0,0,0,.08);
@@ -227,58 +263,87 @@ nav{
     display:block;
 }
 
-/* FOTO TIDAK ADA */
+/* FOTO BELUM ADA */
+
 .empty-photo{
     height:200px;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
     text-align:center;
+
     background:#e5e7eb;
+
     color:#777;
+
     font-size:14px;
 }
 
-/* LIGHTBOX */
+/* ================= LIGHTBOX ================= */
+
 #lightbox{
     display:none;
+
     position:fixed;
+
     inset:0;
+
     z-index:999;
+
     background:rgba(0,0,0,.93);
+
     align-items:center;
+
     justify-content:center;
+
     padding:20px;
 }
 
 #lightboxImage{
     max-width:88%;
     max-height:85vh;
+
     object-fit:contain;
+
     border-radius:10px;
 }
 
 .close{
     position:absolute;
+
     top:15px;
     right:25px;
-    color:white;
+
+    color:#fff;
+
     font-size:42px;
+
     cursor:pointer;
 }
 
 .prev,
 .next{
     position:absolute;
+
     top:50%;
+
     transform:translateY(-50%);
+
     width:55px;
     height:55px;
+
     border:0;
+
     border-radius:50%;
+
     background:rgba(255,255,255,.2);
-    color:white;
+
+    color:#fff;
+
     font-size:28px;
+
     cursor:pointer;
 }
 
@@ -290,32 +355,46 @@ nav{
     right:20px;
 }
 
-/* QUOTE */
+/* ================= QUOTE ================= */
+
 .quote{
     margin-top:40px;
-    background:white;
+
+    background:#fff;
+
     padding:30px;
+
     border-radius:15px;
+
     text-align:center;
+
     box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
 .quote p{
     font-style:italic;
+
     color:#555;
+
     font-size:18px;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
+
 footer{
     background:#111827;
-    color:white;
+
+    color:#fff;
+
     text-align:center;
+
     padding:25px;
+
     margin-top:30px;
 }
 
-/* HP */
+/* ================= TABLET ================= */
+
 @media(max-width:900px){
 
     .gallery{
@@ -326,6 +405,8 @@ footer{
         grid-template-columns:1fr;
     }
 }
+
+/* ================= HP ================= */
 
 @media(max-width:600px){
 
@@ -394,7 +475,9 @@ footer{
 
 <body>
 
-<!-- ================= LOGIN ================= -->
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
 <div id="loginPage">
 
@@ -402,17 +485,23 @@ footer{
 
         <h1>RPL 3</h1>
 
-        <p>Website Galeri Kelas</p>
+        <p>
+            Website Galeri Kelas
+        </p>
 
         <input
             type="text"
             id="username"
-            placeholder="Username">
+            placeholder="Username"
+            autocomplete="username"
+        >
 
         <input
             type="password"
             id="password"
-            placeholder="Password">
+            placeholder="Password"
+            autocomplete="current-password"
+        >
 
         <button onclick="login()">
             🔐 Login
@@ -427,9 +516,13 @@ footer{
 </div>
 
 
-<!-- ================= WEBSITE ================= -->
+<!-- =====================================================
+     WEBSITE
+===================================================== -->
 
 <div id="website">
+
+    <!-- NAVBAR -->
 
     <nav>
 
@@ -447,7 +540,9 @@ footer{
             <button
                 class="logout"
                 onclick="logout()">
+
                 Keluar
+
             </button>
 
         </div>
@@ -459,7 +554,9 @@ footer{
 
     <section class="hero">
 
-        <h1>RPL 3</h1>
+        <h1>
+            RPL 3
+        </h1>
 
         <p>
             Galeri Kenangan Kelas
@@ -476,7 +573,9 @@ footer{
 
             <div class="info-card">
 
-                <h3>💻 RPL</h3>
+                <h3>
+                    💻 RPL
+                </h3>
 
                 <p>
                     Rekayasa Perangkat Lunak
@@ -487,7 +586,9 @@ footer{
 
             <div class="info-card">
 
-                <h3>📸 70 Foto</h3>
+                <h3>
+                    📸 70 Foto
+                </h3>
 
                 <p>
                     Galeri kenangan kelas
@@ -498,7 +599,9 @@ footer{
 
             <div class="info-card">
 
-                <h3>🎓 RPL 3</h3>
+                <h3>
+                    🎓 RPL 3
+                </h3>
 
                 <p>
                     Kenangan bersama
@@ -515,29 +618,37 @@ footer{
             class="admin-box"
             id="adminArea">
 
-            <h3>👑 Panel Admin</h3>
+            <h3>
+                👑 Panel Admin
+            </h3>
 
             <p>
                 Kamu login sebagai Admin.
             </p>
 
             <p>
-                Foto diambil otomatis dari
-                folder GitHub.
+                Foto dibaca otomatis dari folder
+                GitHub.
             </p>
 
         </div>
 
 
-        <!-- ================= KELAS X ================= -->
+        <!-- =================================================
+             KELAS X
+        ================================================= -->
 
         <section class="class-section">
 
             <div class="class-title">
 
-                <h2>Kelas X</h2>
+                <h2>
+                    Kelas X
+                </h2>
 
-                <p>22 Foto</p>
+                <p>
+                    22 Foto
+                </p>
 
             </div>
 
@@ -549,15 +660,21 @@ footer{
         </section>
 
 
-        <!-- ================= KELAS XI ================= -->
+        <!-- =================================================
+             KELAS XI
+        ================================================= -->
 
         <section class="class-section">
 
             <div class="class-title">
 
-                <h2>Kelas XI</h2>
+                <h2>
+                    Kelas XI
+                </h2>
 
-                <p>14 Foto</p>
+                <p>
+                    14 Foto
+                </p>
 
             </div>
 
@@ -569,15 +686,21 @@ footer{
         </section>
 
 
-        <!-- ================= KELAS XII ================= -->
+        <!-- =================================================
+             KELAS XII
+        ================================================= -->
 
         <section class="class-section">
 
             <div class="class-title">
 
-                <h2>Kelas XII</h2>
+                <h2>
+                    Kelas XII
+                </h2>
 
-                <p>34 Foto</p>
+                <p>
+                    34 Foto
+                </p>
 
             </div>
 
@@ -588,6 +711,8 @@ footer{
 
         </section>
 
+
+        <!-- QUOTE -->
 
         <div class="quote">
 
@@ -602,6 +727,8 @@ footer{
     </main>
 
 
+    <!-- FOOTER -->
+
     <footer>
 
         © 2026 RPL 3 — Website Kelas
@@ -611,31 +738,42 @@ footer{
 </div>
 
 
-<!-- ================= LIGHTBOX ================= -->
+<!-- =====================================================
+     LIGHTBOX
+===================================================== -->
 
 <div id="lightbox">
 
     <span
         class="close"
         onclick="closeLightbox()">
+
         &times;
+
     </span>
+
 
     <button
         class="prev"
         onclick="previousPhoto()">
+
         ❮
+
     </button>
+
 
     <img
         id="lightboxImage"
         src=""
         alt="Foto">
 
+
     <button
         class="next"
         onclick="nextPhoto()">
+
         ❯
+
     </button>
 
 </div>
@@ -644,7 +782,7 @@ footer{
 <script>
 
 /* =====================================================
-   LOGIN
+   DATA LOGIN
 ===================================================== */
 
 const MEMBER_USERNAME = "Rpl 3";
@@ -680,17 +818,33 @@ let currentIndex = 0;
 
 function login(){
 
-    const username =
-        document.getElementById("username").value.trim();
+    const usernameInput =
+        document.getElementById("username");
 
-    const password =
-        document.getElementById("password").value;
+    const passwordInput =
+        document.getElementById("password");
 
-    const error =
+    const errorLogin =
         document.getElementById("errorLogin");
 
 
-    /* ADMIN */
+    /*
+      trim() pada username/password
+      membuat spasi tidak sengaja di awal/akhir
+      tidak menyebabkan login gagal.
+    */
+
+    const username =
+        usernameInput.value.trim();
+
+    const password =
+        passwordInput.value.trim();
+
+
+    errorLogin.style.display = "none";
+
+
+    /* ================= ADMIN ================= */
 
     if(
         username === ADMIN_USERNAME &&
@@ -703,7 +857,7 @@ function login(){
     }
 
 
-    /* MEMBER */
+    /* ================= MEMBER ================= */
 
     if(
         username === MEMBER_USERNAME &&
@@ -716,7 +870,10 @@ function login(){
     }
 
 
-    error.style.display = "block";
+    /* ================= GAGAL ================= */
+
+    errorLogin.style.display = "block";
+
 }
 
 
@@ -724,14 +881,20 @@ function login(){
    ENTER UNTUK LOGIN
 ===================================================== */
 
-document.getElementById("password")
-.addEventListener("keydown", function(event){
+document
+.getElementById("password")
+.addEventListener(
+    "keydown",
+    function(event){
 
-    if(event.key === "Enter"){
-        login();
+        if(event.key === "Enter"){
+
+            login();
+
+        }
+
     }
-
-});
+);
 
 
 /* =====================================================
@@ -740,30 +903,44 @@ document.getElementById("password")
 
 function masukWebsite(role){
 
-    document.getElementById("loginPage")
-        .style.display = "none";
+    document
+    .getElementById("loginPage")
+    .style.display = "none";
 
-    document.getElementById("website")
-        .style.display = "block";
 
-    document.getElementById("adminBadge")
-        .innerText = role;
+    document
+    .getElementById("website")
+    .style.display = "block";
 
+
+    document
+    .getElementById("adminBadge")
+    .innerText = role;
+
+
+    /* ADMIN */
 
     if(role === "👑 Admin"){
 
-        document.getElementById("adminArea")
-            .style.display = "block";
+        document
+        .getElementById("adminArea")
+        .style.display = "block";
 
-    }else{
+    }
 
-        document.getElementById("adminArea")
-            .style.display = "none";
+    /* MEMBER */
+
+    else{
+
+        document
+        .getElementById("adminArea")
+        .style.display = "none";
 
     }
 
 
     buatSemuaGaleri();
+
 }
 
 
@@ -773,20 +950,30 @@ function masukWebsite(role){
 
 function logout(){
 
-    document.getElementById("website")
-        .style.display = "none";
+    document
+    .getElementById("website")
+    .style.display = "none";
 
-    document.getElementById("loginPage")
-        .style.display = "flex";
 
-    document.getElementById("username")
-        .value = "";
+    document
+    .getElementById("loginPage")
+    .style.display = "flex";
 
-    document.getElementById("password")
-        .value = "";
 
-    document.getElementById("errorLogin")
-        .style.display = "none";
+    document
+    .getElementById("username")
+    .value = "";
+
+
+    document
+    .getElementById("password")
+    .value = "";
+
+
+    document
+    .getElementById("errorLogin")
+    .style.display = "none";
+
 }
 
 
@@ -798,21 +985,24 @@ function buatSemuaGaleri(){
 
     buatGaleri(
         "X",
-        jumlahFoto.X,
+        22,
         "galleryX"
     );
 
+
     buatGaleri(
         "XI",
-        jumlahFoto.XI,
+        14,
         "galleryXI"
     );
 
+
     buatGaleri(
         "XII",
-        jumlahFoto.XII,
+        34,
         "galleryXII"
     );
+
 }
 
 
@@ -829,15 +1019,21 @@ function buatGaleri(
     const gallery =
         document.getElementById(idGallery);
 
+
     gallery.innerHTML = "";
 
 
-    for(let i = 1; i <= jumlah; i++){
+    for(
+        let i = 1;
+        i <= jumlah;
+        i++
+    ){
 
         const card =
             document.createElement("div");
 
-        card.className = "photo-card";
+        card.className =
+            "photo-card";
 
 
         const image =
@@ -846,22 +1042,22 @@ function buatGaleri(
 
         /*
         =================================================
-        PATH FOTO GITHUB
+        LOKASI FOTO
         =================================================
 
         Foto/
         ├── Foto X/
         │   ├── Foto 1.jpg
         │   ├── Foto 2.jpg
-        │   └── ...
+        │   └── sampai Foto 22.jpg
         │
         ├── Foto XI/
         │   ├── Foto 1.jpg
-        │   └── ...
+        │   └── sampai Foto 14.jpg
         │
         └── Foto XII/
             ├── Foto 1.jpg
-            └── ...
+            └── sampai Foto 34.jpg
 
         =================================================
         */
@@ -870,51 +1066,76 @@ function buatGaleri(
             `Foto/Foto ${kelas}/Foto ${i}.jpg`;
 
 
-        image.src = alamatFoto;
-
-        image.alt = "Foto Kelas " + kelas;
-
-
-        image.onclick = function(){
-
-            bukaLightbox(
-                kelas,
-                i
-            );
-
-        };
+        image.src =
+            alamatFoto;
 
 
-        /* JIKA FOTO BELUM ADA */
-
-        image.onerror = function(){
-
-            this.style.display = "none";
+        image.alt =
+            "Foto Kelas " + kelas;
 
 
-            const kosong =
-                document.createElement("div");
+        image.onclick =
+            function(){
 
-            kosong.className = "empty-photo";
+                bukaLightbox(
+                    kelas,
+                    i
+                );
 
-            kosong.innerHTML =
-                "📷<br>Foto belum tersedia";
+            };
 
 
-            card.insertBefore(
-                kosong,
-                card.firstChild
-            );
+        /* FOTO TIDAK DITEMUKAN */
 
-        };
+        image.onerror =
+            function(){
+
+                this.style.display =
+                    "none";
+
+
+                /*
+                Supaya placeholder tidak
+                dibuat berkali-kali.
+                */
+
+                if(
+                    card.querySelector(".empty-photo")
+                ){
+
+                    return;
+
+                }
+
+
+                const kosong =
+                    document.createElement("div");
+
+
+                kosong.className =
+                    "empty-photo";
+
+
+                kosong.innerHTML =
+                    "📷<br>Foto belum tersedia";
+
+
+                card.insertBefore(
+                    kosong,
+                    card.firstChild
+                );
+
+            };
 
 
         card.appendChild(image);
 
+
         /*
-        TIDAK ADA NAMA FOTO
-        TIDAK ADA NOMOR FOTO
+        Tidak ada nama foto
+        Tidak ada nomor foto
         */
+
 
         gallery.appendChild(card);
 
@@ -924,7 +1145,7 @@ function buatGaleri(
 
 
 /* =====================================================
-   LIGHTBOX
+   BUKA LIGHTBOX
 ===================================================== */
 
 function bukaLightbox(
@@ -955,8 +1176,10 @@ function bukaLightbox(
     tampilkanFoto();
 
 
-    document.getElementById("lightbox")
-        .style.display = "flex";
+    document
+    .getElementById("lightbox")
+    .style.display = "flex";
+
 }
 
 
@@ -966,9 +1189,11 @@ function bukaLightbox(
 
 function tampilkanFoto(){
 
-    document.getElementById("lightboxImage")
-        .src =
+    document
+    .getElementById("lightboxImage")
+    .src =
         currentPhotos[currentIndex];
+
 }
 
 
@@ -981,14 +1206,18 @@ function previousPhoto(){
     currentIndex--;
 
 
-    if(currentIndex < 0){
+    if(
+        currentIndex < 0
+    ){
 
         currentIndex =
             currentPhotos.length - 1;
+
     }
 
 
     tampilkanFoto();
+
 }
 
 
@@ -1006,21 +1235,25 @@ function nextPhoto(){
     ){
 
         currentIndex = 0;
+
     }
 
 
     tampilkanFoto();
+
 }
 
 
 /* =====================================================
-   TUTUP
+   TUTUP LIGHTBOX
 ===================================================== */
 
 function closeLightbox(){
 
-    document.getElementById("lightbox")
-        .style.display = "none";
+    document
+    .getElementById("lightbox")
+    .style.display = "none";
+
 }
 
 
@@ -1039,22 +1272,36 @@ document.addEventListener(
         if(
             lightbox.style.display !== "flex"
         ){
+
             return;
+
         }
 
 
-        if(event.key === "ArrowLeft"){
+        if(
+            event.key === "ArrowLeft"
+        ){
+
             previousPhoto();
+
         }
 
 
-        if(event.key === "ArrowRight"){
+        if(
+            event.key === "ArrowRight"
+        ){
+
             nextPhoto();
+
         }
 
 
-        if(event.key === "Escape"){
+        if(
+            event.key === "Escape"
+        ){
+
             closeLightbox();
+
         }
 
     }
@@ -1070,7 +1317,8 @@ let touchStartX = 0;
 let touchEndX = 0;
 
 
-document.getElementById("lightbox")
+document
+.getElementById("lightbox")
 .addEventListener(
     "touchstart",
     function(event){
@@ -1082,7 +1330,8 @@ document.getElementById("lightbox")
 );
 
 
-document.getElementById("lightbox")
+document
+.getElementById("lightbox")
 .addEventListener(
     "touchend",
     function(event){
@@ -1098,7 +1347,9 @@ document.getElementById("lightbox")
         if(
             Math.abs(jarak) < 50
         ){
+
             return;
+
         }
 
 
@@ -1106,7 +1357,9 @@ document.getElementById("lightbox")
 
             previousPhoto();
 
-        }else{
+        }
+
+        else{
 
             nextPhoto();
 

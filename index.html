@@ -7,11 +7,6 @@
 <title>Website Kelas RPL 3</title>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
-
 *{
     margin:0;
     padding:0;
@@ -19,62 +14,42 @@
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial, sans-serif;
     background:#f5f7fb;
     color:#222;
 }
 
-/* =========================
-   LOGIN
-========================= */
-
+/* LOGIN */
 #loginPage{
     min-height:100vh;
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     padding:20px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #7c3aed
-    );
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
 }
 
 .login-box{
     width:100%;
     max-width:400px;
-
     background:white;
     padding:35px 30px;
-
     border-radius:20px;
-
-    box-shadow:
-    0 20px 50px rgba(0,0,0,.25);
-
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
     text-align:center;
 }
 
 .login-logo{
     width:80px;
     height:80px;
-
-    margin:auto;
-    margin-bottom:15px;
-
+    margin:auto auto 15px;
     display:flex;
     align-items:center;
     justify-content:center;
-
     border-radius:50%;
-
     background:#2563eb;
     color:white;
-
-    font-size:35px;
+    font-size:30px;
     font-weight:bold;
 }
 
@@ -88,8 +63,8 @@ body{
 }
 
 .input-group{
-    margin-bottom:15px;
     text-align:left;
+    margin-bottom:15px;
 }
 
 .input-group label{
@@ -101,12 +76,9 @@ body{
 .input-group input{
     width:100%;
     padding:13px;
-
     border:1px solid #ddd;
     border-radius:10px;
-
     outline:none;
-
     font-size:15px;
 }
 
@@ -116,21 +88,14 @@ body{
 
 .login-button{
     width:100%;
-
     padding:13px;
-
-    border:none;
+    border:0;
     border-radius:10px;
-
     background:#2563eb;
     color:white;
-
     font-size:16px;
     font-weight:bold;
-
     cursor:pointer;
-
-    transition:.2s;
 }
 
 .login-button:hover{
@@ -139,47 +104,32 @@ body{
 
 #errorLogin{
     display:none;
-
     margin-top:15px;
-
     color:#dc2626;
-    font-size:14px;
 }
 
-/* =========================
-   WEBSITE
-========================= */
-
+/* WEBSITE */
 #website{
     display:none;
 }
 
-/* =========================
-   NAVBAR
-========================= */
-
+/* NAVBAR */
 .navbar{
     position:sticky;
     top:0;
     z-index:100;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     padding:15px 5%;
-
     background:white;
-
-    box-shadow:
-    0 3px 15px rgba(0,0,0,.08);
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
 }
 
 .logo{
+    color:#2563eb;
     font-size:20px;
     font-weight:bold;
-
-    color:#2563eb;
 }
 
 .nav-right{
@@ -190,45 +140,27 @@ body{
 
 .role-badge{
     padding:7px 12px;
-
     border-radius:20px;
-
     background:#eff6ff;
     color:#2563eb;
-
     font-size:13px;
     font-weight:bold;
 }
 
 .logout-btn{
-    border:none;
-
+    border:0;
     padding:8px 13px;
-
     border-radius:8px;
-
     background:#ef4444;
     color:white;
-
     cursor:pointer;
 }
 
-/* =========================
-   HERO
-========================= */
-
+/* HERO */
 .hero{
     padding:80px 20px;
-
     text-align:center;
-
-    background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #7c3aed
-    );
-
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
     color:white;
 }
 
@@ -239,21 +171,15 @@ body{
 
 .hero p{
     max-width:700px;
-
     margin:auto;
-
     font-size:18px;
     line-height:1.7;
 }
 
-/* =========================
-   INFO
-========================= */
-
+/* INFO */
 .container{
     width:90%;
     max-width:1100px;
-
     margin:auto;
 }
 
@@ -263,24 +189,16 @@ body{
 
 .info-grid{
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:20px;
 }
 
 .info-card{
     background:white;
-
     padding:25px;
-
     border-radius:15px;
-
     text-align:center;
-
-    box-shadow:
-    0 5px 20px rgba(0,0,0,.07);
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
 .info-icon{
@@ -296,32 +214,17 @@ body{
     color:#666;
 }
 
-/* =========================
-   ADMIN
-========================= */
-
+/* ADMIN */
 #adminArea{
     display:none;
-
     margin-bottom:40px;
 }
 
 .admin-box{
     padding:25px;
-
     border-radius:15px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #111827,
-        #374151
-    );
-
+    background:linear-gradient(135deg,#111827,#374151);
     color:white;
-
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.15);
 }
 
 .admin-box h2{
@@ -332,23 +235,18 @@ body{
     color:#d1d5db;
 }
 
-/* =========================
-   GALERI
-========================= */
-
+/* GALERI */
 .gallery-section{
     padding:30px 0 60px;
 }
 
 .section-title{
     text-align:center;
-
     margin-bottom:30px;
 }
 
 .section-title h2{
     font-size:30px;
-
     margin-bottom:8px;
 }
 
@@ -358,40 +256,26 @@ body{
 
 .gallery{
     display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
+    grid-template-columns:repeat(4,1fr);
     gap:15px;
 }
 
 .photo-card{
     position:relative;
-
     width:100%;
-
     aspect-ratio:1/1;
-
     overflow:hidden;
-
     border-radius:12px;
-
     background:#ddd;
-
     cursor:pointer;
-
-    box-shadow:
-    0 5px 15px rgba(0,0,0,.08);
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
 .photo-card img{
     width:100%;
     height:100%;
-
     object-fit:cover;
-
     display:block;
-
     transition:.3s;
 }
 
@@ -402,95 +286,58 @@ body{
 .photo-error{
     width:100%;
     height:100%;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     text-align:center;
-
     color:#777;
-
     background:#e5e7eb;
-
-    font-size:14px;
 }
 
-/* =========================
-   LIGHTBOX
-========================= */
-
+/* LIGHTBOX */
 #lightbox{
     display:none;
-
     position:fixed;
-
     inset:0;
-
     z-index:1000;
-
-    background:
-    rgba(0,0,0,.92);
-
+    background:rgba(0,0,0,.92);
     align-items:center;
     justify-content:center;
-
     padding:30px;
 }
 
 #lightboxImage{
     max-width:90%;
     max-height:85vh;
-
     object-fit:contain;
-
     border-radius:10px;
-
-    box-shadow:
-    0 20px 60px rgba(0,0,0,.5);
 }
 
 .close-lightbox{
     position:absolute;
-
     top:20px;
     right:25px;
-
     width:45px;
     height:45px;
-
-    border:none;
+    border:0;
     border-radius:50%;
-
     background:white;
     color:#111;
-
     font-size:25px;
-
     cursor:pointer;
 }
 
 .lightbox-btn{
     position:absolute;
-
     top:50%;
-
     transform:translateY(-50%);
-
     width:50px;
     height:50px;
-
-    border:none;
-
+    border:0;
     border-radius:50%;
-
     background:white;
-
     color:#111;
-
     font-size:25px;
-
     cursor:pointer;
 }
 
@@ -502,58 +349,37 @@ body{
     right:20px;
 }
 
-/* =========================
-   QUOTE
-========================= */
-
+/* QUOTE */
 .quote-section{
     padding:70px 20px;
-
     text-align:center;
-
     background:#111827;
-
     color:white;
 }
 
 .quote-section blockquote{
     max-width:800px;
-
     margin:auto;
-
     font-size:25px;
-
     line-height:1.6;
-
     font-style:italic;
 }
 
 .quote-section p{
     margin-top:15px;
-
     color:#9ca3af;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
+/* FOOTER */
 footer{
     padding:25px;
-
     text-align:center;
-
     background:#0f172a;
-
     color:#94a3b8;
-
     font-size:14px;
 }
 
-/* =========================
-   MOBILE
-========================= */
-
+/* MOBILE */
 @media(max-width:800px){
 
     .hero h1{
@@ -561,21 +387,17 @@ footer{
     }
 
     .info-grid{
-        grid-template-columns:
-        1fr;
+        grid-template-columns:1fr;
     }
 
     .gallery{
-        grid-template-columns:
-        repeat(2,1fr);
-
+        grid-template-columns:repeat(2,1fr);
         gap:10px;
     }
 
     .lightbox-btn{
         width:42px;
         height:42px;
-
         font-size:20px;
     }
 
@@ -586,7 +408,6 @@ footer{
     .next-btn{
         right:8px;
     }
-
 }
 
 @media(max-width:500px){
@@ -615,22 +436,15 @@ footer{
         font-size:15px;
     }
 
-    .gallery{
-        grid-template-columns:
-        repeat(2,1fr);
-    }
-
 }
-
 </style>
 </head>
 
 <body>
 
-
-<!-- ==================================================
-     LOGIN PAGE
-================================================== -->
+<!-- =========================
+     LOGIN
+========================= -->
 
 <div id="loginPage">
 
@@ -642,15 +456,11 @@ footer{
 
         <h1>RPL 3</h1>
 
-        <p>
-            Silakan login untuk masuk
-        </p>
+        <p>Silakan login untuk masuk</p>
 
         <div class="input-group">
 
-            <label>
-                Username
-            </label>
+            <label>Username</label>
 
             <input
                 type="text"
@@ -663,9 +473,7 @@ footer{
 
         <div class="input-group">
 
-            <label>
-                Password
-            </label>
+            <label>Password</label>
 
             <input
                 type="password"
@@ -691,12 +499,11 @@ footer{
 </div>
 
 
-<!-- ==================================================
+<!-- =========================
      WEBSITE
-================================================== -->
+========================= -->
 
 <div id="website">
-
 
     <!-- NAVBAR -->
 
@@ -827,7 +634,6 @@ footer{
 
             <p>
                 Anda login sebagai administrator.
-                Seluruh galeri dapat dilihat dari halaman ini.
             </p>
 
         </div>
@@ -835,9 +641,9 @@ footer{
     </section>
 
 
-    <!-- ==================================================
-         FOTO X
-    ================================================== -->
+    <!-- =========================
+         KELAS X
+    ========================= -->
 
     <section class="gallery-section">
 
@@ -865,9 +671,9 @@ footer{
     </section>
 
 
-    <!-- ==================================================
-         FOTO XI
-    ================================================== -->
+    <!-- =========================
+         KELAS XI
+    ========================= -->
 
     <section class="gallery-section">
 
@@ -895,9 +701,9 @@ footer{
     </section>
 
 
-    <!-- ==================================================
-         FOTO XII
-    ================================================== -->
+    <!-- =========================
+         KELAS XII
+    ========================= -->
 
     <section class="gallery-section">
 
@@ -944,19 +750,15 @@ footer{
     <!-- FOOTER -->
 
     <footer>
-
-        © 2026 RPL 3 —
-        Website Dokumentasi Kelas
-
+        © 2026 RPL 3 — Website Dokumentasi Kelas
     </footer>
-
 
 </div>
 
 
-<!-- ==================================================
+<!-- =========================
      LIGHTBOX
-================================================== -->
+========================= -->
 
 <div id="lightbox">
 
@@ -992,9 +794,9 @@ footer{
 
 <script>
 
-/* ==================================================
+/* =========================
    LOGIN
-================================================== */
+========================= */
 
 const MEMBER_USERNAME = "Rpl 3";
 const MEMBER_PASSWORD = "Rpl 3";
@@ -1005,24 +807,21 @@ const ADMIN_PASSWORD = "Rpl 3";
 
 function login(){
 
-    const usernameInput =
-        document.getElementById("username");
+    const username =
+        document.getElementById("username")
+        .value
+        .trim();
 
-    const passwordInput =
-        document.getElementById("password");
+    const password =
+        document.getElementById("password")
+        .value
+        .trim();
 
-    const errorLogin =
+    const error =
         document.getElementById("errorLogin");
 
 
-    const username =
-        usernameInput.value.trim();
-
-    const password =
-        passwordInput.value.trim();
-
-
-    errorLogin.style.display = "none";
+    error.style.display = "none";
 
 
     /* ADMIN */
@@ -1053,9 +852,7 @@ function login(){
     }
 
 
-    /* SALAH */
-
-    errorLogin.style.display = "block";
+    error.style.display = "block";
 
 }
 
@@ -1078,9 +875,9 @@ document
 );
 
 
-/* ==================================================
+/* =========================
    MASUK WEBSITE
-================================================== */
+========================= */
 
 function masukWebsite(role){
 
@@ -1090,21 +887,16 @@ function masukWebsite(role){
     document.getElementById("website")
         .style.display = "block";
 
-
     document.getElementById("roleBadge")
         .textContent = role;
 
-
-    /* ADMIN */
 
     if(role === "👑 Admin"){
 
         document.getElementById("adminArea")
             .style.display = "block";
 
-    }
-
-    else{
+    }else{
 
         document.getElementById("adminArea")
             .style.display = "none";
@@ -1112,16 +904,14 @@ function masukWebsite(role){
     }
 
 
-    /* BUAT GALERI */
-
     buatSemuaGaleri();
 
 }
 
 
-/* ==================================================
+/* =========================
    LOGOUT
-================================================== */
+========================= */
 
 function logout(){
 
@@ -1130,7 +920,6 @@ function logout(){
 
     document.getElementById("loginPage")
         .style.display = "flex";
-
 
     document.getElementById("username")
         .value = "";
@@ -1141,39 +930,38 @@ function logout(){
     document.getElementById("errorLogin")
         .style.display = "none";
 
-
     tutupLightbox();
 
 }
 
 
-/* ==================================================
-   DATA FOTO
-================================================== */
+/* =========================
+   JUMLAH FOTO
+========================= */
 
 const jumlahFoto = {
 
-    X: 21,
+    X:21,
 
-    XI: 21,
+    XI:21,
 
-    XII: 23
+    XII:23
 
 };
 
 
-/* ==================================================
-   ARRAY FOTO UNTUK LIGHTBOX
-================================================== */
+/* =========================
+   FOTO LIGHTBOX
+========================= */
 
 let currentPhotos = [];
 
 let currentIndex = 0;
 
 
-/* ==================================================
+/* =========================
    BUAT SEMUA GALERI
-================================================== */
+========================= */
 
 function buatSemuaGaleri(){
 
@@ -1183,13 +971,11 @@ function buatSemuaGaleri(){
         "galleryX"
     );
 
-
     buatGaleri(
         "XI",
         21,
         "galleryXI"
     );
-
 
     buatGaleri(
         "XII",
@@ -1200,9 +986,9 @@ function buatSemuaGaleri(){
 }
 
 
-/* ==================================================
+/* =========================
    BUAT GALERI
-================================================== */
+========================= */
 
 function buatGaleri(
     kelas,
@@ -1212,7 +998,6 @@ function buatGaleri(
 
     const gallery =
         document.getElementById(idGallery);
-
 
     gallery.innerHTML = "";
 
@@ -1224,15 +1009,21 @@ function buatGaleri(
     ){
 
         /*
-         PATH FOTO GITHUB
-         
-         Foto/Foto X/Foto 1.jpg
-         Foto/Foto XI/Foto 1.jpg
-         Foto/Foto XII/Foto 1.jpg
+        SEMUA FOTO ADA DI SATU FOLDER
+
+        Foto/X-1.jpg
+        Foto/X-2.jpg
+
+        Foto/XI-1.jpg
+        Foto/XI-2.jpg
+
+        Foto/XII-1.jpg
+        Foto/XII-2.jpg
         */
 
+
         const alamatFoto =
-            `Foto/Foto ${kelas}/Foto ${i}.jpg`;
+            `Foto/${kelas}-${i}.jpg`;
 
 
         const card =
@@ -1252,41 +1043,28 @@ function buatGaleri(
             `Foto Kelas ${kelas}`;
 
 
-        /* FOTO BERHASIL */
+        image.onerror =
+            function(){
 
-        image.onload = function(){
+                card.innerHTML = `
+                    <div class="photo-error">
+                        📷<br>
+                        Foto belum tersedia
+                    </div>
+                `;
 
-            card.innerHTML = "";
-
-            card.appendChild(image);
-
-        };
-
-
-        /* FOTO TIDAK DITEMUKAN */
-
-        image.onerror = function(){
-
-            card.innerHTML = `
-                <div class="photo-error">
-                    📷<br>
-                    Foto belum tersedia
-                </div>
-            `;
-
-        };
+            };
 
 
-        /* KLIK FOTO */
+        card.onclick =
+            function(){
 
-        card.onclick = function(){
+                bukaLightbox(
+                    kelas,
+                    i
+                );
 
-            bukaLightbox(
-                kelas,
-                i
-            );
-
-        };
+            };
 
 
         card.appendChild(image);
@@ -1298,9 +1076,9 @@ function buatGaleri(
 }
 
 
-/* ==================================================
-   BUKA LIGHTBOX
-================================================== */
+/* =========================
+   BUKA FOTO
+========================= */
 
 function bukaLightbox(
     kelas,
@@ -1310,9 +1088,7 @@ function bukaLightbox(
     currentPhotos = [];
 
 
-    /* BUAT ARRAY FOTO KELAS YANG DIPILIH */
-
-    let jumlah =
+    const jumlah =
         jumlahFoto[kelas];
 
 
@@ -1323,7 +1099,7 @@ function bukaLightbox(
     ){
 
         currentPhotos.push(
-            `Foto/Foto ${kelas}/Foto ${i}.jpg`
+            `Foto/${kelas}-${i}.jpg`
         );
 
     }
@@ -1342,9 +1118,9 @@ function bukaLightbox(
 }
 
 
-/* ==================================================
+/* =========================
    TAMPILKAN FOTO
-================================================== */
+========================= */
 
 function tampilkanFoto(){
 
@@ -1365,9 +1141,9 @@ function tampilkanFoto(){
 }
 
 
-/* ==================================================
-   FOTO SEBELUMNYA
-================================================== */
+/* =========================
+   SEBELUMNYA
+========================= */
 
 function fotoSebelumnya(){
 
@@ -1396,9 +1172,9 @@ function fotoSebelumnya(){
 }
 
 
-/* ==================================================
-   FOTO BERIKUTNYA
-================================================== */
+/* =========================
+   BERIKUTNYA
+========================= */
 
 function fotoBerikutnya(){
 
@@ -1429,9 +1205,9 @@ function fotoBerikutnya(){
 }
 
 
-/* ==================================================
-   TUTUP LIGHTBOX
-================================================== */
+/* =========================
+   TUTUP
+========================= */
 
 function tutupLightbox(){
 
@@ -1441,9 +1217,9 @@ function tutupLightbox(){
 }
 
 
-/* ==================================================
-   KLIK AREA GELAP UNTUK MENUTUP
-================================================== */
+/* =========================
+   KLIK LUAR FOTO
+========================= */
 
 document
 .getElementById("lightbox")
@@ -1463,9 +1239,9 @@ document
 );
 
 
-/* ==================================================
+/* =========================
    KEYBOARD
-================================================== */
+========================= */
 
 document.addEventListener(
     "keydown",
@@ -1484,21 +1260,27 @@ document.addEventListener(
         }
 
 
-        if(event.key === "ArrowLeft"){
+        if(
+            event.key === "ArrowLeft"
+        ){
 
             fotoSebelumnya();
 
         }
 
 
-        if(event.key === "ArrowRight"){
+        if(
+            event.key === "ArrowRight"
+        ){
 
             fotoBerikutnya();
 
         }
 
 
-        if(event.key === "Escape"){
+        if(
+            event.key === "Escape"
+        ){
 
             tutupLightbox();
 
@@ -1508,9 +1290,9 @@ document.addEventListener(
 );
 
 
-/* ==================================================
+/* =========================
    SWIPE HP
-================================================== */
+========================= */
 
 let touchStartX = 0;
 
@@ -1540,40 +1322,31 @@ lightbox.addEventListener(
             event.changedTouches[0].screenX;
 
 
-        handleSwipe();
+        const jarak =
+            touchEndX - touchStartX;
+
+
+        if(
+            Math.abs(jarak) < 50
+        ){
+
+            return;
+
+        }
+
+
+        if(jarak > 0){
+
+            fotoSebelumnya();
+
+        }else{
+
+            fotoBerikutnya();
+
+        }
 
     }
 );
-
-
-function handleSwipe(){
-
-    const jarak =
-        touchEndX - touchStartX;
-
-
-    if(
-        Math.abs(jarak) < 50
-    ){
-
-        return;
-
-    }
-
-
-    if(jarak > 0){
-
-        fotoSebelumnya();
-
-    }
-
-    else{
-
-        fotoBerikutnya();
-
-    }
-
-}
 
 </script>
 

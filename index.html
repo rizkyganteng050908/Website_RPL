@@ -9,455 +9,407 @@
    RESET
 ================================================== */
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 html{
-    scroll-behavior:smooth;
+    scroll-behavior: smooth;
 }
 body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#f5f7fb;
-    color:#222;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #222;
 }
+
 /* ==================================================
-   LOGIN
+   HALAMAN LOGIN
 ================================================== */
 #loginPage{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
     background: linear-gradient(135deg, #2563eb, #7c3aed);
 }
 .login-box{
-    width:100%;
-    max-width:400px;
-    padding:35px 30px;
-    background:white;
-    border-radius:20px;
-    box-shadow: 0 20px 50px rgba(0,0,0,.25);
-    text-align:center;
+    width: 100%;
+    max-width: 400px;
+    padding: 35px 30px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    text-align: center;
 }
 .login-logo{
-    width:80px;
-    height:80px;
-    margin:0 auto 15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    background:#2563eb;
-    color:white;
-    font-size:28px;
-    font-weight:bold;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
 }
 .login-box h1{
-    margin-bottom:8px;
+    margin-bottom: 8px;
+    font-size: 22px;
 }
-.login-box p{
-    margin-bottom:25px;
-    color:#777;
+.login-box p.desc{
+    margin-bottom: 25px;
+    color: #777;
 }
-/* INPUT */
 .input-group{
-    margin-bottom:15px;
-    text-align:left;
+    margin-bottom: 15px;
+    text-align: left;
 }
 .input-group label{
-    display:block;
-    margin-bottom:7px;
-    font-weight:bold;
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
 }
 .input-group input{
-    width:100%;
-    padding:13px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    outline:none;
-    font-size:15px;
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
 }
 .input-group input:focus{
-    border-color:#2563eb;
+    border-color: #2563eb;
 }
-/* LOGIN BUTTON */
 .login-button{
-    width:100%;
-    padding:13px;
-    border:0;
-    border-radius:10px;
-    background:#2563eb;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.2s;
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
 }
 .login-button:hover{
-    background:#1d4ed8;
-    transform:translateY(-1px);
+    background: #1d4ed8;
 }
-/* ERROR */
 #errorLogin{
-    display:none;
-    margin-top:15px;
-    color:#dc2626;
-    font-size:14px;
+    display: none;
+    margin-top: 15px;
+    color: #dc2626;
+    font-size: 14px;
 }
+
 /* ==================================================
-   WEBSITE
+   HALAMAN UTAMA
 ================================================== */
 #website{
-    display:none;
+    display: none;
 }
-/* ==================================================
-   NAVBAR
-================================================== */
 .navbar{
-    position:sticky;
-    top:0;
-    z-index:100;
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:15px 5%;
-    background:white;
-    box-shadow: 0 3px 15px rgba(0,0,0,.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 5%;
+    background: white;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
 }
 .logo{
-    color:#2563eb;
-    font-size:20px;
-    font-weight:bold;
+    color: #2563eb;
+    font-size: 20px;
+    font-weight: bold;
 }
 .nav-right{
-    display:flex;
-    align-items:center;
-    gap:10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .role-badge{
-    padding:7px 12px;
-    border-radius:20px;
-    background:#eff6ff;
-    color:#2563eb;
-    font-size:13px;
-    font-weight:bold;
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: bold;
 }
 .logout-btn{
-    border:0;
-    padding:8px 14px;
-    border-radius:8px;
-    background:#ef4444;
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: #ef4444;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
 }
 .logout-btn:hover{
-    background:#dc2626;
+    background: #dc2626;
 }
-/* ==================================================
-   HERO
-================================================== */
+
+/* HERO */
 .hero{
-    padding:80px 20px;
-    text-align:center;
+    padding: 80px 20px;
+    text-align: center;
     background: linear-gradient(135deg, #2563eb, #7c3aed);
-    color:white;
+    color: white;
 }
 .hero h1{
-    margin-bottom:15px;
-    font-size:45px;
+    margin-bottom: 15px;
+    font-size: 45px;
 }
 .hero p{
-    max-width:700px;
-    margin:auto;
-    font-size:18px;
-    line-height:1.7;
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.7;
 }
-/* ==================================================
-   CONTAINER
-================================================== */
+
 .container{
-    width:90%;
-    max-width:1100px;
-    margin:auto;
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
 }
-/* ==================================================
-   INFO
-================================================== */
+
+/* INFO */
 .info-section{
-    padding:50px 0;
+    padding: 50px 0;
 }
 .info-grid{
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
-    gap:20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 .info-card{
-    padding:25px;
-    background:white;
-    border-radius:15px;
-    text-align:center;
-    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
 }
 .info-icon{
-    margin-bottom:10px;
-    font-size:35px;
+    margin-bottom: 10px;
+    font-size: 35px;
 }
 .info-card h3{
-    margin-bottom:8px;
+    margin-bottom: 8px;
 }
 .info-card p{
-    color:#666;
-    line-height:1.5;
+    color: #666;
+    line-height: 1.5;
 }
-/* ==================================================
-   ADMIN
-================================================== */
+
+/* ADMIN AREA */
 #adminArea{
-    display:none;
-    margin-bottom:40px;
+    display: none;
+    margin-bottom: 40px;
 }
 .admin-box{
-    padding:25px;
-    border-radius:15px;
+    padding: 25px;
+    border-radius: 15px;
     background: linear-gradient(135deg, #111827, #374151);
-    color:white;
+    color: white;
 }
 .admin-box h2{
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 .admin-box p{
-    color:#d1d5db;
+    color: #d1d5db;
 }
-/* ==================================================
-   GALERI
-================================================== */
+
+/* GALERI */
 .gallery-section{
-    padding:30px 0 70px;
+    padding: 30px 0 70px;
 }
 .gallery-title{
-    margin-bottom:30px;
-    text-align:center;
+    margin-bottom: 30px;
+    text-align: center;
 }
 .gallery-title h2{
-    margin-bottom:8px;
-    font-size:30px;
+    margin-bottom: 8px;
+    font-size: 30px;
 }
 .gallery-title p{
-    color:#777;
+    color: #777;
 }
-/* GRID */
 .gallery{
-    display:grid;
-    grid-template-columns: repeat(4,1fr);
-    gap:15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
 }
-/* FOTO */
 .photo-card{
-    width:100%;
-    aspect-ratio:1 / 1;
-    overflow:hidden;
-    border-radius:12px;
-    background:#ddd;
-    cursor:pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #ddd;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 .photo-card img{
-    width:100%;
-    height:100%;
-    display:block;
-    object-fit:cover;
-    transition: transform .3s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 .photo-card:hover img{
-    transform:scale(1.06);
+    transform: scale(1.06);
 }
-/* FOTO TIDAK TERSEDIA */
 .photo-error{
-    width:100%;
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:#e5e7eb;
-    color:#777;
-    font-size:14px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #e5e7eb;
+    color: #777;
+    font-size: 14px;
+    padding: 10px;
 }
-/* ==================================================
-   LIGHTBOX
-================================================== */
+
+/* LIGHTBOX */
 #lightbox{
-    position:fixed;
-    inset:0;
-    z-index:1000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:30px;
-    background: rgba(0,0,0,.92);
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: rgba(0,0,0,0.92);
 }
 #lightboxImage{
-    max-width:90%;
-    max-height:85vh;
-    object-fit:contain;
-    border-radius:10px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 10px;
 }
-/* CLOSE */
 .close-lightbox{
-    position:absolute;
-    top:20px;
-    right:25px;
-    width:45px;
-    height:45px;
-    border:0;
-    border-radius:50%;
-    background:white;
-    color:#111;
-    font-size:25px;
-    cursor:pointer;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    font-size: 25px;
+    cursor: pointer;
 }
-/* NEXT PREVIOUS */
 .lightbox-btn{
-    position:absolute;
-    top:50%;
-    width:50px;
-    height:50px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transform:translateY(-50%);
-    border:0;
-    border-radius:50%;
-    background:white;
-    color:#111;
-    font-size:24px;
-    cursor:pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    font-size: 24px;
+    cursor: pointer;
 }
 .prev-btn{
-    left:20px;
+    left: 20px;
 }
 .next-btn{
-    right:20px;
+    right: 20px;
 }
-/* ==================================================
-   QUOTE
-================================================== */
+
+/* KATA MUTIARA */
 .quote-section{
-    padding:70px 20px;
-    text-align:center;
-    background:#111827;
-    color:white;
+    padding: 70px 20px;
+    text-align: center;
+    background: #111827;
+    color: white;
 }
 .quote-section blockquote{
-    max-width:800px;
-    margin:auto;
-    font-size:25px;
-    line-height:1.6;
-    font-style:italic;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 25px;
+    line-height: 1.6;
+    font-style: italic;
 }
 .quote-section p{
-    margin-top:15px;
-    color:#9ca3af;
+    margin-top: 15px;
+    color: #9ca3af;
 }
-/* ==================================================
-   FOOTER
-================================================== */
+
 footer{
-    padding:25px;
-    background:#0f172a;
-    color:#94a3b8;
-    text-align:center;
-    font-size:14px;
+    padding: 25px;
+    background: #0f172a;
+    color: #94a3b8;
+    text-align: center;
+    font-size: 14px;
 }
-/* ==================================================
-   TABLET
-================================================== */
-@media(max-width:800px){
+
+/* RESPONSIF */
+@media(max-width: 800px){
     .hero h1{
-        font-size:35px;
+        font-size: 35px;
     }
     .info-grid{
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
     }
     .gallery{
-        grid-template-columns: repeat(2,1fr);
-        gap:10px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
     .lightbox-btn{
-        width:42px;
-        height:42px;
-        font-size:20px;
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
     }
     .prev-btn{
-        left:8px;
+        left: 8px;
     }
     .next-btn{
-        right:8px;
+        right: 8px;
     }
 }
-/* ==================================================
-   HP
-================================================== */
-@media(max-width:500px){
+@media(max-width: 500px){
     .navbar{
-        padding:12px 15px;
-    }
-    .logo{
-        font-size:17px;
+        padding: 12px 15px;
     }
     .role-badge{
-        display:none;
-    }
-    .hero{
-        padding:60px 20px;
+        display: none;
     }
     .hero h1{
-        font-size:30px;
-    }
-    .hero p{
-        font-size:15px;
-    }
-    .gallery-title h2{
-        font-size:25px;
+        font-size: 30px;
     }
 }
 </style>
 </head>
 <body>
-<!-- ==================================================
-     LOGIN PAGE
-================================================== -->
+
+<!-- HALAMAN LOGIN -->
 <div id="loginPage">
     <div class="login-box">
         <div class="login-logo">R3</div>
         <h1>RPL 3</h1>
-        <p>Silakan login untuk masuk</p>
-        <!-- USERNAME -->
+        <p class="desc">Silakan login untuk masuk</p>
         <div class="input-group">
             <label>Username</label>
             <input type="text" id="username" placeholder="Masukkan username" autocomplete="off">
         </div>
-        <!-- PASSWORD -->
         <div class="input-group">
             <label>Password</label>
             <input type="password" id="password" placeholder="Masukkan password">
         </div>
-        <!-- BUTTON -->
         <button class="login-button" onclick="login()">🔐 Login</button>
-        <!-- ERROR -->
-        <div id="errorLogin">❌ Username atau password salah!</div>
+        <p id="errorLogin">❌ Username atau password salah!</p>
     </div>
 </div>
-<!-- ==================================================
-     WEBSITE
-================================================== -->
+
+<!-- HALAMAN UTAMA -->
 <div id="website">
-    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="logo">RPL 3</div>
         <div class="nav-right">
@@ -465,24 +417,24 @@ footer{
             <button class="logout-btn" onclick="logout()">Logout</button>
         </div>
     </nav>
-    <!-- HERO -->
+
     <section class="hero">
         <h1>Website Kelas RPL 3</h1>
         <p>Selamat datang di website dokumentasi Kelas RPL 3. Semua foto kenangan tersimpan dalam satu galeri.</p>
     </section>
-    <!-- INFO -->
+
     <section class="info-section">
         <div class="container">
             <div class="info-grid">
                 <div class="info-card">
                     <div class="info-icon">👨‍💻</div>
                     <h3>Rekayasa Perangkat Lunak</h3>
-                    <p>Belajar teknologi, pemrograman dan pengembangan software.</p>
+                    <p>Belajar teknologi, pemrograman & pengembangan software.</p>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">📸</div>
                     <h3>65 Foto</h3>
-                    <p>Semua dokumentasi berada dalam satu galeri.</p>
+                    <p>Semua dokumentasi lengkap di sini.</p>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">❤️</div>
@@ -492,14 +444,14 @@ footer{
             </div>
         </div>
     </section>
-    <!-- ADMIN -->
+
     <section class="container" id="adminArea">
         <div class="admin-box">
             <h2>👑 Panel Admin</h2>
             <p>Anda login sebagai administrator.</p>
         </div>
     </section>
-    <!-- GALERI -->
+
     <section class="gallery-section">
         <div class="container">
             <div class="gallery-title">
@@ -509,71 +461,66 @@ footer{
             <div class="gallery" id="gallery"></div>
         </div>
     </section>
-    <!-- QUOTE -->
+
     <section class="quote-section">
         <blockquote>"Kenangan mungkin tidak bisa diulang, tetapi selalu bisa disimpan."</blockquote>
         <p>— RPL 3</p>
     </section>
-    <!-- FOOTER -->
+
     <footer>© 2026 RPL 3 — Website Dokumentasi Kelas</footer>
 </div>
+
 <!-- LIGHTBOX -->
 <div id="lightbox">
     <button class="close-lightbox" onclick="tutupLightbox()">×</button>
     <button class="lightbox-btn prev-btn" onclick="fotoSebelumnya()">❮</button>
-    <img id="lightboxImage" src="" alt="Foto RPL 3">
+    <img id="lightboxImage" alt="Foto RPL 3">
     <button class="lightbox-btn next-btn" onclick="fotoBerikutnya()">❯</button>
 </div>
 
 <script>
-/* ==================================================
-   DATA LOGIN — PAKAI SPASI SESUAI ASLINYA
-================================================== */
-const MEMBER_USERNAME = "Rpl 3";
-const MEMBER_PASSWORD = "Rpl 3";
-const ADMIN_USERNAME  = "adminRpl 3";
-const ADMIN_PASSWORD  = "Rpl 3";
+// DATA LOGIN — salin persis, perhatikan spasi
+const MEMBER_USER = "Rpl 3";
+const MEMBER_PASS = "Rpl 3";
+const ADMIN_USER  = "adminRpl 3";
+const ADMIN_PASS  = "Rpl 3";
 const TOTAL_FOTO = 65;
 
-/* ==================================================
-   LOGIN
-================================================== */
+let fotoList = [];
+let idx = 0;
+
+// LOGIN
 function login(){
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const errorLogin = document.getElementById("errorLogin");
-    errorLogin.style.display = "none";
-    
-    if(username === ADMIN_USERNAME && password === ADMIN_PASSWORD){
-        masukWebsite("👑 Admin");
+    const u = document.getElementById("username").value.trim();
+    const p = document.getElementById("password").value.trim();
+    const err = document.getElementById("errorLogin");
+    err.style.display = "none";
+
+    if(u === ADMIN_USER && p === ADMIN_PASS){
+        bukaHalaman("👑 Admin");
         return;
     }
-    if(username === MEMBER_USERNAME && password === MEMBER_PASSWORD){
-        masukWebsite("👤 Member");
+    if(u === MEMBER_USER && p === MEMBER_PASS){
+        bukaHalaman("👤 Member");
         return;
     }
-    errorLogin.style.display = "block";
+    err.style.display = "block";
 }
 
-/* ENTER untuk Login */
-document.getElementById("password").addEventListener("keydown", function(e){
+// Login pakai tombol Enter
+document.getElementById("password").addEventListener("keydown", e => {
     if(e.key === "Enter") login();
 });
 
-/* ==================================================
-   MASUK WEBSITE
-================================================== */
-function masukWebsite(role){
+function bukaHalaman(peran){
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("website").style.display = "block";
-    document.getElementById("roleBadge").textContent = role;
-    document.getElementById("adminArea").style.display = (role === "👑 Admin") ? "block" : "none";
+    document.getElementById("roleBadge").textContent = peran;
+    document.getElementById("adminArea").style.display = peran === "👑 Admin" ? "block" : "none";
     buatGaleri();
 }
 
-/* ==================================================
-   LOGOUT
-================================================== */
+// LOGOUT
 function logout(){
     document.getElementById("website").style.display = "none";
     document.getElementById("loginPage").style.display = "flex";
@@ -583,65 +530,40 @@ function logout(){
     tutupLightbox();
 }
 
-/* ==================================================
-   GALERI & LIGHTBOX
-================================================== */
-let currentPhotos = [];
-let currentIndex = 0;
-
+// BUAT GALERI
 function buatGaleri(){
-    const gallery = document.getElementById("gallery");
-    gallery.innerHTML = "";
+    const galeri = document.getElementById("gallery");
+    galeri.innerHTML = "";
+    fotoList = [];
+
     for(let i = 1; i <= TOTAL_FOTO; i++){
-        const alamatFoto = `Foto/Foto ${i}.jpg`;
-        const card = document.createElement("div");
-        card.className = "photo-card";
-        
-        const image = document.createElement("img");
-        image.src = alamatFoto;
-        image.alt = `Foto RPL 3 - ${i}`;
-        image.loading = "lazy";
-        
-        image.onerror = function(){
-            card.innerHTML = `<div class="photo-error">📷<br>Foto ${i}<br>belum tersedia</div>`;
+        const src = `Foto/Foto ${i}.jpg`;
+        fotoList.push(src);
+
+        const kartu = document.createElement("div");
+        kartu.className = "photo-card";
+        kartu.dataset.idx = i - 1;
+
+        const img = new Image();
+        img.src = src;
+        img.alt = `Foto RPL 3 - ${i}`;
+        img.loading = "lazy";
+
+        img.onload = () => kartu.appendChild(img);
+        img.onerror = () => {
+            kartu.innerHTML = `<div class="photo-error">📷<br>Foto ${i}<br>belum tersedia</div>`;
         };
-        
-        card.onclick = function(){
-            bukaLightbox(i - 1);
-        };
-        card.appendChild(image);
-        gallery.appendChild(card);
+
+        kartu.onclick = () => bukaLightbox(i - 1);
+        galeri.appendChild(kartu);
     }
 }
 
-function bukaLightbox(index){
-    currentPhotos = [];
-    for(let i = 1; i <= TOTAL_FOTO; i++){
-        currentPhotos.push(`Foto/Foto ${i}.jpg`);
-    }
-    currentIndex = index;
-    tampilkanFoto();
+function bukaLightbox(no){
+    idx = no;
+    document.getElementById("lightboxImage").src = fotoList[idx];
     document.getElementById("lightbox").style.display = "flex";
     document.body.style.overflow = "hidden";
-}
-
-function tampilkanFoto(){
-    if(currentPhotos.length === 0) return;
-    document.getElementById("lightboxImage").src = currentPhotos[currentIndex];
-}
-
-function fotoSebelumnya(){
-    if(currentPhotos.length === 0) return;
-    currentIndex--;
-    if(currentIndex < 0) currentIndex = currentPhotos.length - 1;
-    tampilkanFoto();
-}
-
-function fotoBerikutnya(){
-    if(currentPhotos.length === 0) return;
-    currentIndex++;
-    if(currentIndex >= currentPhotos.length) currentIndex = 0;
-    tampilkanFoto();
 }
 
 function tutupLightbox(){
@@ -649,31 +571,29 @@ function tutupLightbox(){
     document.body.style.overflow = "";
 }
 
-/* Tutup klik latar belakang */
-document.getElementById("lightbox").addEventListener("click", function(e){
-    if(e.target === this) tutupLightbox();
+function fotoSebelumnya(){
+    idx = idx <= 0 ? fotoList.length - 1 : idx - 1;
+    document.getElementById("lightboxImage").src = fotoList[idx];
+}
+
+function fotoBerikutnya(){
+    idx = idx >= fotoList.length - 1 ? 0 : idx + 1;
+    document.getElementById("lightboxImage").src = fotoList[idx];
+}
+
+// Tutup klik latar
+document.getElementById("lightbox").addEventListener("click", e => {
+    if(e.target === e.currentTarget) tutupLightbox();
 });
 
-/* Keyboard */
-document.addEventListener("keydown", function(e){
+// Tombol keyboard
+document.addEventListener("keydown", e => {
     if(document.getElementById("lightbox").style.display !== "flex") return;
     if(e.key === "ArrowLeft") fotoSebelumnya();
     if(e.key === "ArrowRight") fotoBerikutnya();
     if(e.key === "Escape") tutupLightbox();
 });
-
-/* Swipe HP */
-let touchStartX = 0, touchEndX = 0;
-const lb = document.getElementById("lightbox");
-lb.addEventListener("touchstart", function(e){
-    touchStartX = e.changedTouches[0].screenX;
-});
-lb.addEventListener("touchend", function(e){
-    touchEndX = e.changedTouches[0].screenX;
-    const jarak = touchEndX - touchStartX;
-    if(Math.abs(jarak) < 50) return;
-    jarak > 0 ? fotoSebelumnya() : fotoBerikutnya();
-});
 </script>
+
 </body>
 </html>

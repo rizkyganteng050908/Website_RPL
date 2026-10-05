@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Resmi & Memory Vault Kelas RPL 3</title>
+    <title>Website Resmi Kelas RPL 3 (X, XI, XII)</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,13 +38,12 @@
         }
     </script>
     
-    <!-- Google Fonts & Font Awesome Icons -->
+    <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom CSS Styling -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -76,7 +75,7 @@
             outline: none;
         }
 
-        /* Cyber Background Grid */
+        /* Cyber Grid Background */
         .bg-cyber-grid {
             background-size: 36px 36px;
             background-image: 
@@ -84,7 +83,7 @@
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
         }
 
-        /* Scanline Overlay Effect */
+        /* Scanline Animasi Effect */
         .scanline {
             width: 100%;
             height: 2px;
@@ -133,7 +132,7 @@
         <div id="toast-message" class="text-sm font-medium">Notifikasi</div>
     </div>
 
-    <!-- SECTION: LOGIN PAGE -->
+    <!-- SECTION 1: LOGIN PAGE -->
     <div id="login-section" class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
         <div class="absolute top-1/4 left-1/4 w-80 h-80 bg-cyber-neonCyan/15 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
         <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-neonPurple/15 rounded-full blur-3xl pointer-events-none animate-pulse" style="animation-delay: 1s;"></div>
@@ -182,19 +181,19 @@
                 <button type="submit" 
                     class="w-full py-3.5 px-6 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-cyber-neonCyan via-teal-300 to-cyber-neonGreen hover:opacity-90 transition-all shadow-glow-cyan flex items-center justify-center gap-2 text-sm">
                     <i class="fas fa-lock-open"></i>
-                    <span>MASUK KELAS RPL 3</span>
+                    <span>MASUK PORTAL RPL 3</span>
                 </button>
             </form>
 
             <div class="mt-6 pt-6 border-t border-slate-800/80 text-center">
                 <p class="text-xs text-slate-500 code-font">
-                    Default Passcode: <span class="text-cyber-neonCyan">RPL3</span> / <span class="text-cyber-neonCyan">RPL3</span>
+                    Kredensial Akses: Username <span class="text-cyber-neonCyan">RPL3</span> | Password <span class="text-cyber-neonCyan">RPL3</span>
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- SECTION: MAIN DASHBOARD -->
+    <!-- SECTION 2: MAIN DASHBOARD -->
     <div id="dashboard-section" class="hidden min-h-screen flex flex-col">
         <!-- Navigation Bar -->
         <nav class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 px-4 lg:px-8 py-3.5">
@@ -207,22 +206,22 @@
                         </div>
                     </div>
                     <div>
-                        <span class="text-lg font-bold tracking-wider text-white">CLASS<span class="text-cyber-neonCyan">.RPL3</span></span>
+                        <span class="text-lg font-bold tracking-wider text-white">PORTAL<span class="text-cyber-neonCyan">.RPL3</span></span>
                         <span id="nav-class-badge" class="block text-[9px] text-cyber-neonGreen font-mono tracking-widest uppercase">KELAS X RPL 3</span>
                     </div>
                 </div>
 
-                <!-- Desktop Menu -->
+                <!-- Desktop Menu Navigasi -->
                 <div class="hidden md:flex items-center space-x-6 text-xs font-semibold uppercase tracking-wider">
                     <button onclick="scrollToSection('hero')" class="hover:text-cyber-neonCyan transition-colors">Beranda</button>
-                    <button onclick="scrollToSection('org')" class="hover:text-cyber-neonCyan transition-colors">Pengurus & Wali</button>
-                    <button onclick="scrollToSection('schedule')" class="hover:text-cyber-neonCyan transition-colors">Jadwal</button>
+                    <button onclick="scrollToSection('homeroom')" class="hover:text-cyber-neonCyan transition-colors">Wali Kelas</button>
+                    <button onclick="scrollToSection('curriculum')" class="hover:text-cyber-neonCyan transition-colors">Kurikulum Mapel</button>
                     <button onclick="scrollToSection('gallery')" class="hover:text-cyber-neonCyan transition-colors">Galeri Foto</button>
                     <button onclick="scrollToSection('students')" class="hover:text-cyber-neonCyan transition-colors">Siswa</button>
                     <button onclick="scrollToSection('notes')" class="hover:text-cyber-neonCyan transition-colors">Wall Notes</button>
                 </div>
 
-                <!-- Right Controls -->
+                <!-- Right Action Buttons -->
                 <div class="flex items-center space-x-3">
                     <button onclick="openUploadModal()" class="px-3.5 py-1.5 rounded-lg bg-cyber-neonCyan text-slate-950 font-bold text-xs shadow-glow-cyan hover:opacity-90 transition-all flex items-center gap-1.5">
                         <i class="fas fa-plus"></i>
@@ -235,7 +234,7 @@
             </div>
         </nav>
 
-        <!-- Main Content Area -->
+        <!-- Main Content Container -->
         <main class="flex-grow max-w-7xl w-full mx-auto px-4 lg:px-8 py-8 space-y-12">
             
             <!-- CLASS LEVEL SWITCHER BANNER -->
@@ -246,11 +245,11 @@
                     </div>
                     <div>
                         <h4 class="text-xs font-mono text-slate-400 uppercase tracking-wider">PILIH TINGKAT KELAS:</h4>
-                        <p class="text-sm font-bold text-white">Ganti tampilan informasi sesuai tingkatan kelas</p>
+                        <p class="text-sm font-bold text-white">Ganti tingkatan untuk melihat Wali Kelas, Kurikulum, & Foto Momen</p>
                     </div>
                 </div>
 
-                <!-- Class Switcher Tabs -->
+                <!-- Class Switcher Buttons -->
                 <div class="flex items-center bg-slate-900/90 p-1.5 rounded-xl border border-slate-800 w-full md:w-auto">
                     <button id="btn-class-X" onclick="switchClass('X')" 
                         class="flex-1 md:flex-none px-6 py-2 rounded-lg text-xs font-bold font-mono transition-all duration-300">
@@ -279,38 +278,24 @@
                             <span id="hero-subtitle">WELCOME TO CLASS X RPL 3</span>
                         </div>
                         <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                            Ruang Komunitas <br>
+                            Website Resmi <br>
                             <span id="hero-title" class="text-gradient">Siswa RPL 3</span>
                         </h1>
                         <p id="hero-desc" class="text-slate-400 text-sm lg:text-base leading-relaxed">
-                            Pusat informasi, struktur organisasi, jadwal pelajaran praktikum, galeri foto kenangan, dan catatan perjalanan siswa Rekayasa Perangkat Lunak 3.
+                            Portal informasi kelas, profil Wali Kelas, kurikulum mata pelajaran berjenjang, album foto kenang-kenangan, dan direktori keahlian siswa Rekayasa Perangkat Lunak 3.
                         </p>
-
-                        <!-- Homeroom Info Box -->
-                        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center space-x-4">
-                            <div id="homeroom-avatar" class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyber-neonCyan to-cyber-neonPurple p-0.5 shadow-glow-cyan flex-shrink-0">
-                                <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
-                                    <i class="fas fa-chalkboard-teacher text-cyber-neonCyan text-lg"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="text-[10px] font-mono text-cyber-neonCyan uppercase tracking-widest block">WALI KELAS RESMI</span>
-                                <h3 id="homeroom-teacher-name" class="text-base font-bold text-white">Bu Bella, S.Kom.</h3>
-                                <p id="homeroom-teacher-role" class="text-xs text-slate-400">Pembimbing & Pengajar Konsentrasi RPL</p>
-                            </div>
-                        </div>
 
                         <div class="flex flex-wrap gap-4 pt-2">
                             <button onclick="scrollToSection('gallery')" class="px-6 py-3 rounded-xl bg-cyber-neonCyan text-slate-950 font-bold text-sm shadow-glow-cyan hover:opacity-90 transition-all">
-                                <i class="fas fa-photo-video mr-2"></i> Album Foto Class
+                                <i class="fas fa-images mr-2"></i> Album Foto Momen
                             </button>
-                            <button onclick="scrollToSection('schedule')" class="px-6 py-3 rounded-xl glass-panel text-slate-200 font-bold text-sm border border-slate-700 hover:border-cyber-neonCyan transition-all">
-                                <i class="fas fa-calendar-alt mr-2"></i> Lihat Jadwal
+                            <button onclick="scrollToSection('curriculum')" class="px-6 py-3 rounded-xl glass-panel text-slate-200 font-bold text-sm border border-slate-700 hover:border-cyber-neonCyan transition-all">
+                                <i class="fas fa-book-open mr-2"></i> Kurikulum Mapel
                             </button>
                         </div>
                     </div>
 
-                    <!-- Quick Counters -->
+                    <!-- Counter Badges -->
                     <div class="md:col-span-5 grid grid-cols-2 gap-4">
                         <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center">
                             <i class="fas fa-images text-3xl text-cyber-neonCyan mb-2"></i>
@@ -323,9 +308,9 @@
                             <p class="text-xs text-slate-400 mt-1 font-mono">Total Likes</p>
                         </div>
                         <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center">
-                            <i class="fas fa-sticky-note text-3xl text-cyber-neonPurple mb-2"></i>
-                            <h3 class="text-2xl font-bold text-white" id="stat-total-notes">0</h3>
-                            <p class="text-xs text-slate-400 mt-1 font-mono">Pesan Wall Note</p>
+                            <i class="fas fa-book-reader text-3xl text-cyber-neonPurple mb-2"></i>
+                            <h3 class="text-2xl font-bold text-white" id="stat-total-subjects">0</h3>
+                            <p class="text-xs text-slate-400 mt-1 font-mono">Mata Pelajaran</p>
                         </div>
                         <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center">
                             <i class="fas fa-user-graduate text-3xl text-cyber-neonGreen mb-2"></i>
@@ -336,47 +321,66 @@
                 </div>
             </section>
 
-            <!-- ORGANIZATIONAL STRUCTURE SECTION -->
-            <section id="org" class="space-y-6">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+            <!-- HOMEROOM TEACHER PROFILE SECTION -->
+            <section id="homeroom" class="space-y-6">
+                <div class="flex items-center justify-between">
                     <div>
                         <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                            <i class="fas fa-sitemap text-cyber-neonCyan"></i>
-                            <span>Struktur Pengurus & Wali Kelas</span>
+                            <i class="fas fa-chalkboard-teacher text-cyber-neonCyan"></i>
+                            <span>Profil Wali Kelas</span>
                         </h2>
-                        <p class="text-slate-400 text-sm mt-1">Pengurus kelas aktif untuk tingkatan yang sedang dipilih</p>
+                        <p class="text-slate-400 text-sm mt-1">Pembimbing utama kelas untuk tingkatan terpilih</p>
                     </div>
-                    <span id="org-class-label" class="px-3 py-1 rounded-full bg-cyber-neonPurple/20 border border-cyber-neonPurple/40 text-cyber-neonPurple text-xs font-mono self-start">
+                    <span id="homeroom-class-badge" class="px-3.5 py-1 rounded-full bg-cyber-neonPurple/20 border border-cyber-neonPurple/40 text-cyber-neonPurple text-xs font-mono">
                         KELAS X RPL 3
                     </span>
                 </div>
 
-                <div id="org-cards-container" class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                    <!-- Dynamic Organizational Cards -->
+                <div class="glass-panel p-6 lg:p-8 rounded-3xl border border-slate-800 flex flex-col md:flex-row items-center gap-8 shadow-2xl relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-cyber-neonCyan/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-gradient-to-br from-cyber-neonCyan via-cyber-neonPurple to-cyber-neonPink p-1 flex-shrink-0 shadow-glow-cyan">
+                        <img id="homeroom-img" src="" alt="Wali Kelas" class="w-full h-full object-cover rounded-[14px]">
+                    </div>
+
+                    <div class="space-y-4 text-center md:text-left flex-grow">
+                        <div>
+                            <span class="text-xs font-mono text-cyber-neonCyan uppercase tracking-widest block mb-1">Dosen & Guru Pembimbing Official</span>
+                            <h3 id="homeroom-name" class="text-2xl lg:text-3xl font-extrabold text-white">Bu Bella, S.Kom.</h3>
+                            <p id="homeroom-title" class="text-sm text-cyber-neonGreen font-mono mt-1">Wali Kelas X RPL 3</p>
+                        </div>
+
+                        <p id="homeroom-bio" class="text-xs lg:text-sm text-slate-300 leading-relaxed max-w-3xl">
+                            Deskripsi bio wali kelas...
+                        </p>
+
+                        <div class="pt-2 flex flex-wrap gap-2 justify-center md:justify-start text-xs font-mono">
+                            <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+                                <i class="fas fa-certificate text-cyber-neonYellow mr-1.5"></i> Sertifikasi Tenaga Pendidik RPL
+                            </span>
+                            <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+                                <i class="fas fa-code-branch text-cyber-neonCyan mr-1.5"></i> Pembimbing Konsentrasi Keahlian
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <!-- LESSON SCHEDULE SECTION -->
-            <section id="schedule" class="space-y-6">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <!-- CURRICULUM SUBJECTS SECTION (WITHOUT SCHEDULE TIMES) -->
+            <section id="curriculum" class="space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
                     <div>
                         <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                            <i class="fas fa-clock text-cyber-neonCyan"></i>
-                            <span>Jadwal Pelajaran & Praktikum Lab</span>
+                            <i class="fas fa-layer-group text-cyber-neonCyan"></i>
+                            <span>Kurikulum & Daftar Mata Pelajaran</span>
                         </h2>
-                        <p class="text-slate-400 text-sm mt-1">Mata pelajaran RPL & Umum sesuai kurikulum berjenjang</p>
-                    </div>
-
-                    <!-- Day Tabs -->
-                    <div id="day-tabs" class="flex flex-wrap gap-2">
-                        <!-- Dynamic Day Buttons -->
+                        <p class="text-slate-400 text-sm mt-1">Modul pembelajaran RPL & Umum Kurikulum Berjenjang SMK</p>
                     </div>
                 </div>
 
-                <div class="glass-panel rounded-2xl p-6 border border-slate-800">
-                    <div id="schedule-content-container" class="space-y-3">
-                        <!-- Dynamic Schedule List -->
-                    </div>
+                <!-- Subjects Cards Grid -->
+                <div id="curriculum-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Dynamic Subjects Cards -->
                 </div>
             </section>
 
@@ -388,7 +392,7 @@
                             <i class="fas fa-photo-video text-cyber-neonCyan"></i>
                             <span>Album Foto Kenang-kenangan</span>
                         </h2>
-                        <p class="text-slate-400 text-sm mt-1">Arsip foto kegiatan koding, tugas kelompok, & momen kelas</p>
+                        <p class="text-slate-400 text-sm mt-1">Arsip foto kegiatan koding, tugas kelompok, & momen bersama</p>
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-center gap-3">
@@ -475,7 +479,7 @@
 
             <form onsubmit="handleUploadSubmit(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-mono text-slate-300 mb-1">Target Kelas</label>
+                    <label class="block text-xs font-mono text-slate-300 mb-1">Target Tingkat Kelas</label>
                     <select id="upload-class-level" required class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white bg-slate-900 focus:outline-none">
                         <option value="X">Kelas X RPL 3 (Wali: Bu Bella)</option>
                         <option value="XI">Kelas XI RPL 3 (Wali: Bu Eka)</option>
@@ -485,12 +489,12 @@
 
                 <div>
                     <label class="block text-xs font-mono text-slate-300 mb-1">Judul Momen / Foto</label>
-                    <input type="text" id="upload-title" required placeholder="Contoh: Sesi Koding PBO Lab 1" 
+                    <input type="text" id="upload-title" required placeholder="Contoh: Sesi Koding PBO di Lab Komputer" 
                         class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-mono text-slate-300 mb-1">URL Foto (Unsplash / Direct Link Image)</label>
+                    <label class="block text-xs font-mono text-slate-300 mb-1">URL Foto (Direct Image Link)</label>
                     <input type="url" id="upload-url" required placeholder="https://images.unsplash.com/..." 
                         class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
                 </div>
@@ -606,7 +610,7 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // --- DATA STRUCTURES PER CLASS LEVEL (X, XI, XII) ---
+        // --- DATA STRUCTURES FOR HOMEROOM TEACHERS & CURRICULUM SUBJECTS ---
         const classData = {
             'X': {
                 badge: 'KELAS X RPL 3',
@@ -615,41 +619,19 @@
                 desc: 'Tingkat pertama siswa Rekayasa Perangkat Lunak 3. Mempelajari logika dasar pemrograman, perakitan komputer, HTML, CSS, serta membangun fondasi sebagai calon pengembang software.',
                 homeroom: {
                     name: 'Bu Bella, S.Kom.',
-                    role: 'Wali Kelas X RPL 3 & Guru Pemrograman Dasar',
-                    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300'
+                    role: 'Wali Kelas X RPL 3 & Pengajar Dasar Pemrograman',
+                    bio: 'Bu Bella bertindak sebagai pendamping utama kelas X RPL 3, membimbing adaptasi siswa baru dari logika dasar koding hingga menguasai perancangan web statis sederhana.',
+                    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400'
                 },
-                org: [
-                    { role: 'Wali Kelas', name: 'Bu Bella, S.Kom.', title: 'Pembimbing Utama', icon: 'fa-chalkboard-teacher', color: 'text-cyber-neonCyan' },
-                    { role: 'Ketua Kelas', name: 'Andra Pratama', title: 'Absen 04', icon: 'fa-crown', color: 'text-cyber-neonYellow' },
-                    { role: 'Wakil Ketua', name: 'Siti Rahma', title: 'Absen 28', icon: 'fa-user-shield', color: 'text-cyber-neonPurple' },
-                    { role: 'Sekretaris', name: 'Nabila Azzahra', title: 'Absen 22', icon: 'fa-file-signature', color: 'text-cyber-neonPink' },
-                    { role: 'Bendahara', name: 'Dimas Anggara', title: 'Absen 10', icon: 'fa-wallet', color: 'text-cyber-neonGreen' }
-                ],
-                schedule: {
-                    'Senin': [
-                        { time: '07:00 - 08:30', subject: 'Upacara & Bimbingan Wali Kelas', teacher: 'Bu Bella, S.Kom.', room: 'Ruang Teori X RPL' },
-                        { time: '08:30 - 11:30', subject: 'Pemrograman Dasar (Algoritma)', teacher: 'Bu Bella, S.Kom.', room: 'Lab Komputer 1' },
-                        { time: '12:30 - 14:00', subject: 'Informatika & Logika Komputasi', teacher: 'Pak Aris, M.T.', room: 'Lab Komputer 1' }
-                    ],
-                    'Selasa': [
-                        { time: '07:00 - 09:30', subject: 'Dasar Desain Grafis & UI', teacher: 'Bu Diana, S.Ds.', room: 'Lab Multimedia' },
-                        { time: '09:45 - 12:00', subject: 'Sistem Komputer & OS', teacher: 'Pak Rian, S.Kom.', room: 'Lab Hardware' },
-                        { time: '12:30 - 14:00', subject: 'Bahasa Indonesia', teacher: 'Bu Sri, M.Pd.', room: 'Ruang Teori' }
-                    ],
-                    'Rabu': [
-                        { time: '07:00 - 11:30', subject: 'HTML5, CSS3 & Responsive Web Design', teacher: 'Bu Bella, S.Kom.', room: 'Lab Web Dev' },
-                        { time: '12:30 - 14:00', subject: 'Matematika Dasar', teacher: 'Pak Heru, M.Sc.', room: 'Ruang Teori' }
-                    ],
-                    'Kamis': [
-                        { time: '07:00 - 09:30', subject: 'Bahasa Inggris IT', teacher: 'Mr. John, B.Ed.', room: 'Ruang Teori' },
-                        { time: '09:45 - 12:00', subject: 'Jaringan Dasar & Internet', teacher: 'Pak Taufik, S.T.', room: 'Lab Jaringan' },
-                        { time: '12:30 - 14:00', subject: 'Pendidikan Agama', teacher: 'Pak Ahmad, S.Ag.', room: 'Ruang Teori' }
-                    ],
-                    'Jumat': [
-                        { time: '07:00 - 08:30', subject: 'Olahraga & Senam Pagi', teacher: 'Pak Hadi, S.Pd.', room: 'Lapangan Utama' },
-                        { time: '08:45 - 11:00', subject: 'Simulasi Digital & Projek Pancasila', teacher: 'Bu Bella, S.Kom.', room: 'Lab Komputer 1' }
-                    ]
-                }
+                subjects: [
+                    { category: 'Kejuruan RPL', name: 'Dasar-Dasar PPLG', desc: 'Pemrograman Perangkat Lunak dan GIM, logika pemrograman, algoritma dasar & struktur data.', icon: 'fa-code', color: 'text-cyber-neonCyan' },
+                    { category: 'Kejuruan RPL', name: 'Pemrograman Web Dasar', desc: 'HTML5, CSS3, Flexbox/Grid, dan pengenalan JavaScript DOM interaktif.', icon: 'fa-globe', color: 'text-cyber-neonPurple' },
+                    { category: 'Kejuruan RPL', name: 'Informatika & Sistem Komputer', desc: 'Sistem operasi, jaringan dasar, logika perangkat keras, dan keamanan siber dasar.', icon: 'fa-desktop', color: 'text-cyber-neonPink' },
+                    { category: 'Umum', name: 'Matematika Terapan', desc: 'Aljabar, fungsi logika, dan gerbang logika matematika untuk algoritma koding.', icon: 'fa-calculator', color: 'text-cyber-neonYellow' },
+                    { category: 'Umum', name: 'IPAS (Ilmu Pengetahuan Alam & Sosial)', desc: 'Integrasi sains dasar dan wawasan lingkungan dalam kehidupan bermasyarakat.', icon: 'fa-flask', color: 'text-cyber-neonGreen' },
+                    { category: 'Umum', name: 'Bahasa Indonesia & Inggris', desc: 'Komunikasi formal, penyusunan laporan teknis, dan istilah IT dasar dalam Bahasa Inggris.', icon: 'fa-language', color: 'text-slate-300' },
+                    { category: 'Umum', name: 'Pendidikan Pancasila & Sejarah', desc: 'Pembentukan karakter integritas, kewarganegaraan, dan wawasan kebangsaan.', icon: 'fa-landmark', color: 'text-red-400' }
+                ]
             },
             'XI': {
                 badge: 'KELAS XI RPL 3',
@@ -658,141 +640,103 @@
                 desc: 'Tingkat menengah siswa Rekayasa Perangkat Lunak 3. Mendalami Pemrograman Berorientasi Objek (Java), Basis Data MySQL, Pemrograman Web PHP & JavaScript, serta UI/UX prototyping.',
                 homeroom: {
                     name: 'Bu Eka, S.T.',
-                    role: 'Wali Kelas XI RPL 3 & Guru PBO / Web Programming',
-                    avatar: 'https://images.unsplash.com/photo-1580894732413-a7235a9d2012?auto=format&fit=crop&q=80&w=300'
+                    role: 'Wali Kelas XI RPL 3 & Pengajar PBO & PWPB',
+                    bio: 'Bu Eka membimbing siswa kelas XI RPL 3 dalam penguasaan logika tingkat lanjut PBO, pengolahan basis data relasional, dan perancangan web dinamis skala menengah.',
+                    avatar: 'https://images.unsplash.com/photo-1580894732413-a7235a9d2012?auto=format&fit=crop&q=80&w=400'
                 },
-                org: [
-                    { role: 'Wali Kelas', name: 'Bu Eka, S.T.', title: 'Pembimbing Utama', icon: 'fa-chalkboard-teacher', color: 'text-cyber-neonCyan' },
-                    { role: 'Ketua Kelas', name: 'Rizky Febrian', title: 'Absen 25', icon: 'fa-crown', color: 'text-cyber-neonYellow' },
-                    { role: 'Wakil Ketua', name: 'Maya Indah', title: 'Absen 18', icon: 'fa-user-shield', color: 'text-cyber-neonPurple' },
-                    { role: 'Sekretaris', name: 'Fitri Handayani', title: 'Absen 12', icon: 'fa-file-signature', color: 'text-cyber-neonPink' },
-                    { role: 'Bendahara', name: 'Gading Marten', title: 'Absen 14', icon: 'fa-wallet', color: 'text-cyber-neonGreen' }
-                ],
-                schedule: {
-                    'Senin': [
-                        { time: '07:00 - 11:30', subject: 'Pemrograman Berorientasi Objek (PBO Java)', teacher: 'Bu Eka, S.T.', room: 'Lab Software 2' },
-                        { time: '12:30 - 14:00', subject: 'Pendidikan Pancasila & Kewarganegaraan', teacher: 'Pak Budi, S.H.', room: 'Ruang XI RPL' }
-                    ],
-                    'Selasa': [
-                        { time: '07:00 - 11:30', subject: 'Basis Data & SQL (MySQL / MariaDB)', teacher: 'Pak Doni, M.Kom.', room: 'Lab Database' },
-                        { time: '12:30 - 14:00', subject: 'Matematika Terapan', teacher: 'Bu Ratna, M.Pd.', room: 'Ruang XI RPL' }
-                    ],
-                    'Rabu': [
-                        { time: '07:00 - 11:30', subject: 'Pemrograman Web Dinamis (PHP & JS)', teacher: 'Bu Eka, S.T.', room: 'Lab Web Dev' },
-                        { time: '12:30 - 14:00', subject: 'Bahasa Inggris Lanjut', teacher: 'Mrs. Sarah, M.Hum.', room: 'Ruang XI RPL' }
-                    ],
-                    'Kamis': [
-                        { time: '07:00 - 09:30', subject: 'Pemodelan Perangkat Lunak (UML & Flowchart)', teacher: 'Bu Eka, S.T.', room: 'Lab Design' },
-                        { time: '09:45 - 12:00', subject: 'Produk Kreatif & Kewirausahaan (PKK)', teacher: 'Pak Yudi, SE.', room: 'Ruang XI RPL' },
-                        { time: '12:30 - 14:00', subject: 'Bahasa Indonesia', teacher: 'Bu Sri, M.Pd.', room: 'Ruang XI RPL' }
-                    ],
-                    'Jumat': [
-                        { time: '07:00 - 11:00', subject: 'Praktikum Project WEB & Database', teacher: 'Bu Eka, S.T.', room: 'Lab Software 2' }
-                    ]
-                }
+                subjects: [
+                    { category: 'Kejuruan Utama', name: 'Pemrograman Berorientasi Objek (PBO)', desc: 'Pemrograman Java OOP (Class, Object, Inheritance, Polymorphism, Encapsulation).', icon: 'fa-cubes', color: 'text-cyber-neonCyan' },
+                    { category: 'Kejuruan Utama', name: 'Pemrograman Web & Perangkat Bergerak (PWPB)', desc: 'Web dinamis menggunakan PHP, MySQL, JavaScript ES6, dan integrasi AJAX.', icon: 'fa-laptop-code', color: 'text-cyber-neonPurple' },
+                    { category: 'Kejuruan Utama', name: 'Basis Data & Pengelolaan Basdat', desc: 'Perancangan ERD, SQL query (DDL, DML), JOIN table, dan manajemen MySQL/MariaDB.', icon: 'fa-database', color: 'text-cyber-neonPink' },
+                    { category: 'Kejuruan Utama', name: 'Pemodelan Perangkat Lunak', desc: 'Sistem analisis UML (Use Case, Sequence, Activity Diagram) dan Figma UI/UX.', icon: 'fa-sitemap', color: 'text-cyber-neonGreen' },
+                    { category: 'Kewirausahaan', name: 'Produk Kreatif & Kewirausahaan (PKK)', desc: 'Perancangan produk software komersial, proposal bisnis IT, dan branding.', icon: 'fa-lightbulb', color: 'text-cyber-neonYellow' },
+                    { category: 'Umum', name: 'Matematika & Bahasa Inggris Lanjut', desc: 'Statistika, probabilitas, dan Bahasa Inggris untuk dokumentasi koding / API.', icon: 'fa-square-root-alt', color: 'text-slate-300' },
+                    { category: 'Umum', name: 'PPKn & Pendidikan Agama', desc: 'Penguatan moralitas, Etika Profesi IT, dan norma hukum hak cipta karya digital.', icon: 'fa-shield-alt', color: 'text-blue-400' }
+                ]
             },
             'XII': {
                 badge: 'KELAS XII RPL 3',
                 subtitle: 'WELCOME TO CLASS XII RPL 3',
-                title: 'Persiapan Karir & Tugas Akhir',
+                title: 'Persiapan Karir & Project Akhir',
                 desc: 'Tingkat akhir siswa Rekayasa Perangkat Lunak 3. Penguasaan Framework Modern (Laravel & React), Mobile App Development (Flutter), Cloud Integration, serta persiapan UKK (Uji Kompetensi Keahlian).',
                 homeroom: {
                     name: 'Pak Bayu, M.Kom.',
-                    role: 'Wali Kelas XII RPL 3 & Pembimbing Utama Project UKK',
-                    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300'
+                    role: 'Wali Kelas XII RPL 3 & Pembimbing Project Akhir / UKK',
+                    bio: 'Pak Bayu mendampingi kelas XII RPL 3 fokus pada kesiapan karir industri, pembimbingan Portofolio Fullstack Developer, serta kelulusan Uji Kompetensi Keahlian (UKK).',
+                    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400'
                 },
-                org: [
-                    { role: 'Wali Kelas', name: 'Pak Bayu, M.Kom.', title: 'Pembimbing Utama', icon: 'fa-chalkboard-teacher', color: 'text-cyber-neonCyan' },
-                    { role: 'Ketua Kelas', name: 'Farhan Kholid', title: 'Absen 11', icon: 'fa-crown', color: 'text-cyber-neonYellow' },
-                    { role: 'Wakil Ketua', name: 'Jessica Tan', title: 'Absen 16', icon: 'fa-user-shield', color: 'text-cyber-neonPurple' },
-                    { role: 'Sekretaris', name: 'Ayu Lestari', title: 'Absen 05', icon: 'fa-file-signature', color: 'text-cyber-neonPink' },
-                    { role: 'Bendahara', name: 'Kevin Sanjaya', title: 'Absen 17', icon: 'fa-wallet', color: 'text-cyber-neonGreen' }
-                ],
-                schedule: {
-                    'Senin': [
-                        { time: '07:00 - 11:30', subject: 'Pemrograman Web Framework (Laravel & ReactJS)', teacher: 'Pak Bayu, M.Kom.', room: 'Lab Advance Software' },
-                        { time: '12:30 - 14:00', subject: 'Bahasa Inggris Karir & Interview Prep', teacher: 'Mr. John, B.Ed.', room: 'Ruang XII RPL' }
-                    ],
-                    'Selasa': [
-                        { time: '07:00 - 11:30', subject: 'Pemrograman Perangkat Bergerak (Flutter Android/iOS)', teacher: 'Pak Bayu, M.Kom.', room: 'Lab Mobile Dev' },
-                        { time: '12:30 - 14:00', subject: 'Matematika Diskrit & Algoritma Lanjut', teacher: 'Pak Heru, M.Sc.', room: 'Ruang XII RPL' }
-                    ],
-                    'Rabu': [
-                        { time: '07:00 - 12:00', subject: 'Asistensi Project UKK & Side Project Aplikasi', teacher: 'Pak Bayu, M.Kom.', room: 'Lab Advance Software' },
-                        { time: '12:30 - 14:00', subject: 'Administrasi Server & Cloud Deployment', teacher: 'Pak Taufik, S.T.', room: 'Lab Network & Cloud' }
-                    ],
-                    'Kamis': [
-                        { time: '07:00 - 11:30', subject: 'Produk Kreatif & Launching Startup Aplikasi', teacher: 'Pak Yudi, SE.', room: 'Ruang Incubation' },
-                        { time: '12:30 - 14:00', subject: 'Pendidikan Agama & Etika Profesi IT', teacher: 'Pak Ahmad, S.Ag.', room: 'Ruang XII RPL' }
-                    ],
-                    'Jumat': [
-                        { time: '07:00 - 11:00', subject: 'Simulasi Sidang & Trial Uji Kompetensi Keahlian (UKK)', teacher: 'Pak Bayu, M.Kom.', room: 'Auditorium Lab' }
-                    ]
-                }
+                subjects: [
+                    { category: 'Kejuruan Lanjut', name: 'Pemrograman Web & Mobile Lanjut', desc: 'Pengembangan Fullstack dengan Laravel REST API, ReactJS, dan Mobile App Flutter.', icon: 'fa-mobile-alt', color: 'text-cyber-neonCyan' },
+                    { category: 'Kejuruan Lanjut', name: 'Administrasi Server & Cloud Integration', desc: 'Deployment aplikasi ke VPS Linux, Docker containerization, Nginx, & CI/CD basics.', icon: 'fa-cloud-upload-alt', color: 'text-cyber-neonPurple' },
+                    { category: 'Kejuruan Lanjut', name: 'Pengujian & Kualitas Perangkat Lunak (QA)', desc: 'Software Testing, Unit Testing, Blackbox/Whitebox Testing, dan Bug Fixing.', icon: 'fa-vial', color: 'text-cyber-neonPink' },
+                    { category: 'Project Akhir', name: 'PKK & Portfolio UKK (Tugas Akhir)', desc: 'Pembuatan aplikasi nyata dari tahap analisis, koding, hingga sidang pengujian UKK.', icon: 'fa-award', color: 'text-cyber-neonYellow' },
+                    { category: 'Karir Industri', name: 'Bahasa Inggris Industri & Interview Prep', desc: 'Persiapan CV software engineer, interview teknis, dan komunikasi profesional.', icon: 'fa-user-tie', color: 'text-cyber-neonGreen' },
+                    { category: 'Umum', name: 'Bahasa Indonesia & Bimbingan Karir', desc: 'Penyusunan dokumen teknis, laporan karya akhir, dan persiapan masuk Dunia Kerja/Kuliah.', icon: 'fa-graduation-cap', color: 'text-slate-300' }
+                ]
             }
         };
 
-        // --- DUMMY INITIAL DATA FOR PHOTOS & WALL NOTES ---
+        // --- INITIAL DATA PHOTOS & WALL NOTES ---
         const initialPhotos = [
             {
                 id: 'p1',
                 classLevel: 'X',
-                title: 'Perkenalan Lab & Install IDE Pertama',
+                title: 'Perkenalan HTML & CSS Bersama Bu Bella',
                 date: '12 Agu 2024',
                 url: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800',
-                desc: 'Momen heboh di lab komputer sama Bu Bella saat pertama kali nyoba ngetik Hello World di HTML & VS Code.',
-                likes: 19,
-                comments: [{ author: 'Andra', text: 'Semua bingung cara nyimpan file .html wkwk' }]
+                desc: 'Momen seru saat pertama kali mencoba ngetik Hello World di HTML & VS Code dibimbing Bu Bella.',
+                likes: 24,
+                comments: [{ author: 'Andra', text: 'Kocak banget pas pada lupa cara save file .html wkwk' }]
             },
             {
                 id: 'p2',
                 classLevel: 'X',
-                title: 'Kerja Kelompok Maket Hardware',
+                title: 'Praktek Perakitan Komputer & Hardware',
                 date: '20 Okt 2024',
                 url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800',
                 desc: 'Bongkar pasang CPU dan belajar bagian motherboard di mata pelajaran Sistem Komputer.',
-                likes: 22,
-                comments: [{ author: 'Siti', text: 'RAM-nya kebalik dipasang untung ga meleleh!' }]
+                likes: 18,
+                comments: [{ author: 'Siti', text: 'Paling grogi pas masang processor Takut patah pinnya!' }]
             },
             {
                 id: 'p3',
                 classLevel: 'XI',
-                title: 'Tragedi Semicolon PBO Java',
+                title: 'Debugging PBO Java Bareng Bu Eka',
                 date: '15 Mar 2025',
                 url: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800',
-                desc: 'Lembur bareng di lab sama Bu Eka, nyari bug 3 jam ternyata cuma kurang titik koma ; di baris 42.',
-                likes: 38,
-                comments: [{ author: 'Rizky', text: 'Legendaris banget ini pas koding Java!' }]
+                desc: 'Diskusi nyari error 2 jam di modul Java OOP, ternyata cuma kurang titik koma (;) di baris 42.',
+                likes: 35,
+                comments: [{ author: 'Rizky', text: 'Titik koma legendaris Java wkwk' }]
             },
             {
                 id: 'p4',
                 classLevel: 'XI',
-                title: 'Design Sprint UI/UX Aplikasi',
+                title: 'Design Wireframe UI/UX Aplikasi',
                 date: '10 Mei 2025',
                 url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
-                desc: 'Diskusi warna tema dan wireframe wireframing pengerjaan web database toko online.',
-                likes: 27,
-                comments: [{ author: 'Maya', text: 'Warna pilihan kelompok 3 dibilang jreng bgt wkwk' }]
+                desc: 'Diskusi skema warna dan prototipe aplikasi toko online di mata pelajaran PWPB.',
+                likes: 29,
+                comments: [{ author: 'Maya', text: 'Kelompok kita dipuji Bu Eka karena Figma-nya rapi!' }]
             },
             {
                 id: 'p5',
                 classLevel: 'XII',
-                title: 'Persiapan Sidang UKK Bersama Pak Bayu',
+                title: 'Mentoring Project UKK Bersama Pak Bayu',
                 date: '14 Feb 2026',
                 url: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=800',
-                desc: 'Sesi mentoring intensif pembuatan REST API Laravel & Flutter app bareng Pak Bayu.',
-                likes: 45,
-                comments: [{ author: 'Farhan', text: 'Semangat bismillah LULUS UKK nilai A!' }]
+                desc: 'Sesi konsultasi REST API Laravel & Flutter app bareng Pak Bayu untuk persiapan UKK.',
+                likes: 48,
+                comments: [{ author: 'Farhan', text: 'Bismillah LULUS UKK nilai A++!' }]
             },
             {
                 id: 'p6',
                 classLevel: 'XII',
-                title: 'Foto Sesi Baju Kebersamaan Yearbook',
+                title: 'Foto Sesi Buku Alumni / Yearbook RPL 3',
                 date: '28 Sep 2026',
                 url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
-                desc: 'Sesi foto buku alumni di lapangan dengan tema outfit cyberpunk black & neon.',
-                likes: 56,
-                comments: [{ author: 'Jessica', text: 'RPL 3 kating paling kece!!' }]
+                desc: 'Sesi foto kebersamaan dengan konsep outfit dark cyberpunk.',
+                likes: 62,
+                comments: [{ author: 'Jessica', text: 'RPL 3 angkatan paling solid!!' }]
             }
         ];
 
@@ -809,13 +753,12 @@
 
         const initialNotes = [
             { author: 'Farhan (XII RPL 3)', text: 'Error bukan akhir dari segalanya, tapi tanda kalau kamu lagi belajar hal baru!', date: '01 Okt 2026' },
-            { author: 'Siti (X RPL 3)', text: 'Terima kasih Bu Bella udah sabar ngajarin dasar algoritma pas kami masih awam bgt!', date: '02 Okt 2026' },
+            { author: 'Siti (X RPL 3)', text: 'Terima kasih Bu Bella udah sabar ngajarin dasar algoritma pas kami masih belum mengerti!', date: '02 Okt 2026' },
             { author: 'Rizky (XI RPL 3)', text: 'Titik koma (;) Java adalah ujian kesabaran terhebat selama di SMK.', date: '03 Okt 2026' }
         ];
 
         // GLOBAL APP STATE
-        let currentClassLevel = 'X'; // Default 'X', 'XI', 'XII'
-        let currentDay = 'Senin';
+        let currentClassLevel = 'X';
         let photos = [];
         let wallNotes = [];
         let currentActivePhotoId = null;
@@ -826,7 +769,7 @@
             switchClass('X');
         };
 
-        // AUTHENTICATION
+        // AUTHENTICATION LOGIC
         function checkAuth() {
             const isLoggedIn = localStorage.getItem('rpl3_login') === 'true' || sessionStorage.getItem('rpl3_login') === 'true';
             const loginSection = document.getElementById('login-section');
@@ -856,7 +799,7 @@
                     sessionStorage.setItem('rpl3_login', 'true');
                 }
                 showToast('Login Berhasil! Selamat datang di Portal RPL 3.', 'success');
-                setTimeout(() => checkAuth(), 400);
+                setTimeout(() => checkAuth(), 300);
             } else {
                 errBox.classList.remove('hidden');
             }
@@ -865,11 +808,11 @@
         function handleLogout() {
             localStorage.removeItem('rpl3_login');
             sessionStorage.removeItem('rpl3_login');
-            showToast('Anda telah keluar dari aplikasi.', 'info');
-            setTimeout(() => checkAuth(), 400);
+            showToast('Anda telah keluar dari portal.', 'info');
+            setTimeout(() => checkAuth(), 300);
         }
 
-        // LOAD DATA STORAGE
+        // STORAGE MANAGEMENT
         function loadStoredData() {
             const storedPhotos = localStorage.getItem('rpl3_photos');
             photos = storedPhotos ? JSON.parse(storedPhotos) : initialPhotos;
@@ -886,11 +829,11 @@
             updateStats();
         }
 
-        // CLASS SWITCHER LOGIC
+        // CLASS SWITCHER
         function switchClass(level) {
             currentClassLevel = level;
 
-            // Update Switcher Button UI
+            // Switcher Tabs Styling
             ['X', 'XI', 'XII'].forEach(lvl => {
                 const btn = document.getElementById(`btn-class-${lvl}`);
                 if (lvl === level) {
@@ -900,98 +843,51 @@
                 }
             });
 
-            // Update Hero Banner Content
+            // Update Dynamic Content
             const data = classData[level];
             document.getElementById('nav-class-badge').innerText = data.badge;
             document.getElementById('hero-subtitle').innerText = data.subtitle;
             document.getElementById('hero-title').innerText = data.title;
             document.getElementById('hero-desc').innerText = data.desc;
 
-            // Update Homeroom Teacher Box
-            document.getElementById('homeroom-teacher-name').innerText = data.homeroom.name;
-            document.getElementById('homeroom-teacher-role').innerText = data.homeroom.role;
+            // Update Homeroom Profile Section
+            document.getElementById('homeroom-class-badge').innerText = data.badge;
+            document.getElementById('homeroom-name').innerText = data.homeroom.name;
+            document.getElementById('homeroom-title').innerText = data.homeroom.role;
+            document.getElementById('homeroom-bio').innerText = data.homeroom.bio;
+            document.getElementById('homeroom-img').src = data.homeroom.avatar;
 
-            // Update Sections
-            document.getElementById('org-class-label').innerText = data.badge;
-            renderOrgCards();
-            renderScheduleDays();
-            renderScheduleList();
+            renderCurriculum();
             renderGallery();
             renderStudents();
             renderWallNotes();
             updateStats();
         }
 
-        // RENDER ORGANIZATIONAL STRUCTURE
-        function renderOrgCards() {
-            const container = document.getElementById('org-cards-container');
-            const data = classData[currentClassLevel].org;
+        // RENDER CURRICULUM SUBJECTS (NO SCHEDULE TIME)
+        function renderCurriculum() {
+            const container = document.getElementById('curriculum-grid');
+            const subjects = classData[currentClassLevel].subjects;
 
-            container.innerHTML = data.map((item, idx) => `
-                <div class="glass-panel p-5 rounded-2xl border border-slate-800 hover:border-cyber-neonCyan transition-all duration-300 flex flex-col justify-between">
+            container.innerHTML = subjects.map(s => `
+                <div class="glass-panel p-5 rounded-2xl border border-slate-800 hover:border-cyber-neonCyan transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400">${item.role}</span>
-                            <i class="fas ${item.icon} ${item.color} text-lg"></i>
+                            <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded bg-slate-900 text-slate-400 border border-slate-800">${s.category}</span>
+                            <i class="fas ${s.icon} ${s.color} text-xl group-hover:scale-110 transition-transform"></i>
                         </div>
-                        <h3 class="font-bold text-white text-sm line-clamp-1">${item.name}</h3>
-                        <p class="text-xs text-slate-400 mt-0.5">${item.title}</p>
+                        <h3 class="font-bold text-white text-base group-hover:text-cyber-neonCyan transition-colors">${s.name}</h3>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">${s.desc}</p>
                     </div>
                     <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-cyber-neonCyan font-mono">
                         <span>${currentClassLevel} RPL 3</span>
-                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-book-reader"></i>
                     </div>
                 </div>
             `).join('');
         }
 
-        // RENDER LESSON SCHEDULE
-        function renderScheduleDays() {
-            const container = document.getElementById('day-tabs');
-            const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
-
-            container.innerHTML = days.map(d => `
-                <button onclick="changeDay('${d}')" 
-                    class="px-4 py-1.5 rounded-xl text-xs font-mono font-bold transition-all ${d === currentDay ? 'bg-cyber-neonCyan text-slate-950 shadow-glow-cyan' : 'glass-panel text-slate-400 hover:text-white border border-slate-800'}">
-                    ${d}
-                </button>
-            `).join('');
-        }
-
-        function changeDay(d) {
-            currentDay = d;
-            renderScheduleDays();
-            renderScheduleList();
-        }
-
-        function renderScheduleList() {
-            const container = document.getElementById('schedule-content-container');
-            const list = classData[currentClassLevel].schedule[currentDay] || [];
-
-            if (list.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-500 font-mono py-4 text-center">Tidak ada jadwal pelajaran pada hari ini.</p>`;
-                return;
-            }
-
-            container.innerHTML = list.map(item => `
-                <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div class="flex items-start space-x-3">
-                        <div class="px-2.5 py-1 rounded-lg bg-cyber-neonCyan/10 border border-cyber-neonCyan/30 text-cyber-neonCyan font-mono text-xs mt-0.5">
-                            <i class="far fa-clock mr-1"></i>${item.time}
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white text-sm">${item.subject}</h4>
-                            <p class="text-xs text-slate-400 mt-0.5"><i class="fas fa-user-tie text-xs mr-1 text-cyber-neonPurple"></i> ${item.teacher}</p>
-                        </div>
-                    </div>
-                    <div class="text-xs font-mono text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800 self-start sm:self-auto">
-                        <i class="fas fa-door-open mr-1 text-cyber-neonGreen"></i>${item.room}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // RENDER GALLERY
+        // RENDER GALLERY & LIGHTBOX
         function renderGallery() {
             const container = document.getElementById('gallery-grid');
             const search = document.getElementById('gallery-search').value.toLowerCase();
@@ -1060,7 +956,6 @@
             }
         }
 
-        // LIGHTBOX MODAL
         function openLightboxModal(id) {
             const p = photos.find(item => item.id === id);
             if (!p) return;
@@ -1116,7 +1011,7 @@
             }
         }
 
-        // UPLOAD MODAL
+        // UPLOAD PHOTO LOGIC
         function openUploadModal() {
             document.getElementById('upload-class-level').value = currentClassLevel;
             document.getElementById('upload-modal').classList.remove('hidden');
@@ -1218,12 +1113,12 @@
             document.getElementById('note-content').value = '';
         }
 
-        // UTILS & STATS
+        // STATS & UTILS
         function updateStats() {
             document.getElementById('stat-total-photos').innerText = photos.length;
             const totalLikes = photos.reduce((sum, p) => sum + p.likes, 0);
             document.getElementById('stat-total-likes').innerText = totalLikes;
-            document.getElementById('stat-total-notes').innerText = wallNotes.length;
+            document.getElementById('stat-total-subjects').innerText = classData[currentClassLevel].subjects.length;
         }
 
         function scrollToSection(id) {

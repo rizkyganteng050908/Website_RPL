@@ -121,7 +121,7 @@
                     Jejak Langkah, Coding, dan <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">Cerita Kita</span>
                 </h1>
                 <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-                    Website kenangan rasional & emosional kelas RPL 3. Mengabadikan perjalanan panjang kita dari masa X, XI, hingga kelulusan di XII.
+                    Website kenangan kelas RPL 3. Mengabadikan perjalanan panjang kita dari masa X, XI, hingga kelulusan di XII.
                 </p>
             </div>
         </header>
@@ -193,7 +193,7 @@
                 </div>
 
                 <!-- MEMBER GRID -->
-                <div id="memberGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div id="memberGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                     <!-- Javascript will render members here -->
                 </div>
             </div>
@@ -309,7 +309,7 @@
             renderMessages();
         }
 
-        // Render Members Function
+        // Render Members Function (Tampilan Bersih - Nama Saja)
         function renderMembers(filter = 'all') {
             const grid = document.getElementById('memberGrid');
             grid.innerHTML = '';
@@ -322,13 +322,10 @@
             filtered.forEach(m => {
                 const isMale = m.gender === 'L';
                 const card = document.createElement('div');
-                card.className = "glass p-4 rounded-2xl border border-slate-800 text-center hover:border-primary/50 transition transform hover:-translate-y-1";
+                card.className = "glass p-3 rounded-xl border border-slate-800 text-center hover:border-primary/50 transition transform hover:-translate-y-1 flex flex-col items-center justify-center space-y-1";
                 card.innerHTML = `
-                    <div class="w-14 h-14 mx-auto mb-3 rounded-full flex items-center justify-center font-bold text-lg ${isMale ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-pink-500/10 text-pink-400 border border-pink-500/20'}">
-                        <i class="fa-solid ${isMale ? 'fa-user' : 'fa-user-nurse'}"></i>
-                    </div>
-                    <h4 class="font-bold text-sm text-white truncate">${m.name}</h4>
-                    <span class="inline-block mt-1 text-[10px] font-semibold px-2 py-0.5 rounded-md ${isMale ? 'bg-blue-500/20 text-blue-300' : 'bg-pink-500/20 text-pink-300'}">
+                    <h4 class="font-bold text-sm text-white truncate w-full">${m.name}</h4>
+                    <span class="inline-block text-[10px] font-semibold px-2 py-0.5 rounded-md ${isMale ? 'bg-blue-500/20 text-blue-300' : 'bg-pink-500/20 text-pink-300'}">
                         ${isMale ? 'Laki-Laki' : 'Perempuan'}
                     </span>
                 `;

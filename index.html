@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Kenang-Kenangan RPL 3</title>
 
 <style>
@@ -11,16 +12,22 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
     background:#07111f;
-    color:white;
+    color:#fff;
     min-height:100vh;
 }
 
-/* ================= LOGIN ================= */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 #loginPage{
     min-height:100vh;
@@ -28,34 +35,49 @@ body{
     align-items:center;
     justify-content:center;
     padding:20px;
+
     background:
-        radial-gradient(circle at top,#123b63,transparent 45%),
-        linear-gradient(135deg,#030812,#07182a);
+        radial-gradient(circle at 20% 20%,#123e63,transparent 35%),
+        radial-gradient(circle at 80% 80%,#3d176b,transparent 35%),
+        linear-gradient(135deg,#020711,#07182a);
 }
 
 .login-box{
     width:100%;
     max-width:400px;
     padding:35px 30px;
-    background:rgba(10,25,43,.95);
+
+    background:rgba(8,23,40,.96);
+
     border:1px solid #168cff;
     border-radius:20px;
-    box-shadow:0 0 35px rgba(0,140,255,.25);
+
     text-align:center;
+
+    box-shadow:
+        0 0 35px rgba(0,140,255,.25);
 }
 
 .logo{
     width:85px;
     height:85px;
+
     margin:auto;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-radius:50%;
-    background:linear-gradient(135deg,#00c6ff,#7c3cff);
+
+    background:
+        linear-gradient(135deg,#00c6ff,#7c3cff);
+
     font-size:30px;
     font-weight:bold;
-    box-shadow:0 0 25px rgba(0,198,255,.4);
+
+    box-shadow:
+        0 0 25px rgba(0,198,255,.4);
 }
 
 .login-box h1{
@@ -69,7 +91,7 @@ body{
 }
 
 .input-box{
-    margin-bottom:15px;
+    margin-bottom:16px;
     text-align:left;
 }
 
@@ -82,28 +104,41 @@ body{
 .input-box input{
     width:100%;
     padding:13px;
+
     border-radius:10px;
     border:1px solid #214866;
+
     background:#071522;
-    color:white;
+    color:#fff;
+
     outline:none;
+    font-size:15px;
 }
 
 .input-box input:focus{
     border-color:#00aaff;
+
+    box-shadow:
+        0 0 10px rgba(0,170,255,.15);
 }
 
 .login-btn{
     width:100%;
+
     padding:13px;
+
     border:0;
     border-radius:10px;
-    background:linear-gradient(90deg,#008cff,#743cff);
-    color:white;
+
+    background:
+        linear-gradient(90deg,#008cff,#743cff);
+
+    color:#fff;
+
     font-size:16px;
     font-weight:bold;
+
     cursor:pointer;
-    margin-top:5px;
 }
 
 .login-btn:hover{
@@ -116,22 +151,33 @@ body{
     display:none;
 }
 
-/* ================= WEBSITE ================= */
+/* =====================================================
+   WEBSITE
+===================================================== */
 
 #website{
     display:none;
 }
 
+/* =====================================================
+   NAVBAR
+===================================================== */
+
 nav{
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:1000;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     padding:15px 6%;
+
     background:rgba(4,14,27,.94);
+
     backdrop-filter:blur(10px);
+
     border-bottom:1px solid #173a57;
 }
 
@@ -144,16 +190,18 @@ nav{
 .nav-menu{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:7px;
 }
 
-.nav-menu a,
-.logout{
-    color:white;
+.nav-menu a{
+    color:#fff;
     text-decoration:none;
+
     padding:9px 13px;
+
     border-radius:8px;
-    cursor:pointer;
+
+    transition:.2s;
 }
 
 .nav-menu a:hover{
@@ -161,27 +209,55 @@ nav{
 }
 
 .logout{
-    background:#e63946;
+    color:#fff;
+
     border:0;
+
+    padding:9px 13px;
+
+    border-radius:8px;
+
+    background:#e63946;
+
+    cursor:pointer;
+
+    font-size:14px;
 }
 
 .logout:hover{
     background:#ff4d5a;
 }
 
-/* ================= HERO ================= */
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
-    min-height:500px;
+    min-height:510px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     text-align:center;
+
     padding:70px 20px;
+
     background:
-        linear-gradient(rgba(3,10,20,.65),rgba(3,10,20,.9)),
-        radial-gradient(circle at 20% 20%,#075985,transparent 35%),
-        radial-gradient(circle at 80% 70%,#4c1d95,transparent 35%);
+        linear-gradient(
+            rgba(3,10,20,.62),
+            rgba(3,10,20,.9)
+        ),
+        radial-gradient(
+            circle at 20% 20%,
+            #075985,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            #4c1d95,
+            transparent 35%
+        );
 }
 
 .hero-content{
@@ -190,19 +266,35 @@ nav{
 
 .badge{
     display:inline-block;
+
     padding:8px 15px;
+
     border-radius:30px;
+
     background:#0d2940;
+
     border:1px solid #168cff;
+
     color:#58c9ff;
+
     margin-bottom:20px;
 }
 
 .hero h1{
     font-size:clamp(55px,10vw,100px);
-    background:linear-gradient(90deg,#00c6ff,#a855f7);
+
+    background:
+        linear-gradient(
+            90deg,
+            #00c6ff,
+            #a855f7
+        );
+
     -webkit-background-clip:text;
+    background-clip:text;
+
     color:transparent;
+
     font-weight:900;
 }
 
@@ -213,9 +305,13 @@ nav{
 
 .hero p{
     max-width:650px;
+
     margin:auto;
+
     line-height:1.7;
+
     color:#b7c8d8;
+
     font-size:17px;
 }
 
@@ -225,15 +321,34 @@ nav{
 
 .hero-buttons a{
     display:inline-block;
+
     text-decoration:none;
-    color:white;
+
+    color:#fff;
+
     padding:13px 20px;
+
     margin:5px;
+
     border-radius:10px;
-    background:linear-gradient(90deg,#008cff,#733cff);
+
+    background:
+        linear-gradient(
+            90deg,
+            #008cff,
+            #733cff
+        );
+
+    transition:.2s;
 }
 
-/* ================= SECTION ================= */
+.hero-buttons a:hover{
+    transform:translateY(-2px);
+}
+
+/* =====================================================
+   SECTION
+===================================================== */
 
 section{
     padding:70px 7%;
@@ -253,27 +368,46 @@ section{
     color:#91a8bd;
 }
 
-/* ================= KELAS ================= */
+/* =====================================================
+   KELAS
+===================================================== */
 
 .class-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:20px;
 }
 
 .class-card{
-    background:linear-gradient(145deg,#0b2035,#071522);
+    background:
+        linear-gradient(
+            145deg,
+            #0b2035,
+            #071522
+        );
+
     border:1px solid #1b4667;
+
     border-radius:18px;
+
     padding:28px;
+
     text-align:center;
+
     transition:.3s;
 }
 
 .class-card:hover{
     transform:translateY(-5px);
+
     border-color:#00aaff;
-    box-shadow:0 10px 30px rgba(0,150,255,.15);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,150,255,.15);
 }
 
 .class-icon{
@@ -295,7 +429,9 @@ section{
     color:#fff;
 }
 
-/* ================= SISWA ================= */
+/* =====================================================
+   SISWA
+===================================================== */
 
 .student-section{
     background:#050d18;
@@ -303,49 +439,77 @@ section{
 
 .gender-title{
     margin:35px 0 18px;
+
     font-size:22px;
+
     color:#63caff;
 }
 
 .student-list{
     display:flex;
+
     flex-wrap:wrap;
+
     gap:10px;
 }
 
 .student{
     padding:10px 15px;
+
     border-radius:10px;
+
     background:#0d2135;
+
     border:1px solid #1c415c;
+
     color:#d9e9f6;
+
+    transition:.2s;
 }
 
 .student:hover{
     border-color:#00aaff;
+
+    transform:translateY(-2px);
 }
 
-/* ================= ALBUM ================= */
+/* =====================================================
+   ALBUM
+===================================================== */
 
 .album{
     display:grid;
-    grid-template-columns:repeat(5,1fr);
+
+    grid-template-columns:
+        repeat(5,1fr);
+
     gap:15px;
 }
 
 .photo{
     aspect-ratio:1/1;
+
     overflow:hidden;
+
     border-radius:14px;
+
     border:1px solid #1c4866;
+
     background:#0b1725;
+
     cursor:pointer;
+
+    position:relative;
 }
 
 .photo img{
     width:100%;
     height:100%;
+
     object-fit:cover;
+
+    display:block;
+
     transition:.4s;
 }
 
@@ -353,63 +517,101 @@ section{
     transform:scale(1.08);
 }
 
-/* ================= LIGHTBOX ================= */
+/* =====================================================
+   LIGHTBOX
+===================================================== */
 
 .lightbox{
     display:none;
+
     position:fixed;
-    z-index:999;
+
+    z-index:9999;
+
     inset:0;
-    background:rgba(0,0,0,.9);
+
+    background:
+        rgba(0,0,0,.92);
+
     align-items:center;
     justify-content:center;
+
     padding:20px;
 }
 
 .lightbox img{
     max-width:95%;
     max-height:85vh;
+
     border-radius:12px;
+
+    box-shadow:
+        0 0 40px rgba(0,0,0,.5);
 }
 
 .close{
     position:absolute;
-    top:20px;
-    right:30px;
-    font-size:40px;
+
+    top:15px;
+    right:25px;
+
+    font-size:45px;
+
     cursor:pointer;
-    color:white;
+
+    color:#fff;
+
+    z-index:2;
 }
 
-/* ================= FOOTER ================= */
+.close:hover{
+    color:#00c6ff;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer{
     text-align:center;
+
     padding:30px 20px;
+
     background:#030912;
+
     border-top:1px solid #17354d;
+
     color:#8095a8;
+
+    line-height:1.8;
 }
 
 footer strong{
     color:#00bfff;
 }
 
-/* ================= RESPONSIVE ================= */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media(max-width:1000px){
+
     .album{
-        grid-template-columns:repeat(4,1fr);
+        grid-template-columns:
+            repeat(4,1fr);
     }
+
 }
 
 @media(max-width:800px){
+
     .class-grid{
         grid-template-columns:1fr;
     }
 
     .album{
-        grid-template-columns:repeat(3,1fr);
+        grid-template-columns:
+            repeat(3,1fr);
     }
 
     nav{
@@ -419,11 +621,14 @@ footer strong{
     .nav-menu a{
         display:none;
     }
+
 }
 
 @media(max-width:500px){
+
     .album{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
     section{
@@ -438,14 +643,41 @@ footer strong{
         font-size:23px;
     }
 
+    .hero p{
+        font-size:15px;
+    }
+
     .login-box{
         padding:30px 20px;
     }
+
+    .section-title h2{
+        font-size:28px;
+    }
+
+}
+
+/* =====================================================
+   EXTRA SMALL SCREEN
+===================================================== */
+
+@media(max-width:350px){
+
+    .album{
+        gap:8px;
+    }
+
+    .student{
+        width:100%;
+        text-align:center;
+    }
+
 }
 </style>
 </head>
 
 <body>
+
 
 <!-- =====================================================
      HALAMAN LOGIN
@@ -455,24 +687,57 @@ footer strong{
 
     <div class="login-box">
 
-        <div class="logo">R3</div>
-
-        <h1>RPL 3</h1>
-        <p>Website Kenang-Kenangan</p>
-
-        <div class="input-box">
-            <label>Username</label>
-            <input type="text" id="username" placeholder="Masukkan username">
+        <div class="logo">
+            R3
         </div>
 
+        <h1>
+            RPL 3
+        </h1>
+
+        <p>
+            Website Kenang-Kenangan
+        </p>
+
+
         <div class="input-box">
-            <label>Password</label>
-            <input type="password" id="password" placeholder="Masukkan password">
+
+            <label>
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Masukkan username"
+                autocomplete="off"
+            >
+
         </div>
 
-        <button class="login-btn" onclick="login()">
+
+        <div class="input-box">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Masukkan password"
+            >
+
+        </div>
+
+
+        <button
+            class="login-btn"
+            onclick="login()"
+        >
             🔐 Masuk ke Website
         </button>
+
 
         <div id="error">
             Username atau password salah!
@@ -489,21 +754,40 @@ footer strong{
 
 <div id="website">
 
-    <!-- NAVBAR -->
+
+    <!-- =================================================
+         NAVBAR
+    ================================================== -->
+
     <nav>
 
         <div class="nav-logo">
             RPL 3
         </div>
 
+
         <div class="nav-menu">
 
-            <a href="#home">Home</a>
-            <a href="#kelas">Kelas</a>
-            <a href="#siswa">Siswa</a>
-            <a href="#album">Album</a>
+            <a href="#home">
+                Home
+            </a>
 
-            <button class="logout" onclick="logout()">
+            <a href="#kelas">
+                Kelas
+            </a>
+
+            <a href="#siswa">
+                Siswa
+            </a>
+
+            <a href="#album">
+                Album
+            </a>
+
+            <button
+                class="logout"
+                onclick="logout()"
+            >
                 Keluar
             </button>
 
@@ -512,25 +796,41 @@ footer strong{
     </nav>
 
 
-    <!-- HERO -->
-    <section class="hero" id="home">
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section
+        class="hero"
+        id="home"
+    >
 
         <div class="hero-content">
+
 
             <span class="badge">
                 REKAYASA PERANGKAT LUNAK
             </span>
 
-            <h1>RPL 3</h1>
 
-            <h2>Kenang-Kenangan</h2>
+            <h1>
+                RPL 3
+            </h1>
+
+
+            <h2>
+                Kenang-Kenangan
+            </h2>
+
 
             <p>
                 Satu kelas, banyak cerita.
-                Setiap tawa, perjuangan, kebersamaan,
-                dan momen yang kita lalui akan menjadi
+                Setiap tawa, perjuangan,
+                kebersamaan, dan momen
+                yang kita lalui akan menjadi
                 kenangan yang tidak terlupakan.
             </p>
+
 
             <div class="hero-buttons">
 
@@ -549,15 +849,17 @@ footer strong{
     </section>
 
 
-    <!-- =====================================================
-         KELAS
-    ===================================================== -->
+    <!-- =================================================
+         KELAS X XI XII
+    ================================================== -->
 
     <section id="kelas">
 
         <div class="section-title">
 
-            <h2>📚 Kelas RPL</h2>
+            <h2>
+                📚 Kelas RPL
+            </h2>
 
             <p>
                 Perjalanan RPL dari kelas X sampai kelas XII
@@ -568,61 +870,92 @@ footer strong{
 
         <div class="class-grid">
 
+
+            <!-- KELAS X -->
+
             <div class="class-card">
 
-                <div class="class-icon">🎒</div>
+                <div class="class-icon">
+                    🎒
+                </div>
 
-                <h3>Kelas X</h3>
+                <h3>
+                    Kelas X
+                </h3>
 
                 <p class="wali">
                     Wali Kelas:
-                    <strong>Bu Bella</strong>
+                    <strong>
+                        Bu Bella
+                    </strong>
                 </p>
 
             </div>
 
 
+            <!-- KELAS XI -->
+
             <div class="class-card">
 
-                <div class="class-icon">💻</div>
+                <div class="class-icon">
+                    💻
+                </div>
 
-                <h3>Kelas XI</h3>
+                <h3>
+                    Kelas XI
+                </h3>
 
                 <p class="wali">
                     Wali Kelas:
-                    <strong>Bu Eka</strong>
+                    <strong>
+                        Bu Eka
+                    </strong>
                 </p>
 
             </div>
 
 
+            <!-- KELAS XII -->
+
             <div class="class-card">
 
-                <div class="class-icon">🎓</div>
+                <div class="class-icon">
+                    🎓
+                </div>
 
-                <h3>Kelas XII</h3>
+                <h3>
+                    Kelas XII
+                </h3>
 
                 <p class="wali">
                     Wali Kelas:
-                    <strong>Pak Bayu</strong>
+                    <strong>
+                        Pak Bayu
+                    </strong>
                 </p>
 
             </div>
+
 
         </div>
 
     </section>
 
 
-    <!-- =====================================================
+    <!-- =================================================
          DAFTAR SISWA
-    ===================================================== -->
+    ================================================== -->
 
-    <section id="siswa" class="student-section">
+    <section
+        id="siswa"
+        class="student-section"
+    >
 
         <div class="section-title">
 
-            <h2>👨‍🎓 Nama-Nama Siswa</h2>
+            <h2>
+                👨‍🎓 Nama-Nama Siswa
+            </h2>
 
             <p>
                 Keluarga besar RPL 3
@@ -631,79 +964,175 @@ footer strong{
         </div>
 
 
-        <!-- LAKI-LAKI -->
+        <!-- =============================================
+             LAKI-LAKI
+        ============================================== -->
 
         <h3 class="gender-title">
             👨 Siswa Laki-Laki
         </h3>
 
+
         <div class="student-list">
 
-            <div class="student">Apis</div>
-            <div class="student">M Rizky R</div>
-            <div class="student">Rizky</div>
-            <div class="student">Sharul</div>
-            <div class="student">Fadly</div>
-            <div class="student">Dimas</div>
-            <div class="student">Januar</div>
-            <div class="student">Dika</div>
-            <div class="student">Rayhan Dzaky</div>
-            <div class="student">Satria</div>
-            <div class="student">Rifky</div>
-            <div class="student">Rizky Nursaman</div>
-            <div class="student">Rizky Hartapi</div>
-            <div class="student">Dapa</div>
-            <div class="student">Darbi</div>
-            <div class="student">Yoga</div>
-            <div class="student">Dirly</div>
-            <div class="student">Alvian</div>
-            <div class="student">Cristo</div>
-            <div class="student">Syahrul</div>
+            <div class="student">
+                Apis
+            </div>
+
+            <div class="student">
+                M Rizky R
+            </div>
+
+            <div class="student">
+                Rizky
+            </div>
+
+            <div class="student">
+                Sharul
+            </div>
+
+            <div class="student">
+                Fadly
+            </div>
+
+            <div class="student">
+                Dimas
+            </div>
+
+            <div class="student">
+                Januar
+            </div>
+
+            <div class="student">
+                Dika
+            </div>
+
+            <div class="student">
+                Rayhan Dzaky
+            </div>
+
+            <div class="student">
+                Satria
+            </div>
+
+            <div class="student">
+                Rifky
+            </div>
+
+            <div class="student">
+                Rizky Nursaman
+            </div>
+
+            <div class="student">
+                Rizky Hartapi
+            </div>
+
+            <div class="student">
+                Dapa
+            </div>
+
+            <div class="student">
+                Darbi
+            </div>
+
+            <div class="student">
+                Yoga
+            </div>
+
+            <div class="student">
+                Dirly
+            </div>
+
+            <div class="student">
+                Alvian
+            </div>
+
+            <div class="student">
+                Cristo
+            </div>
+
+            <div class="student">
+                Syahrul
+            </div>
 
         </div>
 
 
-        <!-- PEREMPUAN -->
+        <!-- =============================================
+             PEREMPUAN
+        ============================================== -->
 
         <h3 class="gender-title">
             👩 Siswa Perempuan
         </h3>
 
+
         <div class="student-list">
 
-            <div class="student">Jenia Fitria Amelia</div>
-            <div class="student">Donela</div>
-            <div class="student">Oca</div>
-            <div class="student">Lusi</div>
-            <div class="student">Bunga</div>
-            <div class="student">Kirana</div>
-            <div class="student">Feby</div>
-            <div class="student">Latifah</div>
-            <div class="student">Septi</div>
+            <div class="student">
+                Jenia Fitria Amelia
+            </div>
+
+            <div class="student">
+                Donela
+            </div>
+
+            <div class="student">
+                Oca
+            </div>
+
+            <div class="student">
+                Lusi
+            </div>
+
+            <div class="student">
+                Bunga
+            </div>
+
+            <div class="student">
+                Kirana
+            </div>
+
+            <div class="student">
+                Feby
+            </div>
+
+            <div class="student">
+                Latifah
+            </div>
+
+            <div class="student">
+                Septi
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- =====================================================
-         ALBUM FOTO
+    <!-- =================================================
+         ALBUM 20 FOTO
          
          CARA GANTI FOTO:
-         Ganti bagian:
-         images.unsplash.com/...
+         Taruh foto di folder yang sama dengan HTML.
          
-         dengan link foto kamu.
-    ===================================================== -->
+         Nama:
+         foto1.jpg
+         foto2.jpg
+         ...
+         foto20.jpg
+    ================================================== -->
 
     <section id="album">
 
         <div class="section-title">
 
-            <h2>📸 Album Kenang-Kenangan</h2>
+            <h2>
+                📸 Album Kenang-Kenangan
+            </h2>
 
             <p>
-                10 foto kenangan RPL 3
+                20 foto kenangan RPL 3
             </p>
 
         </div>
@@ -711,86 +1140,281 @@ footer strong{
 
         <div class="album">
 
+
             <!-- FOTO 1 -->
-            <div class="photo" onclick="openPhoto(this)">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80"
-                     alt="Foto Kenangan 1">
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto1.jpg"
+                    alt="Foto Kenangan 1"
+                >
             </div>
 
 
             <!-- FOTO 2 -->
-            <div class="photo" onclick="openPhoto(this)">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
-                     alt="Foto Kenangan 2">
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto2.jpg"
+                    alt="Foto Kenangan 2"
+                >
             </div>
 
 
             <!-- FOTO 3 -->
-            <div class="photo" onclick="openPhoto(this)">
-                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80"
-                     alt="Foto Kenangan 3">
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto3.jpg"
+                    alt="Foto Kenangan 3"
+                >
             </div>
 
 
             <!-- FOTO 4 -->
-            <div class="photo" onclick="openPhoto(this)">
-                <img src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=800&q=80"
-                     alt="Foto Kenangan 4">
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto4.jpg"
+                    alt="Foto Kenangan 4"
+                >
             </div>
 
 
             <!-- FOTO 5 -->
-            <div class="photo" onclick="openPhoto(this)">
-                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80"
-                     alt="Foto Kenangan 5">
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto5.jpg"
+                    alt="Foto Kenangan 5"
+                >
             </div>
 
 
             <!-- FOTO 6 -->
-            <div class="photo" onclick="openPhoto(this)">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
-                     alt="Foto Kenangan 6">
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto6.jpg"
+                    alt="Foto Kenangan 6"
+                >
             </div>
 
 
             <!-- FOTO 7 -->
-            <div class="photo" onclick="openPhoto(this)">
-                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80"
-                     alt="Foto Kenangan 7">
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto7.jpg"
+                    alt="Foto Kenangan 7"
+                >
             </div>
 
 
             <!-- FOTO 8 -->
-            <div class="photo" onclick="openPhoto(this)">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
-                     alt="Foto Kenangan 8">
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto8.jpg"
+                    alt="Foto Kenangan 8"
+                >
             </div>
 
 
             <!-- FOTO 9 -->
-            <div class="photo" onclick="openPhoto(this)">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
-                     alt="Foto Kenangan 9">
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto9.jpg"
+                    alt="Foto Kenangan 9"
+                >
             </div>
 
 
             <!-- FOTO 10 -->
-            <div class="photo" onclick="openPhoto(this)">
-                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80"
-                     alt="Foto Kenangan 10">
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto10.jpg"
+                    alt="Foto Kenangan 10"
+                >
             </div>
+
+
+            <!-- FOTO 11 -->
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto11.jpg"
+                    alt="Foto Kenangan 11"
+                >
+            </div>
+
+
+            <!-- FOTO 12 -->
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto12.jpg"
+                    alt="Foto Kenangan 12"
+                >
+            </div>
+
+
+            <!-- FOTO 13 -->
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto13.jpg"
+                    alt="Foto Kenangan 13"
+                >
+            </div>
+
+
+            <!-- FOTO 14 -->
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto14.jpg"
+                    alt="Foto Kenangan 14"
+                >
+            </div>
+
+
+            <!-- FOTO 15 -->
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto15.jpg"
+                    alt="Foto Kenangan 15"
+                >
+            </div>
+
+
+            <!-- FOTO 16 -->
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto16.jpg"
+                    alt="Foto Kenangan 16"
+                >
+            </div>
+
+
+            <!-- FOTO 17 -->
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto17.jpg"
+                    alt="Foto Kenangan 17"
+                >
+            </div>
+
+
+            <!-- FOTO 18 -->
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto18.jpg"
+                    alt="Foto Kenangan 18"
+                >
+            </div>
+
+
+            <!-- FOTO 19 -->
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto19.jpg"
+                    alt="Foto Kenangan 19"
+                >
+            </div>
+
+
+            <!-- FOTO 20 -->
+
+            <div
+                class="photo"
+                onclick="openPhoto(this)"
+            >
+                <img
+                    src="foto20.jpg"
+                    alt="Foto Kenangan 20"
+                >
+            </div>
+
 
         </div>
 
     </section>
 
 
-    <!-- FOOTER -->
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
 
     <footer>
 
         <p>
-            © 2026 <strong>RPL 3</strong>
+            © 2026
+            <strong>RPL 3</strong>
         </p>
 
         <p>
@@ -799,48 +1423,83 @@ footer strong{
 
     </footer>
 
+
 </div>
 
 
 <!-- =====================================================
-     LIGHTBOX FOTO
+     LIGHTBOX
 ===================================================== -->
 
-<div class="lightbox" id="lightbox" onclick="closePhoto()">
+<div
+    class="lightbox"
+    id="lightbox"
+    onclick="closePhoto()"
+>
 
-    <span class="close">&times;</span>
+    <span
+        class="close"
+        onclick="closePhoto()"
+    >
+        &times;
+    </span>
 
-    <img id="lightboxImg" src="" alt="Foto">
+    <img
+        id="lightboxImg"
+        src=""
+        alt="Foto Kenangan"
+    >
 
 </div>
 
 
 <script>
 
-/* ================= LOGIN ================= */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 function login(){
 
     const username =
-        document.getElementById("username").value.trim();
+        document
+        .getElementById("username")
+        .value
+        .trim();
 
     const password =
-        document.getElementById("password").value.trim();
+        document
+        .getElementById("password")
+        .value
+        .trim();
 
     const error =
         document.getElementById("error");
 
-    if(username === "RPL3" && password === "RPL3"){
 
-        document.getElementById("loginPage").style.display = "none";
+    if(
+        username === "RPL3" &&
+        password === "RPL3"
+    ){
 
-        document.getElementById("website").style.display = "block";
+        document
+        .getElementById("loginPage")
+        .style.display = "none";
+
+
+        document
+        .getElementById("website")
+        .style.display = "block";
+
 
         error.style.display = "none";
 
+
         window.scrollTo(0,0);
 
-    }else{
+    }
+
+    else{
 
         error.style.display = "block";
 
@@ -849,65 +1508,113 @@ function login(){
 }
 
 
-/* ENTER UNTUK LOGIN */
+/* =====================================================
+   LOGIN DENGAN ENTER
+===================================================== */
 
-document.getElementById("password").addEventListener("keypress", function(e){
+document
+.getElementById("password")
+.addEventListener(
+    "keypress",
+    function(e){
 
-    if(e.key === "Enter"){
-        login();
+        if(e.key === "Enter"){
+
+            login();
+
+        }
+
     }
+);
 
-});
 
-
-/* ================= LOGOUT ================= */
+/* =====================================================
+   LOGOUT
+===================================================== */
 
 function logout(){
 
-    document.getElementById("website").style.display = "none";
+    document
+    .getElementById("website")
+    .style.display = "none";
 
-    document.getElementById("loginPage").style.display = "flex";
 
-    document.getElementById("username").value = "";
+    document
+    .getElementById("loginPage")
+    .style.display = "flex";
 
-    document.getElementById("password").value = "";
+
+    document
+    .getElementById("username")
+    .value = "";
+
+
+    document
+    .getElementById("password")
+    .value = "";
+
+
+    document
+    .getElementById("error")
+    .style.display = "none";
+
+
+    window.scrollTo(0,0);
 
 }
 
 
-/* ================= FOTO ================= */
+/* =====================================================
+   BUKA FOTO
+===================================================== */
 
 function openPhoto(element){
 
     const img =
         element.querySelector("img");
 
-    document.getElementById("lightboxImg").src =
-        img.src;
 
-    document.getElementById("lightbox").style.display =
-        "flex";
+    document
+    .getElementById("lightboxImg")
+    .src = img.src;
+
+
+    document
+    .getElementById("lightbox")
+    .style.display = "flex";
 
 }
 
+
+/* =====================================================
+   TUTUP FOTO
+===================================================== */
 
 function closePhoto(){
 
-    document.getElementById("lightbox").style.display =
-        "none";
+    document
+    .getElementById("lightbox")
+    .style.display = "none";
 
 }
 
 
-/* ESC UNTUK MENUTUP FOTO */
+/* =====================================================
+   ESC UNTUK MENUTUP FOTO
+===================================================== */
 
-document.addEventListener("keydown", function(e){
+document.addEventListener(
+    "keydown",
+    function(e){
 
-    if(e.key === "Escape"){
-        closePhoto();
+        if(e.key === "Escape"){
+
+            closePhoto();
+
+        }
+
     }
-
-});
+);
 
 </script>
 

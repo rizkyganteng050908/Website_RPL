@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPL 3 - Cyber Portal Class</title>
+    <title>RPL 3 - Memory Vault & Photo Gallery</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,13 +14,14 @@
                 extend: {
                     colors: {
                         cyber: {
-                            dark: '#0a0d14',
-                            card: '#121824',
+                            dark: '#06090e',
+                            panel: '#0f172a',
                             border: '#1e293b',
                             neonCyan: '#00f0ff',
-                            neonPurple: '#7000ff',
-                            neonPink: '#ff007f',
-                            neonGreen: '#00ff66'
+                            neonPurple: '#8b5cf6',
+                            neonPink: '#ec4899',
+                            neonGreen: '#10b981',
+                            neonYellow: '#f59e0b'
                         }
                     },
                     fontFamily: {
@@ -28,9 +29,9 @@
                         mono: ['Fira Code', 'monospace']
                     },
                     boxShadow: {
-                        'glow-cyan': '0 0 15px rgba(0, 240, 255, 0.4)',
-                        'glow-purple': '0 0 15px rgba(112, 0, 255, 0.4)',
-                        'glow-pink': '0 0 15px rgba(255, 0, 127, 0.4)',
+                        'glow-cyan': '0 0 15px rgba(0, 240, 255, 0.35)',
+                        'glow-purple': '0 0 15px rgba(139, 92, 246, 0.35)',
+                        'glow-pink': '0 0 15px rgba(236, 72, 153, 0.35)',
                     }
                 }
             }
@@ -43,7 +44,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom CSS styles -->
+    <!-- Custom CSS Styling -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -56,42 +57,60 @@
             font-family: 'Fira Code', monospace;
         }
 
-        /* Glassmorphism */
+        /* Glassmorphism Styles */
         .glass-panel {
-            background: rgba(18, 24, 36, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .glass-input {
-            background: rgba(10, 13, 20, 0.8);
+            background: rgba(6, 9, 14, 0.8);
             border: 1px solid rgba(0, 240, 255, 0.2);
         }
 
         .glass-input:focus {
             border-color: #00f0ff;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
             outline: none;
         }
 
-        /* Cyber Gradients & Glows */
+        /* Cyber Background Grid */
+        .bg-cyber-grid {
+            background-size: 36px 36px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+        }
+
+        /* Scanline Overlay Effect */
+        .scanline {
+            width: 100%;
+            height: 2px;
+            z-index: 99;
+            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0, 240, 255, 0.15) 50%, rgba(0,0,0,0) 100%);
+            opacity: 0.12;
+            position: fixed;
+            bottom: 100%;
+            animation: scanline 9s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        /* Gradient Text */
         .text-gradient {
-            background: linear-gradient(135deg, #00f0ff 0%, #7000ff 50%, #ff007f 100%);
+            background: linear-gradient(135deg, #00f0ff 0%, #8b5cf6 50%, #ec4899 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .bg-cyber-grid {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        }
-
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 7px;
         }
         ::-webkit-scrollbar-track {
             background: #06090e;
@@ -103,32 +122,14 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #00f0ff;
         }
-
-        /* Scanline Overlay Effect */
-        .scanline {
-            width: 100%;
-            height: 100%;
-            height: 2px;
-            z-index: 99;
-            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0, 240, 255, 0.1) 50%, rgba(0,0,0,0) 100%);
-            opacity: 0.1;
-            position: absolute;
-            bottom: 100%;
-            animation: scanline 8s linear infinite;
-        }
-
-        @keyframes scanline {
-            0% { top: 0%; }
-            100% { top: 100%; }
-        }
     </style>
 </head>
 <body class="bg-cyber-grid min-h-screen relative text-slate-200">
-    <!-- Scanline effect for Cyberpunk vibe -->
-    <div class="scanline pointer-events-none fixed inset-0"></div>
+    <!-- Scanline Effect -->
+    <div class="scanline pointer-events-none"></div>
 
     <!-- Notification Toast -->
-    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-x-full transition-transform duration-300 ease-out flex items-center p-4 mb-4 text-slate-200 bg-slate-900 border border-cyber-neonCyan rounded-lg shadow-glow-cyan" role="alert">
+    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-x-full transition-transform duration-300 ease-out flex items-center p-4 mb-4 text-slate-200 bg-slate-900 border border-cyber-neonCyan rounded-xl shadow-glow-cyan">
         <div id="toast-icon" class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg bg-cyber-neonCyan/20 text-cyber-neonCyan mr-3">
             <i class="fas fa-check-circle"></i>
         </div>
@@ -137,498 +138,481 @@
 
     <!-- SECTION: LOGIN PAGE -->
     <div id="login-section" class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-        <!-- Ambient Animated Glow Orbs -->
-        <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-cyber-neonCyan/20 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyber-neonPurple/20 rounded-full blur-3xl pointer-events-none animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/4 left-1/4 w-80 h-80 bg-cyber-neonCyan/15 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-neonPurple/15 rounded-full blur-3xl pointer-events-none animate-pulse" style="animation-delay: 1s;"></div>
 
-        <div class="w-full max-w-md glass-panel p-8 rounded-2xl relative z-10 border border-slate-800 shadow-2xl">
+        <div class="w-full max-w-md glass-panel p-8 rounded-3xl relative z-10 border border-slate-800 shadow-2xl">
             <!-- Header Logo -->
             <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-tr from-cyber-neonCyan via-cyber-neonPurple to-cyber-neonPink p-0.5 mb-4 shadow-glow-cyan">
-                    <div class="w-full h-full bg-cyber-dark rounded-[10px] flex items-center justify-center">
-                        <i class="fas fa-code text-2xl text-cyber-neonCyan"></i>
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyber-neonCyan via-cyber-neonPurple to-cyber-neonPink p-0.5 mb-4 shadow-glow-cyan">
+                    <div class="w-full h-full bg-cyber-dark rounded-[14px] flex items-center justify-center">
+                        <i class="fas fa-photo-video text-2xl text-cyber-neonCyan"></i>
                     </div>
                 </div>
-                <h1 class="text-3xl font-extrabold tracking-wider text-gradient">RPL 3 PORTAL</h1>
-                <p class="text-xs text-slate-400 mt-2 code-font">&lt;Rekayasa Perangkat Lunak 3 /&gt;</p>
+                <h1 class="text-3xl font-extrabold tracking-wider text-gradient">MEMORY VAULT</h1>
+                <p class="text-xs text-slate-400 mt-2 code-font">&lt;Album Kenangan Kelas RPL 3 /&gt;</p>
             </div>
 
             <!-- Login Form -->
-            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-6">
+            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-5">
                 <div>
                     <label class="block text-xs font-mono text-cyber-neonCyan uppercase tracking-widest mb-2">
                         <i class="fas fa-user text-xs mr-1"></i> Username
                     </label>
-                    <input type="text" id="username" required placeholder="Masukkan username" 
-                        class="w-full px-4 py-3 rounded-lg glass-input text-white placeholder-slate-500 focus:outline-none transition-all duration-200">
+                    <input type="text" id="username" required placeholder="Username (RPL3)" 
+                        class="w-full px-4 py-3 rounded-xl glass-input text-white placeholder-slate-500 text-sm focus:outline-none transition-all">
                 </div>
 
                 <div>
                     <label class="block text-xs font-mono text-cyber-neonCyan uppercase tracking-widest mb-2">
                         <i class="fas fa-key text-xs mr-1"></i> Password
                     </label>
-                    <input type="password" id="password" required placeholder="Masukkan password" 
-                        class="w-full px-4 py-3 rounded-lg glass-input text-white placeholder-slate-500 focus:outline-none transition-all duration-200">
+                    <input type="password" id="password" required placeholder="Password (RPL3)" 
+                        class="w-full px-4 py-3 rounded-xl glass-input text-white placeholder-slate-500 text-sm focus:outline-none transition-all">
                 </div>
 
-                <!-- Error Message Alert -->
-                <div id="login-error" class="hidden p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2">
+                <!-- Remember Me Checkbox -->
+                <div class="flex items-center justify-between text-xs">
+                    <label class="flex items-center space-x-2 cursor-pointer text-slate-400 hover:text-white">
+                        <input type="checkbox" id="remember-me" class="rounded bg-slate-900 border-slate-700 text-cyber-neonCyan focus:ring-0">
+                        <span>Ingat Saya di Perangkat Ini</span>
+                    </label>
+                </div>
+
+                <!-- Error Message -->
+                <div id="login-error" class="hidden p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2">
                     <i class="fas fa-exclamation-triangle text-sm"></i>
                     <span id="error-text">Username atau Password salah!</span>
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit" 
-                    class="w-full py-3.5 px-6 rounded-lg font-bold text-slate-900 bg-gradient-to-r from-cyber-neonCyan via-teal-300 to-cyber-neonGreen hover:opacity-90 transition-all duration-300 transform hover:-translate-y-0.5 shadow-glow-cyan flex items-center justify-center gap-2">
-                    <span>AUTHENTICATE</span>
-                    <i class="fas fa-arrow-right text-sm"></i>
+                    class="w-full py-3.5 px-6 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-cyber-neonCyan via-teal-300 to-cyber-neonGreen hover:opacity-90 transition-all shadow-glow-cyan flex items-center justify-center gap-2 text-sm">
+                    <i class="fas fa-lock-open"></i>
+                    <span>BUKA MEMORY VAULT</span>
                 </button>
             </form>
 
-            <div class="mt-6 pt-6 border-t border-slate-800 text-center">
+            <div class="mt-6 pt-6 border-t border-slate-800/80 text-center">
                 <p class="text-xs text-slate-500 code-font">
-                    Default Credentials: <span class="text-cyber-neonCyan">RPL3</span> / <span class="text-cyber-neonCyan">RPL3</span>
+                    Login Akses: <span class="text-cyber-neonCyan">RPL3</span> / <span class="text-cyber-neonCyan">RPL3</span>
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- SECTION: DASHBOARD MAIN PAGE (Hidden until login) -->
+    <!-- SECTION: MAIN DASHBOARD -->
     <div id="dashboard-section" class="hidden min-h-screen flex flex-col">
         <!-- Navigation Bar -->
         <nav class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 px-4 lg:px-8 py-3.5">
             <div class="max-w-7xl mx-auto flex items-center justify-between">
-                <!-- Brand Logo -->
+                <!-- Brand -->
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToSection('hero')">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyber-neonCyan to-cyber-neonPurple p-0.5 flex items-center justify-center shadow-glow-cyan">
-                        <div class="w-full h-full bg-cyber-dark rounded-[7px] flex items-center justify-center">
-                            <span class="font-black text-cyber-neonCyan text-lg code-font">&lt;&gt;</span>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-neonCyan to-cyber-neonPurple p-0.5 flex items-center justify-center shadow-glow-cyan">
+                        <div class="w-full h-full bg-cyber-dark rounded-[9px] flex items-center justify-center">
+                            <i class="fas fa-images text-cyber-neonCyan"></i>
                         </div>
                     </div>
                     <div>
-                        <span class="text-lg font-bold tracking-wider text-white">RPL<span class="text-cyber-neonCyan">.3</span></span>
-                        <span class="block text-[10px] text-slate-400 font-mono tracking-widest uppercase">Class Portal</span>
+                        <span class="text-lg font-bold tracking-wider text-white">VAULT<span class="text-cyber-neonCyan">.RPL3</span></span>
+                        <span class="block text-[9px] text-slate-400 font-mono tracking-widest uppercase">Class Memories</span>
                     </div>
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
-                    <button onclick="scrollToSection('hero')" class="hover:text-cyber-neonCyan transition-colors">Home</button>
-                    <button onclick="scrollToSection('schedule')" class="hover:text-cyber-neonCyan transition-colors">Jadwal</button>
-                    <button onclick="scrollToSection('structure')" class="hover:text-cyber-neonCyan transition-colors">Pengurus</button>
-                    <button onclick="scrollToSection('students')" class="hover:text-cyber-neonCyan transition-colors">Siswa</button>
-                    <button onclick="scrollToSection('gallery')" class="hover:text-cyber-neonCyan transition-colors">Galeri</button>
-                    <button onclick="scrollToSection('announcements')" class="hover:text-cyber-neonCyan transition-colors">Tugas</button>
-                    <button onclick="scrollToSection('discussion')" class="hover:text-cyber-neonCyan transition-colors">Wall Notes</button>
+                <div class="hidden md:flex items-center space-x-6 text-xs font-semibold uppercase tracking-wider">
+                    <button onclick="scrollToSection('hero')" class="hover:text-cyber-neonCyan transition-colors">Utama</button>
+                    <button onclick="scrollToSection('gallery')" class="hover:text-cyber-neonCyan transition-colors">Galeri Foto</button>
+                    <button onclick="scrollToSection('timeline')" class="hover:text-cyber-neonCyan transition-colors">Timeline</button>
                 </div>
 
-                <!-- User Info & Logout Button -->
-                <div class="flex items-center space-x-4">
-                    <div class="hidden sm:flex items-center space-x-2 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-full">
-                        <div class="w-2 h-2 rounded-full bg-cyber-neonGreen animate-ping"></div>
-                        <span class="text-xs text-slate-300 font-mono" id="user-display">USER: RPL 3</span>
-                    </div>
-                    <button onclick="handleLogout()" 
-                        class="px-3.5 py-1.5 rounded-lg border border-red-500/30 text-red-400 hover:bg-red-500/10 text-xs font-semibold tracking-wider uppercase transition-all duration-200 flex items-center gap-2">
+                <!-- Action Buttons -->
+                <div class="flex items-center space-x-3">
+                    <button onclick="openUploadModal()" class="px-3.5 py-1.5 rounded-lg bg-cyber-neonCyan text-slate-950 font-bold text-xs shadow-glow-cyan hover:opacity-90 transition-all flex items-center gap-1.5">
+                        <i class="fas fa-plus"></i>
+                        <span class="hidden sm:inline">Upload Foto</span>
+                    </button>
+                    <button onclick="handleLogout()" class="px-3 py-1.5 rounded-lg border border-red-500/30 text-red-400 hover:bg-red-500/10 text-xs font-semibold transition-all">
                         <i class="fas fa-power-off"></i>
-                        <span class="hidden sm:inline">Logout</span>
                     </button>
                 </div>
             </div>
         </nav>
 
-        <!-- Main Content Wrapper -->
+        <!-- Main Content Area -->
         <main class="flex-grow max-w-7xl w-full mx-auto px-4 lg:px-8 py-8 space-y-16">
             
-            <!-- HERO SECTION -->
+            <!-- HERO BANNER -->
             <section id="hero" class="relative rounded-3xl overflow-hidden glass-panel border border-slate-800 p-8 lg:p-12">
                 <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-cyber-neonPurple/20 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="absolute -left-20 -top-20 w-96 h-96 bg-cyber-neonCyan/15 rounded-full blur-3xl pointer-events-none"></div>
                 
                 <div class="relative z-10 grid md:grid-cols-12 gap-8 items-center">
                     <div class="md:col-span-7 space-y-6">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-neonCyan/10 border border-cyber-neonCyan/30 text-cyber-neonCyan text-xs font-mono">
-                            <i class="fas fa-terminal"></i>
-                            <span>SYSTEM ONLINE // CLASS OF RPL 3</span>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-neonPink/10 border border-cyber-neonPink/30 text-cyber-neonPink text-xs font-mono">
+                            <i class="fas fa-heart text-xs"></i>
+                            <span>GALERI KENANG-KENANGAN ANGKATAN</span>
                         </div>
                         <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                            Selamat Datang di <br>
-                            <span class="text-gradient">Ruang Digital RPL 3</span>
+                            Abadikan Setiap <br>
+                            <span class="text-gradient">Baris Momen RPL 3</span>
                         </h1>
                         <p class="text-slate-400 text-sm lg:text-base leading-relaxed">
-                            Wadah resmi siswa-siswi Rekayasa Perangkat Lunak 3. Tempat berkreasi, mengasah keahlian pemrograman, dan membangun masa depan di dunia industri teknologi.
+                            Arsip digital berisi tawa, perjuangan koding di lab, error bareng, hingga momen kebersamaan yang tak terupakan selama sekolah.
                         </p>
                         
-                        <!-- Interactive Coding Quote -->
-                        <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800/80 code-font text-xs lg:text-sm">
-                            <div class="flex items-center gap-2 text-slate-500 mb-2 border-b border-slate-800 pb-2">
-                                <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                                <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
-                                <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-                                <span class="ml-2 text-[11px]">class_motto.js</span>
-                            </div>
-                            <p class="text-cyber-neonCyan">
-                                <span class="text-purple-400">while</span> (alive) { <br>
-                                &nbsp;&nbsp;eat(); <br>
-                                &nbsp;&nbsp;sleep(); <br>
-                                &nbsp;&nbsp;<span class="text-yellow-300">code</span>(); <br>
-                                &nbsp;&nbsp;repeat(); <br>
-                                }
-                            </p>
-                        </div>
-
                         <div class="flex flex-wrap gap-4 pt-2">
-                            <button onclick="scrollToSection('students')" class="px-6 py-3 rounded-xl bg-cyber-neonCyan text-slate-950 font-bold text-sm shadow-glow-cyan hover:bg-opacity-90 transition-all">
-                                <i class="fas fa-users mr-2"></i> Lihat Member Kelas
+                            <button onclick="scrollToSection('gallery')" class="px-6 py-3 rounded-xl bg-cyber-neonCyan text-slate-950 font-bold text-sm shadow-glow-cyan hover:opacity-90 transition-all">
+                                <i class="fas fa-photo-video mr-2"></i> Jelajahi Foto
                             </button>
-                            <button onclick="scrollToSection('announcements')" class="px-6 py-3 rounded-xl glass-panel text-slate-200 font-bold text-sm border border-slate-700 hover:border-cyber-neonCyan transition-all">
-                                <i class="fas fa-bell mr-2"></i> Pengumuman Terbaru
+                            <button onclick="openUploadModal()" class="px-6 py-3 rounded-xl glass-panel text-slate-200 font-bold text-sm border border-slate-700 hover:border-cyber-neonCyan transition-all">
+                                <i class="fas fa-cloud-upload-alt mr-2"></i> Tambah Kenangan
                             </button>
                         </div>
                     </div>
 
-                    <!-- Quick Stats Card -->
+                    <!-- Quick Counter Cards -->
                     <div class="md:col-span-5 grid grid-cols-2 gap-4">
-                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center hover:border-cyber-neonCyan transition-all">
-                            <i class="fas fa-user-graduate text-3xl text-cyber-neonCyan mb-2"></i>
+                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center">
+                            <i class="fas fa-camera-retro text-3xl text-cyber-neonCyan mb-2"></i>
+                            <h3 class="text-2xl font-bold text-white" id="stat-total-photos">0</h3>
+                            <p class="text-xs text-slate-400 mt-1 font-mono">Total Foto</p>
+                        </div>
+                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center">
+                            <i class="fas fa-heart text-3xl text-cyber-neonPink mb-2"></i>
+                            <h3 class="text-2xl font-bold text-white" id="stat-total-likes">0</h3>
+                            <p class="text-xs text-slate-400 mt-1 font-mono">Total Likes</p>
+                        </div>
+                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center">
+                            <i class="fas fa-comments text-3xl text-cyber-neonPurple mb-2"></i>
+                            <h3 class="text-2xl font-bold text-white" id="stat-total-comments">0</h3>
+                            <p class="text-xs text-slate-400 mt-1 font-mono">Pesan / Pesan</p>
+                        </div>
+                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center">
+                            <i class="fas fa-user-friends text-3xl text-cyber-neonGreen mb-2"></i>
                             <h3 class="text-2xl font-bold text-white">34</h3>
-                            <p class="text-xs text-slate-400 mt-1 font-mono">Total Siswa</p>
-                        </div>
-                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center hover:border-cyber-neonPurple transition-all">
-                            <i class="fas fa-laptop-code text-3xl text-cyber-neonPurple mb-2"></i>
-                            <h3 class="text-2xl font-bold text-white">12+</h3>
-                            <p class="text-xs text-slate-400 mt-1 font-mono">Project Kelas</p>
-                        </div>
-                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center hover:border-cyber-neonPink transition-all">
-                            <i class="fas fa-chalkboard-teacher text-3xl text-cyber-neonPink mb-2"></i>
-                            <h3 class="text-2xl font-bold text-white">10</h3>
-                            <p class="text-xs text-slate-400 mt-1 font-mono">Mata Pelajaran</p>
-                        </div>
-                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center hover:border-cyber-neonGreen transition-all">
-                            <i class="fas fa-trophy text-3xl text-cyber-neonGreen mb-2"></i>
-                            <h3 class="text-2xl font-bold text-white">100%</h3>
-                            <p class="text-xs text-slate-400 mt-1 font-mono">Semangat Koding</p>
+                            <p class="text-xs text-slate-400 mt-1 font-mono">Anggota RPL 3</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- JADWAL PELAJARAN SECTION -->
-            <section id="schedule" class="space-y-6">
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <!-- GALLERY SECTION -->
+            <section id="gallery" class="space-y-6">
+                <!-- Header & Controls -->
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                     <div>
                         <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                            <i class="far fa-calendar-alt text-cyber-neonCyan"></i>
-                            <span>Jadwal Pelajaran Kelas</span>
+                            <i class="fas fa-layer-group text-cyber-neonCyan"></i>
+                            <span>Album Foto Kenangan</span>
                         </h2>
-                        <p class="text-slate-400 text-sm mt-1">Jadwal kegiatan belajar mengajar mingguan RPL 3</p>
+                        <p class="text-slate-400 text-sm mt-1">Saring foto berdasarkan momen perjalanan kelas kita</p>
                     </div>
 
-                    <!-- Day Tabs Selector -->
-                    <div id="day-tabs" class="flex flex-wrap gap-2 glass-panel p-1.5 rounded-xl border border-slate-800">
-                        <!-- Buttons injected via JS -->
+                    <!-- Search & Filters Bar -->
+                    <div class="flex flex-col sm:flex-row items-center gap-3">
+                        <div class="relative w-full sm:w-64">
+                            <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                            <input type="text" id="gallery-search" oninput="filterGallery()" placeholder="Cari kenangan..." 
+                                class="w-full pl-9 pr-4 py-2 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
+                        </div>
                     </div>
                 </div>
 
-                <!-- Schedule Content Card Grid -->
-                <div id="schedule-container" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <!-- Cards populated by JS -->
+                <!-- Category Pills -->
+                <div id="category-tabs" class="flex flex-wrap gap-2 pt-1">
+                    <!-- Dynamic Buttons -->
+                </div>
+
+                <!-- Photo Masonry/Grid -->
+                <div id="gallery-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                    <!-- Dynamic Photo Cards -->
                 </div>
             </section>
 
-            <!-- STRUKTUR ORGANISASI KELAS -->
-            <section id="structure" class="space-y-6">
+            <!-- TIMELINE / TIME CAPSULE SECTION -->
+            <section id="timeline" class="space-y-8">
                 <div class="text-center max-w-2xl mx-auto">
-                    <h2 class="text-2xl font-bold text-white flex items-center justify-center gap-3">
-                        <i class="fas fa-sitemap text-cyber-neonPurple"></i>
-                        <span>Struktur Organisasi RPL 3</span>
-                    </h2>
-                    <p class="text-slate-400 text-sm mt-1">Pengurus & Pembimbing yang menjaga stabilitas kelas RPL 3</p>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-neonPurple/10 border border-cyber-neonPurple/30 text-cyber-neonPurple text-xs font-mono mb-3">
+                        <i class="fas fa-hourglass-half"></i>
+                        <span>TIME CAPSULE</span>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-white">Garis Waktu Perjalanan Kelas</h2>
+                    <p class="text-slate-400 text-sm mt-2">Napak tilas momen-momen penting dari awal melangkah hingga menjadi keluarga RPL 3.</p>
                 </div>
 
-                <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                    <!-- Wali Kelas -->
-                    <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center hover:border-cyber-neonCyan transition-all group">
-                        <div class="w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-cyber-neonCyan to-blue-600 mb-3 group-hover:scale-105 transition-transform">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" alt="Wali Kelas" class="w-full h-full object-cover rounded-full">
-                        </div>
-                        <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyber-neonCyan/10 text-cyber-neonCyan border border-cyber-neonCyan/30 mb-2">Wali Kelas</span>
-                        <h3 class="font-bold text-white text-base">Bu Maya, S.Kom</h3>
-                        <p class="text-xs text-slate-400 mt-1">Pembimbing RPL 3</p>
-                    </div>
-
-                    <!-- Ketua Kelas -->
-                    <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center hover:border-cyber-neonPurple transition-all group">
-                        <div class="w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-cyber-neonPurple to-pink-600 mb-3 group-hover:scale-105 transition-transform">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Ketua Kelas" class="w-full h-full object-cover rounded-full">
-                        </div>
-                        <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyber-neonPurple/10 text-cyber-neonPurple border border-cyber-neonPurple/30 mb-2">Ketua Kelas</span>
-                        <h3 class="font-bold text-white text-base">Alex Cyberion</h3>
-                        <p class="text-xs text-slate-400 mt-1">Fullstack Enthusiast</p>
-                    </div>
-
-                    <!-- Wakil Ketua -->
-                    <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center hover:border-cyber-neonPink transition-all group">
-                        <div class="w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-cyber-neonPink to-red-600 mb-3 group-hover:scale-105 transition-transform">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" alt="Wakil Ketua" class="w-full h-full object-cover rounded-full">
-                        </div>
-                        <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyber-neonPink/10 text-cyber-neonPink border border-cyber-neonPink/30 mb-2">Wakil Ketua</span>
-                        <h3 class="font-bold text-white text-base">Bagas Pratama</h3>
-                        <p class="text-xs text-slate-400 mt-1">Backend Engineer</p>
-                    </div>
-
-                    <!-- Sekretaris -->
-                    <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center hover:border-cyber-neonGreen transition-all group">
-                        <div class="w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-cyber-neonGreen to-emerald-600 mb-3 group-hover:scale-105 transition-transform">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" alt="Sekretaris" class="w-full h-full object-cover rounded-full">
-                        </div>
-                        <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyber-neonGreen/10 text-cyber-neonGreen border border-cyber-neonGreen/30 mb-2">Sekretaris</span>
-                        <h3 class="font-bold text-white text-base">Citra Kirana</h3>
-                        <p class="text-xs text-slate-400 mt-1">UI/UX & Documentation</p>
-                    </div>
-
-                    <!-- Bendahara -->
-                    <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center hover:border-yellow-400 transition-all group">
-                        <div class="w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-yellow-400 to-amber-600 mb-3 group-hover:scale-105 transition-transform">
-                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200" alt="Bendahara" class="w-full h-full object-cover rounded-full">
-                        </div>
-                        <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-yellow-400/10 text-yellow-400 border border-yellow-400/30 mb-2">Bendahara</span>
-                        <h3 class="font-bold text-white text-base">Dina Lestari</h3>
-                        <p class="text-xs text-slate-400 mt-1">Finance & Treasury</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- DAFTAR ANGGOTA SISWA -->
-            <section id="students" class="space-y-6">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                            <i class="fas fa-users-viewfinder text-cyber-neonCyan"></i>
-                            <span>Daftar Siswa RPL 3</span>
-                        </h2>
-                        <p class="text-slate-400 text-sm mt-1">Cari dan jelajahi talenta koding di kelas RPL 3</p>
-                    </div>
-
-                    <!-- Search Input Box -->
-                    <div class="relative w-full md:w-72">
-                        <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                        <input type="text" id="student-search" oninput="filterStudents()" placeholder="Cari nama atau keahlian..." 
-                            class="w-full pl-10 pr-4 py-2 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
-                    </div>
-                </div>
-
-                <!-- Student Cards Grid Container -->
-                <div id="students-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <!-- Dynamically Rendered via JS -->
-                </div>
-            </section>
-
-            <!-- GALERI FOTO & PENGUMUMAN (GRID 2 KOLOM) -->
-            <div class="grid lg:grid-cols-12 gap-8">
-                <!-- GALERI MOMEN KELAS (8 COLS) -->
-                <section id="gallery" class="lg:col-span-7 space-y-4">
-                    <h2 class="text-xl font-bold text-white flex items-center gap-3">
-                        <i class="fas fa-images text-cyber-neonPink"></i>
-                        <span>Galeri & Momen Kegiatan</span>
-                    </h2>
-                    
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        <div class="relative group rounded-xl overflow-hidden glass-panel border border-slate-800 aspect-video">
-                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600" alt="Coding Together" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent opacity-0 group-hover:opacity-90 transition-opacity p-3 flex flex-col justify-end">
-                                <span class="text-xs font-bold text-white">Sesi Live Coding</span>
-                                <span class="text-[10px] text-cyber-neonCyan">Lab Komputer RPL</span>
-                            </div>
-                        </div>
-
-                        <div class="relative group rounded-xl overflow-hidden glass-panel border border-slate-800 aspect-video">
-                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600" alt="Discussion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent opacity-0 group-hover:opacity-90 transition-opacity p-3 flex flex-col justify-end">
-                                <span class="text-xs font-bold text-white">Diskusi Project Web</span>
-                                <span class="text-[10px] text-cyber-neonPink">Kerja Kelompok</span>
-                            </div>
-                        </div>
-
-                        <div class="relative group rounded-xl overflow-hidden glass-panel border border-slate-800 aspect-video">
-                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=600" alt="Laptop Setup" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent opacity-0 group-hover:opacity-90 transition-opacity p-3 flex flex-col justify-end">
-                                <span class="text-xs font-bold text-white">Hackathon Internal</span>
-                                <span class="text-[10px] text-cyber-neonGreen">Ruang Server</span>
-                            </div>
-                        </div>
-
-                        <div class="relative group rounded-xl overflow-hidden glass-panel border border-slate-800 aspect-video">
-                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=600" alt="Classroom" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent opacity-0 group-hover:opacity-90 transition-opacity p-3 flex flex-col justify-end">
-                                <span class="text-xs font-bold text-white">Presentasi Final</span>
-                                <span class="text-[10px] text-cyber-neonPurple">Materi PBO</span>
-                            </div>
-                        </div>
-
-                        <div class="relative group rounded-xl overflow-hidden glass-panel border border-slate-800 aspect-video">
-                            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600" alt="Class Friends" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent opacity-0 group-hover:opacity-90 transition-opacity p-3 flex flex-col justify-end">
-                                <span class="text-xs font-bold text-white">Kebersamaan Kelas</span>
-                                <span class="text-[10px] text-yellow-400">Class Meeting</span>
-                            </div>
-                        </div>
-
-                        <div class="relative group rounded-xl overflow-hidden glass-panel border border-slate-800 aspect-video">
-                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600" alt="Code Screen" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent opacity-0 group-hover:opacity-90 transition-opacity p-3 flex flex-col justify-end">
-                                <span class="text-xs font-bold text-white">Lembur Koding</span>
-                                <span class="text-[10px] text-cyber-neonCyan">Debugging Night</span>
-                            </div>
+                <div class="relative border-l-2 border-slate-800 ml-4 md:ml-32 space-y-8 pl-6 md:pl-8">
+                    <!-- Timeline Item 1 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-cyber-neonCyan shadow-glow-cyan border-4 border-cyber-dark"></div>
+                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 hover:border-cyber-neonCyan transition-all">
+                            <span class="text-xs font-mono text-cyber-neonCyan">SEMESTER 1 // HARI PERTAMA</span>
+                            <h3 class="text-base font-bold text-white mt-1">Awal Bertemu & Kenalan</h3>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Momen canggung di kelas pertama, belum saling kenal, bingung saat pertama kali buka software koding dan IDE pertama.</p>
                         </div>
                     </div>
-                </section>
 
-                <!-- PENGUMUMAN & TUGAS BOARD (5 COLS) -->
-                <section id="announcements" class="lg:col-span-5 space-y-4">
-                    <h2 class="text-xl font-bold text-white flex items-center gap-3">
-                        <i class="fas fa-bullhorn text-cyber-neonGreen"></i>
-                        <span>Pengumuman & Deadline</span>
-                    </h2>
-
-                    <div class="space-y-3">
-                        <!-- Notice Item 1 -->
-                        <div class="glass-panel p-4 rounded-xl border border-l-4 border-l-cyber-neonCyan border-slate-800">
-                            <div class="flex items-center justify-between text-xs mb-1">
-                                <span class="font-mono text-cyber-neonCyan font-semibold">[PENTING]</span>
-                                <span class="text-slate-500">2 Jam Yang Lalu</span>
-                            </div>
-                            <h4 class="font-bold text-white text-sm">Pengumpulan Tugas Pemrograman Web</h4>
-                            <p class="text-xs text-slate-400 mt-1">Deadline submit tugas website portofolio Tailwind CSS di Google Classroom besok pukul 23:59 WIB.</p>
-                        </div>
-
-                        <!-- Notice Item 2 -->
-                        <div class="glass-panel p-4 rounded-xl border border-l-4 border-l-cyber-neonPink border-slate-800">
-                            <div class="flex items-center justify-between text-xs mb-1">
-                                <span class="font-mono text-cyber-neonPink font-semibold">[ULANGAN]</span>
-                                <span class="text-slate-500">Kemarin</span>
-                            </div>
-                            <h4 class="font-bold text-white text-sm">Penilaian Harian Basis Data</h4>
-                            <p class="text-xs text-slate-400 mt-1">Materi query SQL JOIN dan Normalisasi Database hari Kamis jam ke-3.</p>
-                        </div>
-
-                        <!-- Notice Item 3 -->
-                        <div class="glass-panel p-4 rounded-xl border border-l-4 border-l-yellow-400 border-slate-800">
-                            <div class="flex items-center justify-between text-xs mb-1">
-                                <span class="font-mono text-yellow-400 font-semibold">[INFO KELAS]</span>
-                                <span class="text-slate-500">3 Hari Lalu</span>
-                            </div>
-                            <h4 class="font-bold text-white text-sm">Kas Kelas Mingguan</h4>
-                            <p class="text-xs text-slate-400 mt-1">Harap segera melunasi iuran kas kelas minggu ini kepada Bendahara Dina.</p>
+                    <!-- Timeline Item 2 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-cyber-neonPurple shadow-glow-purple border-4 border-cyber-dark"></div>
+                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 hover:border-cyber-neonPurple transition-all">
+                            <span class="text-xs font-mono text-cyber-neonPurple">SEMESTER 2 // PRAKTIKUM LAB</span>
+                            <h3 class="text-base font-bold text-white mt-1">Tragedi Error Semicolon & Lembur Tugas</h3>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Satu kelas heboh nyari error koding bareng-bareng di lab, pesen makanan bareng sambil pusing mikirin query database.</p>
                         </div>
                     </div>
-                </section>
-            </div>
 
-            <!-- RUANG DISKUSI / WALL NOTES INTERAKTIF -->
-            <section id="discussion" class="glass-panel p-6 lg:p-8 rounded-3xl border border-slate-800 space-y-6">
-                <div>
-                    <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                        <i class="fas fa-comment-dots text-cyber-neonCyan"></i>
-                        <span>Wall Notes RPL 3</span>
-                    </h2>
-                    <p class="text-slate-400 text-sm mt-1">Tinggalkan pesan singkat, saran project, atau sekadar kata-kata motivasi koding!</p>
-                </div>
+                    <!-- Timeline Item 3 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-cyber-neonPink shadow-glow-pink border-4 border-cyber-dark"></div>
+                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 hover:border-cyber-neonPink transition-all">
+                            <span class="text-xs font-mono text-cyber-neonPink">SEMESTER 3 // EVENT & CLASSMEETING</span>
+                            <h3 class="text-base font-bold text-white mt-1">Juara Classmeeting & Pentas Seni</h3>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Kekompakan RPL 3 diuji di luar koding. Menang lomba futsal dan kompak jadi supporter paling heboh se-sekolah!</p>
+                        </div>
+                    </div>
 
-                <!-- Input Note Form -->
-                <form onsubmit="addWallNote(event)" class="grid sm:grid-cols-12 gap-3">
-                    <div class="sm:col-span-4">
-                        <input type="text" id="note-author" required placeholder="Nama Anda / Alias" 
-                            class="w-full px-4 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
+                    <!-- Timeline Item 4 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-cyber-neonGreen shadow-glow-cyan border-4 border-cyber-dark"></div>
+                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 hover:border-cyber-neonGreen transition-all">
+                            <span class="text-xs font-mono text-cyber-neonGreen">SEMESTER FINAL // PROJECT KELULUSAN</span>
+                            <h3 class="text-base font-bold text-white mt-1">Pameran Karya & Foto Bersama</h3>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Mempresentasikan aplikasi buatan sendiri di depan penguji, diakhiri dengan sesi foto yearbook & kebersamaan penuh keharuan.</p>
+                        </div>
                     </div>
-                    <div class="sm:col-span-6">
-                        <input type="text" id="note-text" required placeholder="Tuliskan pesan / catatan kelas..." 
-                            class="w-full px-4 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <button type="submit" class="w-full h-full py-2.5 px-4 rounded-xl bg-cyber-neonCyan text-slate-950 font-bold text-xs hover:bg-opacity-90 transition-all flex items-center justify-center gap-2">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>Kirim</span>
-                        </button>
-                    </div>
-                </form>
-
-                <!-- Notes Container -->
-                <div id="wall-notes-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
-                    <!-- Populated dynamically via JS -->
                 </div>
             </section>
         </main>
 
-        <!-- Footer Section -->
-        <footer class="glass-panel border-t border-slate-800/80 mt-12 py-6 px-4 text-center">
+        <!-- Footer -->
+        <footer class="glass-panel border-t border-slate-800/80 mt-16 py-6 text-center">
             <p class="text-xs text-slate-500 code-font">
-                © <span id="year">2026</span> RPL 3 Cyber Portal. Designed with <i class="fas fa-heart text-cyber-neonPink"></i> & Code.
+                © 2026 Memory Vault RPL 3. Keabadian Kenangan dalam Baris Kode <i class="fas fa-heart text-cyber-neonPink ml-1"></i>
             </p>
         </footer>
     </div>
 
+    <!-- MODAL 1: UPLOAD FOTO BARU -->
+    <div id="upload-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="glass-panel w-full max-w-lg p-6 lg:p-8 rounded-3xl border border-slate-800 shadow-2xl relative">
+            <button onclick="closeUploadModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-lg">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <h3 class="text-xl font-bold text-white mb-1 flex items-center gap-2">
+                <i class="fas fa-cloud-upload-alt text-cyber-neonCyan"></i>
+                <span>Tambah Kenangan Baru</span>
+            </h3>
+            <p class="text-xs text-slate-400 mb-6">Bagikan foto momen berharga kelas RPL 3 ke album digital.</p>
+
+            <form onsubmit="handleUploadSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1">Judul Momen / Foto</label>
+                    <input type="text" id="upload-title" required placeholder="Contoh: Sesi Koding PBO Lab 1" 
+                        class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-mono text-slate-300 mb-1">Kategori Momen</label>
+                        <select id="upload-category" required class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white bg-slate-900 focus:outline-none">
+                            <option value="Praktikum Koding & Lab">Praktikum & Lab</option>
+                            <option value="Kegiatan Sekolah & Event">Kegiatan & Event</option>
+                            <option value="Ulang Tahun & Nongkrong">Nongkrong & Acara</option>
+                            <option value="Kelulusan & Project">Project & Kelulusan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-300 mb-1">Tanggal Momen</label>
+                        <input type="date" id="upload-date" required 
+                            class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white bg-slate-900 focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1">URL Foto (Unsplash / Link Gambar)</label>
+                    <input type="url" id="upload-url" required placeholder="https://images.unsplash.com/..." 
+                        class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1">Deskripsi / Cerita Singkat</label>
+                    <textarea id="upload-desc" rows="3" required placeholder="Ceritakan kisah dibalik foto kenangan ini..." 
+                        class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none"></textarea>
+                </div>
+
+                <div class="pt-2 flex gap-3">
+                    <button type="button" onclick="closeUploadModal()" class="w-1/2 py-2.5 rounded-xl border border-slate-700 text-xs font-bold hover:bg-slate-800">
+                        Batal
+                    </button>
+                    <button type="submit" class="w-1/2 py-2.5 rounded-xl bg-cyber-neonCyan text-slate-950 text-xs font-bold shadow-glow-cyan hover:opacity-90">
+                        Simpan Foto
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: LIGHTBOX & DETAIL FOTO -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-lg">
+        <div class="glass-panel w-full max-w-4xl max-h-[90vh] rounded-3xl border border-slate-800 shadow-2xl overflow-hidden flex flex-col md:flex-row relative">
+            <button onclick="closeLightboxModal()" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-slate-900/80 border border-slate-700 text-slate-300 hover:text-white flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Left: Photo Display -->
+            <div class="md:w-3/5 bg-black flex items-center justify-center relative min-h-[280px] max-h-[500px]">
+                <img id="lightbox-img" src="" alt="Detail Foto" class="w-full h-full object-contain">
+            </div>
+
+            <!-- Right: Details & Comments -->
+            <div class="md:w-2/5 p-6 flex flex-col justify-between space-y-4 overflow-y-auto">
+                <div class="space-y-3">
+                    <span id="lightbox-category" class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyber-neonCyan/10 text-cyber-neonCyan border border-cyber-neonCyan/30">
+                        Kategori
+                    </span>
+                    <h3 id="lightbox-title" class="text-xl font-bold text-white leading-tight">Judul Foto</h3>
+                    <p id="lightbox-date" class="text-xs text-slate-400 font-mono"><i class="far fa-calendar-alt mr-1"></i> 10 Okt 2025</p>
+                    <p id="lightbox-desc" class="text-xs text-slate-300 leading-relaxed pt-2 border-t border-slate-800/80">
+                        Deskripsi foto...
+                    </p>
+                </div>
+
+                <!-- Comments & Interactive Section -->
+                <div class="space-y-4 pt-4 border-t border-slate-800/80">
+                    <div class="flex items-center justify-between">
+                        <button id="lightbox-like-btn" onclick="toggleLikeCurrentPhoto()" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyber-neonPink text-xs transition-all">
+                            <i id="lightbox-heart-icon" class="far fa-heart text-cyber-neonPink"></i>
+                            <span id="lightbox-likes-count" class="font-bold">0</span>
+                        </button>
+                        <span class="text-[11px] text-slate-400 code-font">#KenanganRPL3</span>
+                    </div>
+
+                    <!-- Comments List -->
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-mono text-slate-300">Pesan Kenangan:</h4>
+                        <div id="lightbox-comments-list" class="space-y-2 max-h-36 overflow-y-auto pr-1">
+                            <!-- Dynamic Comments -->
+                        </div>
+                    </div>
+
+                    <!-- Add Comment Form -->
+                    <form onsubmit="handleAddComment(event)" class="flex gap-2">
+                        <input type="text" id="comment-input" required placeholder="Tuliskan pesan / kesan..." 
+                            class="flex-grow px-3 py-2 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
+                        <button type="submit" class="px-3.5 py-2 rounded-xl bg-cyber-neonCyan text-slate-950 font-bold text-xs hover:opacity-90">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // --- DATA MOCKUP KELAS RPL 3 ---
-        const scheduleData = {
-            Senin: [
-                { time: '07:00 - 08:30', subject: 'Pemrograman Web & Seluler', room: 'Lab Komp 1', teacher: 'Pak Budi, S.T.', icon: 'fa-code', color: 'cyber-neonCyan' },
-                { time: '08:30 - 10:00', subject: 'Pemrograman Berorientasi Objek', room: 'Lab Komp 1', teacher: 'Bu Maya, S.Kom', icon: 'fa-cubes', color: 'cyber-neonPurple' },
-                { time: '10:15 - 12:00', subject: 'Basis Data', room: 'Lab Komp 2', teacher: 'Pak Hadi, M.T.', icon: 'fa-database', color: 'cyber-neonPink' },
-                { time: '12:30 - 14:00', subject: 'Matematika Terapan', room: 'R. RPL 3', teacher: 'Bu Rina, M.Pd', icon: 'fa-square-root-variable', color: 'yellow-400' }
-            ],
-            Selasa: [
-                { time: '07:00 - 09:30', subject: 'Produk Kreatif & Kewirausahaan', room: 'Lab Komp 3', teacher: 'Bu Dewi, S.E.', icon: 'fa-lightbulb', color: 'cyber-neonGreen' },
-                { time: '09:45 - 12:00', subject: 'Pemrograman Web & Seluler', room: 'Lab Komp 1', teacher: 'Pak Budi, S.T.', icon: 'fa-code', color: 'cyber-neonCyan' },
-                { time: '12:30 - 14:00', subject: 'Bahasa Inggris Industri', room: 'R. RPL 3', teacher: 'Mr. John, M.A.', icon: 'fa-language', color: 'cyber-neonPink' }
-            ],
-            Rabu: [
-                { time: '07:00 - 09:30', subject: 'Pemrograman Berorientasi Objek', room: 'Lab Komp 1', teacher: 'Bu Maya, S.Kom', icon: 'fa-cubes', color: 'cyber-neonPurple' },
-                { time: '09:45 - 12:00', subject: 'Pemodelan Perangkat Lunak', room: 'R. RPL 3', teacher: 'Pak Yudi, S.Kom', icon: 'fa-diagram-project', color: 'cyber-neonGreen' },
-                { time: '12:30 - 14:00', subject: 'Pendidikan Pancasila', room: 'R. RPL 3', teacher: 'Pak Agus, S.Pd', icon: 'fa-book', color: 'yellow-400' }
-            ],
-            Kamis: [
-                { time: '07:00 - 09:30', subject: 'Basis Data (Praktikum SQL)', room: 'Lab Komp 2', teacher: 'Pak Hadi, M.T.', icon: 'fa-database', color: 'cyber-neonPink' },
-                { time: '09:45 - 12:00', subject: 'Produk Kreatif & Kewirausahaan', room: 'Lab Komp 3', teacher: 'Bu Dewi, S.E.', icon: 'fa-lightbulb', color: 'cyber-neonGreen' },
-                { time: '12:30 - 14:00', subject: 'Bahasa Indonesia', room: 'R. RPL 3', teacher: 'Bu Siti, M.Pd', icon: 'fa-pen-nib', color: 'cyber-neonCyan' }
-            ],
-            Jumat: [
-                { time: '07:00 - 08:30', subject: 'Pendidikan Agama & Budi Pekerti', room: 'R. RPL 3', teacher: 'Pak Ahmad, S.Ag', icon: 'fa-hands-praying', color: 'cyber-neonGreen' },
-                { time: '08:30 - 10:30', subject: 'Pengembangan Diri / Olahraga', room: 'Lapangan', teacher: 'Pak Eko, S.Pd', icon: 'fa-person-running', color: 'yellow-400' },
-                { time: '10:30 - 11:30', subject: 'Clean Code & Code Review', room: 'Lab Komp 1', teacher: 'Bu Maya, S.Kom', icon: 'fa-laptop-code', color: 'cyber-neonCyan' }
-            ]
-        };
-
-        const studentsList = [
-            { name: "Alex Cyberion", role: "Frontend Dev", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200", badge: "React / Tailwind" },
-            { name: "Bagas Pratama", role: "Backend Dev", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200", badge: "Node.js / Express" },
-            { name: "Citra Kirana", role: "UI/UX Designer", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200", badge: "Figma / Proto" },
-            { name: "Dina Lestari", role: "Database Admin", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200", badge: "PostgreSQL / MySQL" },
-            { name: "Eko Prasetyo", role: "Fullstack Dev", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200", badge: "Laravel / Vue" },
-            { name: "Fabiola Ananda", role: "Mobile Developer", avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=200", badge: "Flutter / Dart" },
-            { name: "Gilang Ramadhan", role: "DevOps Specialist", avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200", badge: "Docker / Linux" },
-            { name: "Hania Putri", role: "Game Developer", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=200", badge: "Unity / C#" }
+        // --- DATA INITIAL DUMMY PHOTOS ---
+        const initialPhotos = [
+            {
+                id: 'p1',
+                title: 'Coding Sesi Malam & Bug Hunting',
+                category: 'Praktikum Koding & Lab',
+                date: '2025-08-14',
+                url: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800',
+                desc: 'Momen satu kelas begadang di lab komputer ngebantu temen yang kodingannya eror 500 saat mau deadline project.',
+                likes: 18,
+                comments: [
+                    { author: 'Alex', text: 'Inget banget ini semicolon kurang satu doang wkwk' },
+                    { author: 'Citra', text: 'Legendaris banget momen ini!' }
+                ]
+            },
+            {
+                id: 'p2',
+                title: 'Kerja Kelompok Web Portofolio',
+                category: 'Kegiatan Sekolah & Event',
+                date: '2025-09-20',
+                url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+                desc: 'Nongkrong di kantin sambil buka Figma dan VS Code buat nyelesaiin tugas kolaborasi web kelas.',
+                likes: 24,
+                comments: [
+                    { author: 'Bagas', text: 'Kantin berasa co-working space.' }
+                ]
+            },
+            {
+                id: 'p3',
+                title: 'Ulang Tahun Wali Kelas Bu Maya',
+                category: 'Ulang Tahun & Nongkrong',
+                date: '2025-10-05',
+                url: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=800',
+                desc: 'Kejutan kue dan lilin kecil untuk Bu Maya sebagai bentuk apresiasi kesabaran beliau mengajar kita koding.',
+                likes: 31,
+                comments: [
+                    { author: 'Dina', text: 'Bu Maya kaget banget pas dimasukin kue!' }
+                ]
+            },
+            {
+                id: 'p4',
+                title: 'Presentasi Final Project Aplikasi',
+                category: 'Kelulusan & Project',
+                date: '2025-11-18',
+                url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800',
+                desc: 'Sesi demoday pameran karya aplikasi android dan web di depan guru penguji. Sukses besar!',
+                likes: 29,
+                comments: [
+                    { author: 'Eko', text: 'Puas banget pas liat app-nya berjalan lancar.' }
+                ]
+            },
+            {
+                id: 'p5',
+                title: 'Foto Kebersamaan Yearbook RPL 3',
+                category: 'Kelulusan & Project',
+                date: '2026-02-10',
+                url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
+                desc: 'Sesi pemotretan buku kenangan akhir tahun dengan konsep cyberpunk & koding modern.',
+                likes: 42,
+                comments: [
+                    { author: 'Gilang', text: 'RPL 3 Class of 2026 solid selamanya!' }
+                ]
+            },
+            {
+                id: 'p6',
+                title: 'Juara 1 Lomba Hackathon Sekolah',
+                category: 'Kegiatan Sekolah & Event',
+                date: '2026-03-01',
+                url: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800',
+                desc: 'Perwakilan tim RPL 3 berhasil menyabet piala utama dalam kejuaraan pembuatan web sekolah.',
+                likes: 35,
+                comments: [
+                    { author: 'Hania', text: 'Proud of you guys!' }
+                ]
+            }
         ];
 
-        let activeDay = 'Senin';
-        let defaultNotes = [
-            { author: 'Alex Cyberion', text: 'Semangat terus kodingnya guys, jangan lupa commit project!', date: 'Hari ini' },
-            { author: 'Citra Kirana', text: 'Desain UI untuk website kelas sudah dirilis, mohon feedbacknya ya!', date: 'Kemarin' }
+        // Global State Variables
+        let photos = [];
+        let activeCategory = 'Semua';
+        let currentActivePhotoId = null;
+
+        const categories = [
+            'Semua',
+            'Praktikum Koding & Lab',
+            'Kegiatan Sekolah & Event',
+            'Ulang Tahun & Nongkrong',
+            'Kelulusan & Project'
         ];
 
-        // --- APP INITIALIZATION ---
         window.onload = function() {
             checkAuth();
-            renderDayTabs();
-            renderSchedule(activeDay);
-            renderStudents(studentsList);
-            loadWallNotes();
+            loadPhotos();
+            renderCategoryTabs();
+            renderGallery();
+            updateStats();
         };
 
         // --- AUTHENTICATION SYSTEM ---
         function checkAuth() {
-            const isLoggedIn = localStorage.getItem('rpl3_login') === 'true';
+            const isLoggedIn = localStorage.getItem('rpl3_login') === 'true' || sessionStorage.getItem('rpl3_login') === 'true';
             const loginSection = document.getElementById('login-section');
             const dashboardSection = document.getElementById('dashboard-section');
 
@@ -645,160 +629,259 @@
             event.preventDefault();
             const u = document.getElementById('username').value.trim();
             const p = document.getElementById('password').value.trim();
+            const rememberMe = document.getElementById('remember-me').checked;
             const errBox = document.getElementById('login-error');
 
             if (u === 'RPL3' && p === 'RPL3') {
                 errBox.classList.add('hidden');
-                localStorage.setItem('rpl3_login', 'true');
-                showToast('Login Berhasil! Selamat datang RPL 3.', 'success');
+                if (rememberMe) {
+                    localStorage.setItem('rpl3_login', 'true');
+                } else {
+                    sessionStorage.setItem('rpl3_login', 'true');
+                }
+                showToast('Login Berhasil! Membuka Memory Vault.', 'success');
                 setTimeout(() => {
                     checkAuth();
-                }, 600);
+                }, 400);
             } else {
                 errBox.classList.remove('hidden');
-                document.getElementById('error-text').innerText = 'Username atau Password salah! (Default: RPL3 / RPL3)';
             }
         }
 
         function handleLogout() {
             localStorage.removeItem('rpl3_login');
-            showToast('Anda telah logout dari portal.', 'info');
+            sessionStorage.removeItem('rpl3_login');
+            showToast('Anda telah logout dari Vault.', 'info');
             setTimeout(() => {
                 checkAuth();
-            }, 500);
+            }, 400);
         }
 
-        // --- SCHEDULE RENDER LOGIC ---
-        function renderDayTabs() {
-            const tabsContainer = document.getElementById('day-tabs');
-            const days = Object.keys(scheduleData);
-            
-            tabsContainer.innerHTML = days.map(day => `
-                <button onclick="changeDay('${day}')" 
-                    class="px-3.5 py-1.5 rounded-lg text-xs font-mono font-semibold transition-all ${day === activeDay ? 'bg-cyber-neonCyan text-slate-950 shadow-glow-cyan' : 'text-slate-400 hover:text-white hover:bg-slate-800'}">
-                    ${day}
+        // --- PHOTO STORE LOGIC ---
+        function loadPhotos() {
+            const stored = localStorage.getItem('rpl3_photos_data');
+            if (stored) {
+                photos = JSON.parse(stored);
+            } else {
+                photos = initialPhotos;
+                savePhotos();
+            }
+        }
+
+        function savePhotos() {
+            localStorage.setItem('rpl3_photos_data', JSON.stringify(photos));
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('stat-total-photos').innerText = photos.length;
+            const totalLikes = photos.reduce((sum, p) => sum + p.likes, 0);
+            document.getElementById('stat-total-likes').innerText = totalLikes;
+            const totalComments = photos.reduce((sum, p) => sum + (p.comments ? p.comments.length : 0), 0);
+            document.getElementById('stat-total-comments').innerText = totalComments;
+        }
+
+        function renderCategoryTabs() {
+            const container = document.getElementById('category-tabs');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="changeCategory('${cat}')" 
+                    class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all ${cat === activeCategory ? 'bg-cyber-neonCyan text-slate-950 shadow-glow-cyan' : 'glass-panel text-slate-400 hover:text-white border border-slate-800'}">
+                    ${cat}
                 </button>
             `).join('');
         }
 
-        function changeDay(day) {
-            activeDay = day;
-            renderDayTabs();
-            renderSchedule(day);
+        function changeCategory(cat) {
+            activeCategory = cat;
+            renderCategoryTabs();
+            renderGallery();
         }
 
-        function renderSchedule(day) {
-            const container = document.getElementById('schedule-container');
-            const items = scheduleData[day];
+        function renderGallery() {
+            const container = document.getElementById('gallery-grid');
+            const searchQuery = document.getElementById('gallery-search').value.toLowerCase();
 
-            if (!items || items.length === 0) {
-                container.innerHTML = `<p class="col-span-full text-slate-500 text-sm italic text-center py-6">Tidak ada jadwal pelajaran.</p>`;
+            let filtered = photos.filter(p => {
+                const matchCat = activeCategory === 'Semua' || p.category === activeCategory;
+                const matchSearch = p.title.toLowerCase().includes(searchQuery) || p.desc.toLowerCase().includes(searchQuery);
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full py-12 text-center text-slate-500 font-mono text-xs">
+                    <i class="fas fa-camera text-2xl mb-2 block"></i>
+                    Belum ada foto kenangan dalam kategori ini.
+                </div>`;
                 return;
             }
 
-            container.innerHTML = items.map(item => `
-                <div class="glass-panel p-5 rounded-2xl border border-slate-800 hover:border-${item.color} transition-all duration-300">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-[11px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
-                            <i class="far fa-clock mr-1"></i>${item.time}
-                        </span>
-                        <i class="fas ${item.icon} text-lg text-${item.color}"></i>
+            container.innerHTML = filtered.map(p => `
+                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-cyber-neonCyan transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <!-- Image Container -->
+                        <div class="relative overflow-hidden aspect-video bg-black cursor-pointer" onclick="openLightboxModal('${p.id}')">
+                            <img src="${p.url}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                                <span class="text-[10px] text-cyber-neonCyan font-mono">Klik untuk Zoom & Pesan</span>
+                            </div>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="p-4 space-y-2">
+                            <span class="text-[9px] font-mono text-cyber-neonPurple px-2 py-0.5 rounded bg-cyber-neonPurple/10 border border-cyber-neonPurple/30 inline-block">
+                                ${p.category}
+                            </span>
+                            <h3 class="font-bold text-white text-sm line-clamp-1 group-hover:text-cyber-neonCyan transition-colors">${p.title}</h3>
+                            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">${p.desc}</p>
+                        </div>
                     </div>
-                    <h4 class="font-bold text-white text-sm mb-1">${item.subject}</h4>
-                    <p class="text-xs text-slate-400"><i class="fas fa-chalkboard-teacher text-xs mr-1"></i> ${item.teacher}</p>
-                    <p class="text-[11px] text-cyber-neonCyan mt-2 font-mono"><i class="fas fa-location-dot mr-1"></i> ${item.room}</p>
+
+                    <!-- Footer Interactions -->
+                    <div class="px-4 py-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                        <span class="text-[10px] font-mono"><i class="far fa-calendar mr-1"></i>${p.date}</span>
+                        <div class="flex items-center space-x-3">
+                            <button onclick="likePhoto('${p.id}', event)" class="hover:text-cyber-neonPink transition-colors flex items-center gap-1">
+                                <i class="fas fa-heart text-cyber-neonPink"></i>
+                                <span>${p.likes}</span>
+                            </button>
+                            <span class="flex items-center gap-1 cursor-pointer" onclick="openLightboxModal('${p.id}')">
+                                <i class="fas fa-comment text-cyber-neonCyan"></i>
+                                <span>${p.comments ? p.comments.length : 0}</span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             `).join('');
         }
 
-        // --- STUDENTS DIRECTORY LOGIC ---
-        function renderStudents(list) {
-            const container = document.getElementById('students-grid');
+        function filterGallery() {
+            renderGallery();
+        }
 
-            if (list.length === 0) {
-                container.innerHTML = `<p class="col-span-full text-slate-500 text-sm text-center py-6">Siswa tidak ditemukan.</p>`;
-                return;
+        function likePhoto(id, event) {
+            if (event) event.stopPropagation();
+            const photo = photos.find(p => p.id === id);
+            if (photo) {
+                photo.likes += 1;
+                savePhotos();
+                renderGallery();
+                if (currentActivePhotoId === id) {
+                    updateLightboxContent(photo);
+                }
             }
+        }
 
-            container.innerHTML = list.map(student => `
-                <div class="glass-panel p-4 rounded-2xl border border-slate-800 flex items-center space-x-3 hover:border-cyber-neonCyan transition-all">
-                    <img src="${student.avatar}" alt="${student.name}" class="w-12 h-12 rounded-xl object-cover border border-slate-700">
-                    <div class="overflow-hidden">
-                        <h4 class="font-bold text-white text-xs truncate">${student.name}</h4>
-                        <p class="text-[11px] text-cyber-neonCyan font-mono">${student.role}</p>
-                        <span class="inline-block mt-1 text-[9px] bg-slate-900 border border-slate-800 text-slate-400 px-1.5 py-0.5 rounded">
-                            ${student.badge}
-                        </span>
+        function openLightboxModal(id) {
+            const photo = photos.find(p => p.id === id);
+            if (!photo) return;
+            currentActivePhotoId = id;
+
+            updateLightboxContent(photo);
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        function updateLightboxContent(photo) {
+            document.getElementById('lightbox-img').src = photo.url;
+            document.getElementById('lightbox-category').innerText = photo.category;
+            document.getElementById('lightbox-title').innerText = photo.title;
+            document.getElementById('lightbox-date').innerText = photo.date;
+            document.getElementById('lightbox-desc').innerText = photo.desc;
+            document.getElementById('lightbox-likes-count').innerText = photo.likes;
+
+            // Render Comments
+            const commentsContainer = document.getElementById('lightbox-comments-list');
+            if (photo.comments && photo.comments.length > 0) {
+                commentsContainer.innerHTML = photo.comments.map(c => `
+                    <div class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-xs">
+                        <span class="font-bold text-cyber-neonCyan font-mono">${escapeHtml(c.author)}:</span>
+                        <span class="text-slate-300 ml-1">${escapeHtml(c.text)}</span>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            } else {
+                commentsContainer.innerHTML = `<p class="text-[11px] text-slate-500 italic">Belum ada pesan. Jadilah yang pertama!</p>`;
+            }
         }
 
-        function filterStudents() {
-            const query = document.getElementById('student-search').value.toLowerCase();
-            const filtered = studentsList.filter(s => 
-                s.name.toLowerCase().includes(query) || 
-                s.role.toLowerCase().includes(query) ||
-                s.badge.toLowerCase().includes(query)
-            );
-            renderStudents(filtered);
+        function closeLightboxModal() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+            currentActivePhotoId = null;
         }
 
-        // --- WALL NOTES DISCUSSIONS LOGIC ---
-        function loadWallNotes() {
-            const stored = localStorage.getItem('rpl3_notes');
-            const notes = stored ? JSON.parse(stored) : defaultNotes;
-            renderWallNotes(notes);
+        function toggleLikeCurrentPhoto() {
+            if (currentActivePhotoId) {
+                likePhoto(currentActivePhotoId);
+            }
         }
 
-        function renderWallNotes(notes) {
-            const container = document.getElementById('wall-notes-container');
-            container.innerHTML = notes.map(note => `
-                <div class="glass-panel p-4 rounded-xl border border-slate-800 space-y-2">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-cyber-neonCyan code-font">&lt;${escapeHtml(note.author)}/&gt;</span>
-                        <span class="text-[10px] text-slate-500">${note.date}</span>
-                    </div>
-                    <p class="text-xs text-slate-300 leading-relaxed">${escapeHtml(note.text)}</p>
-                </div>
-            `).join('');
-        }
-
-        function addWallNote(event) {
+        function handleAddComment(event) {
             event.preventDefault();
-            const authorInput = document.getElementById('note-author');
-            const textInput = document.getElementById('note-text');
+            const input = document.getElementById('comment-input');
+            const text = input.value.trim();
 
-            const newNote = {
-                author: authorInput.value.trim(),
-                text: textInput.value.trim(),
-                date: 'Baru saja'
+            if (text && currentActivePhotoId) {
+                const photo = photos.find(p => p.id === currentActivePhotoId);
+                if (photo) {
+                    if (!photo.comments) photo.comments = [];
+                    photo.comments.push({
+                        author: 'Siswa RPL 3',
+                        text: text
+                    });
+                    savePhotos();
+                    updateLightboxContent(photo);
+                    renderGallery();
+                    input.value = '';
+                }
+            }
+        }
+
+        function openUploadModal() {
+            document.getElementById('upload-modal').classList.remove('hidden');
+        }
+
+        function closeUploadModal() {
+            document.getElementById('upload-modal').classList.add('hidden');
+        }
+
+        function handleUploadSubmit(event) {
+            event.preventDefault();
+            const title = document.getElementById('upload-title').value.trim();
+            const category = document.getElementById('upload-category').value;
+            const date = document.getElementById('upload-date').value;
+            const url = document.getElementById('upload-url').value.trim();
+            const desc = document.getElementById('upload-desc').value.trim();
+
+            const newPhoto = {
+                id: 'p_' + Date.now(),
+                title,
+                category,
+                date,
+                url,
+                desc,
+                likes: 1,
+                comments: []
             };
 
-            const stored = localStorage.getItem('rpl3_notes');
-            const notes = stored ? JSON.parse(stored) : [...defaultNotes];
-            notes.unshift(newNote);
+            photos.unshift(newPhoto);
+            savePhotos();
+            renderGallery();
+            closeUploadModal();
+            showToast('Foto kenangan berhasil ditambahkan!', 'success');
 
-            localStorage.setItem('rpl3_notes', JSON.stringify(notes));
-            renderWallNotes(notes);
-
-            textInput.value = '';
-            showToast('Catatan berhasil ditambahkan ke Wall!', 'success');
+            // Reset form
+            document.getElementById('upload-title').value = '';
+            document.getElementById('upload-url').value = '';
+            document.getElementById('upload-desc').value = '';
         }
 
-        // --- UTILS & HELPERS ---
+        // --- UTILS ---
         function scrollToSection(id) {
             const el = document.getElementById(id);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-            }
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function showToast(message, type = 'success') {
+        function showToast(message) {
             const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            toastMsg.innerText = message;
-
+            document.getElementById('toast-message').innerText = message;
             toast.classList.remove('translate-x-full');
             setTimeout(() => {
                 toast.classList.add('translate-x-full');
@@ -807,13 +890,7 @@
 
         function escapeHtml(str) {
             return str.replace(/[&<>"']/g, function(m) {
-                return {
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    '"': '&quot;',
-                    "'": '&#039;'
-                }[m];
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
             });
         }
     </script>

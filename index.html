@@ -101,6 +101,7 @@
                 </div>
                 <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-300">
                     <a href="#timeline" class="hover:text-primary transition">Perjalanan</a>
+                    <a href="#gallery" class="hover:text-primary transition">Foto Kenangan</a>
                     <a href="#members" class="hover:text-primary transition">Anggota Class</a>
                     <a href="#wall" class="hover:text-primary transition">Tembok Pesan</a>
                 </div>
@@ -171,6 +172,52 @@
                         Puncak perjuangan di Uji Kompetensi Keahlian (UKK). Menyiapkan perpisahan, foto bersama, dan melangkah ke tujuan masing-masing.
                     </p>
                     <div class="text-xs text-purple-400 font-semibold"><i class="fa-solid fa-graduation-cap mr-1"></i> Graduate & Beyond</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERI FOTO KENANG-KENANGAN -->
+        <section id="gallery" class="py-16 max-w-7xl mx-auto px-4 w-full border-t border-slate-800">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold">Galeri Foto Kenangan</h2>
+                <p class="text-slate-400 text-sm mt-1">Kumpulan momen kebersamaan RPL 3 di Kelas X, XI, dan XII</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- FOTO KELAS X -->
+                <div class="glass rounded-2xl overflow-hidden border border-slate-800 hover:border-blue-500/50 transition group">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Masa Kelas X" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Kelas X</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg text-white mb-1">Masa Pertama Masuk Lab</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Momen awal perkenalan dan pertama kali kumpul satu kelas di laboratorium komputer.</p>
+                    </div>
+                </div>
+
+                <!-- FOTO KELAS XI -->
+                <div class="glass rounded-2xl overflow-hidden border border-slate-800 hover:border-indigo-500/50 transition group">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Masa Kelas XI" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-indigo-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Kelas XI</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg text-white mb-1">Kerja Kelompok & PKL</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Kebersamaan saat ngerjain project pemrograman dan persiapan dunia industri.</p>
+                    </div>
+                </div>
+
+                <!-- FOTO KELAS XII -->
+                <div class="glass rounded-2xl overflow-hidden border border-slate-800 hover:border-purple-500/50 transition group">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Masa Kelas XII" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Kelas XII</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg text-white mb-1">Momen Lulus & Perpisahan</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Foto bersama sebelum masing-masing berjuang menggapai cita-cita.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -309,7 +356,7 @@
             renderMessages();
         }
 
-        // Render Members Function (Tampilan Bersih - Nama Saja)
+        // Render Members Function (Tanpa Foto Orang, Hanya Nama & Badge Gender)
         function renderMembers(filter = 'all') {
             const grid = document.getElementById('memberGrid');
             grid.innerHTML = '';

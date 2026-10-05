@@ -1,1142 +1,910 @@
 <!DOCTYPE html>
-<html lang="id" class="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Resmi Kelas RPL 3 (X, XI, XII)</title>
-    
-    <!-- Tailwind CSS CDN -->
+    <title>RPL 3 - Class Memories Hub</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        cyber: {
-                            dark: '#06090e',
-                            panel: '#0f172a',
-                            border: '#1e293b',
-                            neonCyan: '#00f0ff',
-                            neonPurple: '#8b5cf6',
-                            neonPink: '#ec4899',
-                            neonGreen: '#10b981',
-                            neonYellow: '#f59e0b'
+                        brand: {
+                            50: '#f0f6ff',
+                            100: '#e0edff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        neon: {
+                            blue: '#00f0ff',
+                            purple: '#7000ff',
+                            pink: '#ff007f',
+                            green: '#00ff66'
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace']
-                    },
-                    boxShadow: {
-                        'glow-cyan': '0 0 15px rgba(0, 240, 255, 0.35)',
-                        'glow-purple': '0 0 15px rgba(139, 92, 246, 0.35)',
-                        'glow-pink': '0 0 15px rgba(236, 72, 153, 0.35)',
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
                     }
                 }
             }
         }
     </script>
-    
-    <!-- Google Fonts & Font Awesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #06090e;
-            color: #f1f5f9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
             overflow-x: hidden;
         }
 
-        .code-font {
-            font-family: 'Fira Code', monospace;
-        }
-
-        /* Glassmorphism Styles */
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.75);
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(17, 24, 39, 0.7);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .glass-input {
-            background: rgba(6, 9, 14, 0.8);
-            border: 1px solid rgba(0, 240, 255, 0.2);
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
-        .glass-input:focus {
-            border-color: #00f0ff;
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
-            outline: none;
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15);
         }
 
-        /* Cyber Grid Background */
-        .bg-cyber-grid {
-            background-size: 36px 36px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-        }
-
-        /* Scanline Animasi Effect */
-        .scanline {
-            width: 100%;
-            height: 2px;
-            z-index: 99;
-            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0, 240, 255, 0.15) 50%, rgba(0,0,0,0) 100%);
-            opacity: 0.12;
-            position: fixed;
-            bottom: 100%;
-            animation: scanline 9s linear infinite;
-        }
-
-        @keyframes scanline {
-            0% { top: 0%; }
-            100% { top: 100%; }
-        }
-
-        .text-gradient {
-            background: linear-gradient(135deg, #00f0ff 0%, #8b5cf6 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 7px;
+            width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #06090e;
+            background: #0b0f19;
         }
         ::-webkit-scrollbar-thumb {
             background: #1e293b;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #00f0ff;
+            background: #3b82f6;
+        }
+
+        /* Neon Glow Effects */
+        .glow-blue {
+            text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+        }
+        .glow-box-blue {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
+        }
+
+        /* Background Animated Gradients */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Simple Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="bg-cyber-grid min-h-screen relative text-slate-200">
-    <div class="scanline pointer-events-none"></div>
+<body class="bg-grid min-h-screen text-slate-200 antialiased selection:bg-blue-500 selection:text-white">
 
-    <!-- Notification Toast -->
-    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-x-full transition-transform duration-300 ease-out flex items-center p-4 mb-4 text-slate-200 bg-slate-900 border border-cyber-neonCyan rounded-xl shadow-glow-cyan">
-        <div id="toast-icon" class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg bg-cyber-neonCyan/20 text-cyber-neonCyan mr-3">
-            <i class="fas fa-check-circle"></i>
-        </div>
-        <div id="toast-message" class="text-sm font-medium">Notifikasi</div>
-    </div>
+    <!-- LOGIN SCREEN OVERLAY -->
+    <div id="loginOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md transition-opacity duration-500">
+        <!-- Floating Ambient Blur -->
+        <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- SECTION 1: LOGIN PAGE -->
-    <div id="login-section" class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-        <div class="absolute top-1/4 left-1/4 w-80 h-80 bg-cyber-neonCyan/15 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-neonPurple/15 rounded-full blur-3xl pointer-events-none animate-pulse" style="animation-delay: 1s;"></div>
-
-        <div class="w-full max-w-md glass-panel p-8 rounded-3xl relative z-10 border border-slate-800 shadow-2xl">
-            <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyber-neonCyan via-cyber-neonPurple to-cyber-neonPink p-0.5 mb-4 shadow-glow-cyan">
-                    <div class="w-full h-full bg-cyber-dark rounded-[14px] flex items-center justify-center">
-                        <i class="fas fa-laptop-code text-2xl text-cyber-neonCyan"></i>
-                    </div>
-                </div>
-                <h1 class="text-3xl font-extrabold tracking-wider text-gradient">PORTAL RPL 3</h1>
-                <p class="text-xs text-slate-400 mt-2 code-font">&lt;Rekayasa Perangkat Lunak 3 /&gt;</p>
+        <div class="glass max-w-md w-full p-8 rounded-3xl shadow-2xl relative border border-slate-800 text-center animate-float">
+            <!-- Class Badge -->
+            <div class="w-20 h-20 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-blue-500/30 mb-6">
+                <i class="fa-solid me-0 fa-code text-3xl text-white"></i>
             </div>
 
-            <!-- Login Form -->
-            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-5">
+            <h2 class="text-3xl font-extrabold text-white tracking-tight mb-1">RPL 3 <span class="text-blue-500">Hub</span></h2>
+            <p class="text-slate-400 text-sm mb-6">Masukan kredensial kelas untuk mengakses kenangan.</p>
+
+            <!-- Alert Notification -->
+            <div id="loginError" class="hidden mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs flex items-center gap-2">
+                <i class="fa-solid fa-circle-exclamation text-sm"></i>
+                <span>Username atau Password salah! (Gunakan: <b>RPL3</b>)</span>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 text-left">
                 <div>
-                    <label class="block text-xs font-mono text-cyber-neonCyan uppercase tracking-widest mb-2">
-                        <i class="fas fa-user text-xs mr-1"></i> Username
-                    </label>
-                    <input type="text" id="username" required placeholder="Username (RPL3)" 
-                        class="w-full px-4 py-3 rounded-xl glass-input text-white placeholder-slate-500 text-sm focus:outline-none transition-all">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Username</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+                            <i class="fa-solid fa-user text-sm"></i>
+                        </span>
+                        <input type="text" id="usernameInput" required placeholder="Contoh: RPL3" 
+                            class="w-full pl-10 pr-4 py-3 bg-slate-900/80 border border-slate-700/80 rounded-xl focus:outline-none focus:border-blue-500 text-white placeholder-slate-600 text-sm transition-all">
+                    </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-mono text-cyber-neonCyan uppercase tracking-widest mb-2">
-                        <i class="fas fa-key text-xs mr-1"></i> Password
-                    </label>
-                    <input type="password" id="password" required placeholder="Password (RPL3)" 
-                        class="w-full px-4 py-3 rounded-xl glass-input text-white placeholder-slate-500 text-sm focus:outline-none transition-all">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+                            <i class="fa-solid fa-lock text-sm"></i>
+                        </span>
+                        <input type="password" id="passwordInput" required placeholder="••••••••" 
+                            class="w-full pl-10 pr-4 py-3 bg-slate-900/80 border border-slate-700/80 rounded-xl focus:outline-none focus:border-blue-500 text-white placeholder-slate-600 text-sm transition-all">
+                    </div>
                 </div>
 
-                <div class="flex items-center justify-between text-xs">
-                    <label class="flex items-center space-x-2 cursor-pointer text-slate-400 hover:text-white">
-                        <input type="checkbox" id="remember-me" class="rounded bg-slate-900 border-slate-700 text-cyber-neonCyan focus:ring-0">
-                        <span>Ingat Saya di Perangkat Ini</span>
-                    </label>
+                <div class="pt-2">
+                    <button type="submit" 
+                        class="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-xl shadow-lg shadow-blue-600/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                        <span>Masuk Portal Kelas</span>
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
                 </div>
-
-                <div id="login-error" class="hidden p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2">
-                    <i class="fas fa-exclamation-triangle text-sm"></i>
-                    <span id="error-text">Username atau Password salah!</span>
-                </div>
-
-                <button type="submit" 
-                    class="w-full py-3.5 px-6 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-cyber-neonCyan via-teal-300 to-cyber-neonGreen hover:opacity-90 transition-all shadow-glow-cyan flex items-center justify-center gap-2 text-sm">
-                    <i class="fas fa-lock-open"></i>
-                    <span>MASUK PORTAL RPL 3</span>
-                </button>
             </form>
 
-            <div class="mt-6 pt-6 border-t border-slate-800/80 text-center">
-                <p class="text-xs text-slate-500 code-font">
-                    Kredensial Akses: Username <span class="text-cyber-neonCyan">RPL3</span> | Password <span class="text-cyber-neonCyan">RPL3</span>
-                </p>
+            <div class="mt-6 pt-4 border-t border-slate-800/60 text-xs text-slate-500">
+                <p>💡 Hint: Username = <code class="bg-slate-800 px-1.5 py-0.5 rounded text-slate-300">RPL3</code> | Password = <code class="bg-slate-800 px-1.5 py-0.5 rounded text-slate-300">RPL3</code></p>
             </div>
         </div>
     </div>
 
-    <!-- SECTION 2: MAIN DASHBOARD -->
-    <div id="dashboard-section" class="hidden min-h-screen flex flex-col">
-        <!-- Navigation Bar -->
-        <nav class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 px-4 lg:px-8 py-3.5">
-            <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
-                <!-- Brand -->
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToSection('hero')">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-neonCyan to-cyber-neonPurple p-0.5 flex items-center justify-center shadow-glow-cyan">
-                        <div class="w-full h-full bg-cyber-dark rounded-[9px] flex items-center justify-center">
-                            <i class="fas fa-code text-cyber-neonCyan"></i>
-                        </div>
+    <!-- MAIN WEBSITE CONTAINER (Hidden until login) -->
+    <div id="mainContent" class="hidden min-h-screen flex flex-col">
+
+        <!-- HEADER / NAVIGATION -->
+        <header class="sticky top-0 z-40 glass border-b border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="switchSection('home')">
+                    <div class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-md shadow-blue-500/20">
+                        <i class="fa-solid fa-terminal text-white"></i>
                     </div>
                     <div>
-                        <span class="text-lg font-bold tracking-wider text-white">PORTAL<span class="text-cyber-neonCyan">.RPL3</span></span>
-                        <span id="nav-class-badge" class="block text-[9px] text-cyber-neonGreen font-mono tracking-widest uppercase">KELAS X RPL 3</span>
+                        <span class="font-extrabold text-lg text-white tracking-wide">RPL 3 <span class="text-blue-500">Memories</span></span>
+                        <span class="block text-[10px] text-slate-400 font-mono -mt-1">Class Of Tech & Passion</span>
                     </div>
                 </div>
 
-                <!-- Desktop Menu Navigasi -->
-                <div class="hidden md:flex items-center space-x-6 text-xs font-semibold uppercase tracking-wider">
-                    <button onclick="scrollToSection('hero')" class="hover:text-cyber-neonCyan transition-colors">Beranda</button>
-                    <button onclick="scrollToSection('homeroom')" class="hover:text-cyber-neonCyan transition-colors">Wali Kelas</button>
-                    <button onclick="scrollToSection('curriculum')" class="hover:text-cyber-neonCyan transition-colors">Kurikulum Mapel</button>
-                    <button onclick="scrollToSection('gallery')" class="hover:text-cyber-neonCyan transition-colors">Galeri Foto</button>
-                    <button onclick="scrollToSection('students')" class="hover:text-cyber-neonCyan transition-colors">Siswa</button>
-                    <button onclick="scrollToSection('notes')" class="hover:text-cyber-neonCyan transition-colors">Wall Notes</button>
-                </div>
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-2xl border border-slate-800/60 text-sm font-medium">
+                    <button onclick="switchSection('home')" id="nav-home" class="nav-btn px-4 py-1.5 rounded-xl text-blue-400 bg-slate-800 transition">Beranda</button>
+                    <button onclick="switchSection('kelasX')" id="nav-kelasX" class="nav-btn px-4 py-1.5 rounded-xl text-slate-400 hover:text-white transition">Kelas X</button>
+                    <button onclick="switchSection('kelasXI')" id="nav-kelasXI" class="nav-btn px-4 py-1.5 rounded-xl text-slate-400 hover:text-white transition">Kelas XI</button>
+                    <button onclick="switchSection('kelasXII')" id="nav-kelasXII" class="nav-btn px-4 py-1.5 rounded-xl text-slate-400 hover:text-white transition">Kelas XII</button>
+                    <button onclick="switchSection('members')" id="nav-members" class="nav-btn px-4 py-1.5 rounded-xl text-slate-400 hover:text-white transition">Anggota</button>
+                    <button onclick="switchSection('wall')" id="nav-wall" class="nav-btn px-4 py-1.5 rounded-xl text-slate-400 hover:text-white transition">Pesan Kesan</button>
+                </nav>
 
-                <!-- Right Action Buttons -->
-                <div class="flex items-center space-x-3">
-                    <button onclick="openUploadModal()" class="px-3.5 py-1.5 rounded-lg bg-cyber-neonCyan text-slate-950 font-bold text-xs shadow-glow-cyan hover:opacity-90 transition-all flex items-center gap-1.5">
-                        <i class="fas fa-plus"></i>
-                        <span class="hidden sm:inline">Upload Foto</span>
+                <!-- Actions / Logout -->
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleMusicModal()" class="p-2.5 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-blue-400 rounded-xl border border-slate-700/50 transition relative" title="Pemutar Musik Nostalgia">
+                        <i class="fa-solid fa-music"></i>
+                        <span id="musicIndicator" class="hidden absolute top-1 right-1 w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
                     </button>
-                    <button onclick="handleLogout()" class="px-3 py-1.5 rounded-lg border border-red-500/30 text-red-400 hover:bg-red-500/10 text-xs font-semibold transition-all">
-                        <i class="fas fa-power-off"></i>
+                    <button onclick="logout()" class="px-3.5 py-2 text-xs font-semibold bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-xl border border-red-500/20 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="hidden sm:inline">Keluar</span>
                     </button>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Main Content Container -->
-        <main class="flex-grow max-w-7xl w-full mx-auto px-4 lg:px-8 py-8 space-y-12">
-            
-            <!-- CLASS LEVEL SWITCHER BANNER -->
-            <div class="glass-panel p-4 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl">
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-lg bg-cyber-neonCyan/20 text-cyber-neonCyan flex items-center justify-center">
-                        <i class="fas fa-sliders-h"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-mono text-slate-400 uppercase tracking-wider">PILIH TINGKAT KELAS:</h4>
-                        <p class="text-sm font-bold text-white">Ganti tingkatan untuk melihat Wali Kelas, Kurikulum, & Foto Momen</p>
-                    </div>
-                </div>
-
-                <!-- Class Switcher Buttons -->
-                <div class="flex items-center bg-slate-900/90 p-1.5 rounded-xl border border-slate-800 w-full md:w-auto">
-                    <button id="btn-class-X" onclick="switchClass('X')" 
-                        class="flex-1 md:flex-none px-6 py-2 rounded-lg text-xs font-bold font-mono transition-all duration-300">
-                        <i class="fas fa-seedling mr-1.5"></i> KELAS X
-                    </button>
-                    <button id="btn-class-XI" onclick="switchClass('XI')" 
-                        class="flex-1 md:flex-none px-6 py-2 rounded-lg text-xs font-bold font-mono transition-all duration-300">
-                        <i class="fas fa-code-branch mr-1.5"></i> KELAS XI
-                    </button>
-                    <button id="btn-class-XII" onclick="switchClass('XII')" 
-                        class="flex-1 md:flex-none px-6 py-2 rounded-lg text-xs font-bold font-mono transition-all duration-300">
-                        <i class="fas fa-graduation-cap mr-1.5"></i> KELAS XII
+                    <!-- Mobile Hamburger -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-300 hover:text-white">
+                        <i class="fa-solid fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- HERO SECTION -->
-            <section id="hero" class="relative rounded-3xl overflow-hidden glass-panel border border-slate-800 p-8 lg:p-12">
-                <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-cyber-neonPurple/20 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -left-20 -top-20 w-96 h-96 bg-cyber-neonCyan/15 rounded-full blur-3xl pointer-events-none"></div>
-                
-                <div class="relative z-10 grid md:grid-cols-12 gap-8 items-center">
-                    <div class="md:col-span-7 space-y-6">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-neonCyan/10 border border-cyber-neonCyan/30 text-cyber-neonCyan text-xs font-mono">
-                            <i class="fas fa-terminal"></i>
-                            <span id="hero-subtitle">WELCOME TO CLASS X RPL 3</span>
-                        </div>
-                        <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                            Website Resmi <br>
-                            <span id="hero-title" class="text-gradient">Siswa RPL 3</span>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden glass border-t border-slate-800 px-4 py-3 space-y-2 text-sm font-medium">
+                <button onclick="switchSection('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Beranda</button>
+                <button onclick="switchSection('kelasX'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Kelas X (Adaptasi)</button>
+                <button onclick="switchSection('kelasXI'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Kelas XI (PKL & Laravel)</button>
+                <button onclick="switchSection('kelasXII'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Kelas XII (UKK & Kelulusan)</button>
+                <button onclick="switchSection('members'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Anggota Kelas</button>
+                <button onclick="switchSection('wall'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Memory Wall</button>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+            <!-- ================= SECTION 1: HOME / DASHBOARD ================= -->
+            <section id="sec-home" class="space-y-12 animate-fadeIn">
+                <!-- Hero Banner -->
+                <div class="relative overflow-hidden rounded-3xl glass p-8 sm:p-12 border border-slate-800/80 bg-gradient-to-r from-slate-900/90 via-slate-900/50 to-blue-950/40">
+                    <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="relative z-10 max-w-2xl">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-4">
+                            <i class="fa-solid fa-code-commit"></i> REKAYASA PERANGKAT LUNAK 3
+                        </span>
+                        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+                            Together We Coded <br>Our <span class="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Best Memories.</span>
                         </h1>
-                        <p id="hero-desc" class="text-slate-400 text-sm lg:text-base leading-relaxed">
-                            Portal informasi kelas, profil Wali Kelas, kurikulum mata pelajaran berjenjang, album foto kenang-kenangan, dan direktori keahlian siswa Rekayasa Perangkat Lunak 3.
+                        <p class="mt-4 text-slate-400 text-sm sm:text-base leading-relaxed">
+                            Selamat datang di arsip kenangan RPL 3! Tempat menyimpan setiap baris kode, tawa saat error bersama, perjuangan PKL, hingga momen haru perpisahan.
                         </p>
-
-                        <div class="flex flex-wrap gap-4 pt-2">
-                            <button onclick="scrollToSection('gallery')" class="px-6 py-3 rounded-xl bg-cyber-neonCyan text-slate-950 font-bold text-sm shadow-glow-cyan hover:opacity-90 transition-all">
-                                <i class="fas fa-images mr-2"></i> Album Foto Momen
+                        <div class="mt-8 flex flex-wrap gap-4">
+                            <button onclick="switchSection('kelasX')" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl shadow-lg shadow-blue-600/20 transition flex items-center gap-2 text-sm">
+                                <span>Mulai Jelajah Kenangan</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
                             </button>
-                            <button onclick="scrollToSection('curriculum')" class="px-6 py-3 rounded-xl glass-panel text-slate-200 font-bold text-sm border border-slate-700 hover:border-cyber-neonCyan transition-all">
-                                <i class="fas fa-book-open mr-2"></i> Kurikulum Mapel
+                            <button onclick="switchSection('wall')" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl border border-slate-700/60 transition text-sm">
+                                Tulis Pesan Impresi
                             </button>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Counter Badges -->
-                    <div class="md:col-span-5 grid grid-cols-2 gap-4">
-                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center">
-                            <i class="fas fa-images text-3xl text-cyber-neonCyan mb-2"></i>
-                            <h3 class="text-2xl font-bold text-white" id="stat-total-photos">0</h3>
-                            <p class="text-xs text-slate-400 mt-1 font-mono">Foto Kenangan</p>
+                <!-- Class Stats Summary -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center">
+                        <div class="w-10 h-10 mx-auto mb-3 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400">
+                            <i class="fa-solid fa-users text-lg"></i>
                         </div>
-                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center">
-                            <i class="fas fa-heart text-3xl text-cyber-neonPink mb-2"></i>
-                            <h3 class="text-2xl font-bold text-white" id="stat-total-likes">0</h3>
-                            <p class="text-xs text-slate-400 mt-1 font-mono">Total Likes</p>
+                        <h3 class="text-2xl font-bold text-white">36</h3>
+                        <p class="text-xs text-slate-400 mt-1">Siswa & Siswi</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center">
+                        <div class="w-10 h-10 mx-auto mb-3 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400">
+                            <i class="fa-solid fa-calendar-days text-lg"></i>
                         </div>
-                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center">
-                            <i class="fas fa-book-reader text-3xl text-cyber-neonPurple mb-2"></i>
-                            <h3 class="text-2xl font-bold text-white" id="stat-total-subjects">0</h3>
-                            <p class="text-xs text-slate-400 mt-1 font-mono">Mata Pelajaran</p>
+                        <h3 class="text-2xl font-bold text-white">3 Tahun</h3>
+                        <p class="text-xs text-slate-400 mt-1">Kebersamaan (X - XII)</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center">
+                        <div class="w-10 h-10 mx-auto mb-3 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400">
+                            <i class="fa-solid fa-bug text-lg"></i>
                         </div>
-                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center">
-                            <i class="fas fa-user-graduate text-3xl text-cyber-neonGreen mb-2"></i>
-                            <h3 class="text-2xl font-bold text-white">34</h3>
-                            <p class="text-xs text-slate-400 mt-1 font-mono">Total Siswa</p>
+                        <h3 class="text-2xl font-bold text-white">99k+</h3>
+                        <p class="text-xs text-slate-400 mt-1">Error & Debugging</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center">
+                        <div class="w-10 h-10 mx-auto mb-3 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-400">
+                            <i class="fa-solid fa-heart text-lg"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">∞</h3>
+                        <p class="text-xs text-slate-400 mt-1">Kenangan Tak Terlupakan</p>
+                    </div>
+                </div>
+
+                <!-- Time Elapsed Counter -->
+                <div class="glass p-6 rounded-3xl border border-slate-800 text-center max-w-3xl mx-auto">
+                    <h3 class="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-4">Waktu Sejak Pertama Kali Bertemu di RPL 3</h3>
+                    <div id="counterContainer" class="grid grid-cols-4 gap-3 font-mono">
+                        <div class="bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
+                            <span id="daysCount" class="block text-2xl sm:text-4xl font-bold text-blue-400">00</span>
+                            <span class="text-[10px] sm:text-xs text-slate-500 uppercase">Hari</span>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
+                            <span id="hoursCount" class="block text-2xl sm:text-4xl font-bold text-indigo-400">00</span>
+                            <span class="text-[10px] sm:text-xs text-slate-500 uppercase">Jam</span>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
+                            <span id="minutesCount" class="block text-2xl sm:text-4xl font-bold text-purple-400">00</span>
+                            <span class="text-[10px] sm:text-xs text-slate-500 uppercase">Menit</span>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
+                            <span id="secondsCount" class="block text-2xl sm:text-4xl font-bold text-pink-400">00</span>
+                            <span class="text-[10px] sm:text-xs text-slate-500 uppercase">Detik</span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- HOMEROOM TEACHER PROFILE SECTION -->
-            <section id="homeroom" class="space-y-6">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                            <i class="fas fa-chalkboard-teacher text-cyber-neonCyan"></i>
-                            <span>Profil Wali Kelas</span>
-                        </h2>
-                        <p class="text-slate-400 text-sm mt-1">Pembimbing utama kelas untuk tingkatan terpilih</p>
-                    </div>
-                    <span id="homeroom-class-badge" class="px-3.5 py-1 rounded-full bg-cyber-neonPurple/20 border border-cyber-neonPurple/40 text-cyber-neonPurple text-xs font-mono">
-                        KELAS X RPL 3
-                    </span>
+            <!-- ================= SECTION 2: KELAS X ================= -->
+            <section id="sec-kelasX" class="hidden space-y-8 animate-fadeIn">
+                <div class="border-b border-slate-800 pb-5">
+                    <span class="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-xs font-mono">FASE 1: PERKENALAN</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-2">Masa Kelas X: Adaptasi & Basic Logic</h2>
+                    <p class="text-slate-400 text-sm mt-1">Awal mula belajar HTML, CSS, logika algoritma pascal, dan momen canggung saling kenal.</p>
                 </div>
 
-                <div class="glass-panel p-6 lg:p-8 rounded-3xl border border-slate-800 flex flex-col md:flex-row items-center gap-8 shadow-2xl relative overflow-hidden">
-                    <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-cyber-neonCyan/10 rounded-full blur-2xl pointer-events-none"></div>
-
-                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-gradient-to-br from-cyber-neonCyan via-cyber-neonPurple to-cyber-neonPink p-1 flex-shrink-0 shadow-glow-cyan">
-                        <img id="homeroom-img" src="" alt="Wali Kelas" class="w-full h-full object-cover rounded-[14px]">
+                <!-- Timeline & Cards -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover" alt="Lab Komputer X">
+                        <div class="p-5">
+                            <span class="text-xs font-mono text-blue-400">Semester 1</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Sapaan Pertama & Lab Komputer</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">Pertama kali masuk lab komputer RPL. Masih bingung bedanya tag HTML sama CSS, dan serunya install Dev-C++ bersama.</p>
+                        </div>
                     </div>
 
-                    <div class="space-y-4 text-center md:text-left flex-grow">
-                        <div>
-                            <span class="text-xs font-mono text-cyber-neonCyan uppercase tracking-widest block mb-1">Dosen & Guru Pembimbing Official</span>
-                            <h3 id="homeroom-name" class="text-2xl lg:text-3xl font-extrabold text-white">Bu Bella, S.Kom.</h3>
-                            <p id="homeroom-title" class="text-sm text-cyber-neonGreen font-mono mt-1">Wali Kelas X RPL 3</p>
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover" alt="Tugas Kelompok">
+                        <div class="p-5">
+                            <span class="text-xs font-mono text-blue-400">Semester 2</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Tugas Kelompok Web Statis Pertama</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">Mulai buat web biodata sederhana. Banyak drama tag yang lupa ditutup & warna background neon yang bikin sakit mata.</p>
                         </div>
+                    </div>
 
-                        <p id="homeroom-bio" class="text-xs lg:text-sm text-slate-300 leading-relaxed max-w-3xl">
-                            Deskripsi bio wali kelas...
-                        </p>
-
-                        <div class="pt-2 flex flex-wrap gap-2 justify-center md:justify-start text-xs font-mono">
-                            <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
-                                <i class="fas fa-certificate text-cyber-neonYellow mr-1.5"></i> Sertifikasi Tenaga Pendidik RPL
-                            </span>
-                            <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
-                                <i class="fas fa-code-branch text-cyber-neonCyan mr-1.5"></i> Pembimbing Konsentrasi Keahlian
-                            </span>
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover" alt="Foto Bersama">
+                        <div class="p-5">
+                            <span class="text-xs font-mono text-blue-400">Momen Ikonik</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Class Meeting Pertama RPL 3</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">Sorak-sorai mendukung tim futsal dan ketapel kelas. Kekompakan RPL 3 mulai terbentuk dari sini!</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- CURRICULUM SUBJECTS SECTION (WITHOUT SCHEDULE TIMES) -->
-            <section id="curriculum" class="space-y-6">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
-                    <div>
-                        <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                            <i class="fas fa-layer-group text-cyber-neonCyan"></i>
-                            <span>Kurikulum & Daftar Mata Pelajaran</span>
-                        </h2>
-                        <p class="text-slate-400 text-sm mt-1">Modul pembelajaran RPL & Umum Kurikulum Berjenjang SMK</p>
-                    </div>
+            <!-- ================= SECTION 3: KELAS XI ================= -->
+            <section id="sec-kelasXI" class="hidden space-y-8 animate-fadeIn">
+                <div class="border-b border-slate-800 pb-5">
+                    <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-xs font-mono">FASE 2: CODING PRO & PKL</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-2">Masa Kelas XI: PKL / Magang & Fullstack Dev</h2>
+                    <p class="text-slate-400 text-sm mt-1">Belajar PHP, Laravel, Database MySQL, serta pengalaman berharga terjun ke dunia industri (PKL).</p>
                 </div>
 
-                <!-- Subjects Cards Grid -->
-                <div id="curriculum-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <!-- Dynamic Subjects Cards -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover" alt="Backend Learning">
+                        <div class="p-5">
+                            <span class="text-xs font-mono text-indigo-400">Materi Pro</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Baku Hantam Dengan Laravel & SQL</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">Lupa titik koma, error 500, hingga masalah Migration Laravel. Begadang bareng via Discord demi nyelesaiin CRUD!</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover" alt="Masa PKL">
+                        <div class="p-5">
+                            <span class="text-xs font-mono text-indigo-400">Dunia Industri</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Petualangan PKL / Magang</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">Tersebar di berbagai perusahaan software. Ngerasain rasanya dipanggil 'Mas/Mbak Programmer' & ngopi tiap pagi.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover" alt="Reuni PKL">
+                        <div class="p-5">
+                            <span class="text-xs font-mono text-indigo-400">Kebersamaan</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Kumpul Kembali Setelah Magang</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">Saling tukar cerita unik di tempat magang masing-masing. Suasana kelas jadi makin hangat dan dewasa.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <!-- GALLERY SECTION -->
-            <section id="gallery" class="space-y-6">
-                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                    <div>
-                        <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                            <i class="fas fa-photo-video text-cyber-neonCyan"></i>
-                            <span>Album Foto Kenang-kenangan</span>
-                        </h2>
-                        <p class="text-slate-400 text-sm mt-1">Arsip foto kegiatan koding, tugas kelompok, & momen bersama</p>
+            <!-- ================= SECTION 4: KELAS XII ================= -->
+            <section id="sec-kelasXII" class="hidden space-y-8 animate-fadeIn">
+                <div class="border-b border-slate-800 pb-5">
+                    <span class="px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-xs font-mono">FASE 3: FINALE & UKK</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-2">Masa Kelas XII: Uji Kompetensi & Kelulusan</h2>
+                    <p class="text-slate-400 text-sm mt-1">Puncak perjuangan UKK (Uji Kompetensi Keahlian), sidang tugas akhir, hingga perpisahan manis.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover" alt="UKK Stress">
+                        <div class="p-5">
+                            <span class="text-xs font-mono text-purple-400">Uji Kompetensi</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Maraton UKK 18 Jam</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">Ketegangan di depan penguji eksternal. Jantung berdebar saat demo aplikasi, namun lega luar biasa saat dinyatakan LULUS.</p>
+                        </div>
                     </div>
 
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover" alt="Graduation">
+                        <div class="p-5">
+                            <span class="text-xs font-mono text-purple-400">Hari Kelulusan</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Pelepasan & Wisuda RPL 3</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">Mengenakan toga bersama. Momen haru, pelukan hangat, dan foto bersama wali kelas tercinta.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover" alt="Masa Depan">
+                        <div class="p-5">
+                            <span class="text-xs font-mono text-purple-400">Masa Depan</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Langkah Baru Setiap Individu</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">Ada yang lanjut kuliah, bekerja jadi Software Engineer, Wirausaha, dan lainnya. RPL 3 tetap di hati!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SECTION 5: MEMBERS / ANGGOTA ================= -->
+            <section id="sec-members" class="hidden space-y-8 animate-fadeIn">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-5">
+                    <div>
+                        <h2 class="text-3xl font-extrabold text-white">Direktori Anggota RPL 3</h2>
+                        <p class="text-slate-400 text-sm mt-1">Temukan profil wali kelas dan kawan-kawan seperjuangan.</p>
+                    </div>
+
+                    <!-- Search & Filter Controls -->
                     <div class="flex flex-col sm:flex-row items-center gap-3">
+                        <!-- Search Box -->
                         <div class="relative w-full sm:w-64">
-                            <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                            <input type="text" id="gallery-search" oninput="filterGallery()" placeholder="Cari kenangan..." 
-                                class="w-full pl-9 pr-4 py-2 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
+                            <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
+                            <input type="text" id="memberSearch" oninput="filterMembers()" placeholder="Cari nama atau julukan..." 
+                                class="w-full pl-9 pr-4 py-2 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-blue-500">
                         </div>
+                        <!-- Role Filter -->
+                        <select id="roleFilter" onchange="filterMembers()" class="w-full sm:w-auto bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-300 px-3 py-2 focus:outline-none focus:border-blue-500">
+                            <option value="ALL">Semua Peran</option>
+                            <option value="Frontend">Frontend Dev</option>
+                            <option value="Backend">Backend Dev</option>
+                            <option value="UI/UX">UI/UX Designer</option>
+                            <option value="Gamer">Pro Gamer</option>
+                            <option value="Wali Kelas">Wali Kelas</option>
+                        </select>
                     </div>
                 </div>
 
-                <!-- Photo Grid -->
-                <div id="gallery-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                    <!-- Dynamic Photo Cards -->
-                </div>
-            </section>
-
-            <!-- STUDENTS DIRECTORY SECTION -->
-            <section id="students" class="space-y-6">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                            <i class="fas fa-users text-cyber-neonCyan"></i>
-                            <span>Daftar Siswa & Keahlian Koding</span>
-                        </h2>
-                        <p class="text-slate-400 text-sm mt-1">Direktori rekan sekelas RPL 3 beserta fokus minat pemrograman</p>
-                    </div>
-
-                    <div class="relative w-full md:w-72">
-                        <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                        <input type="text" id="student-search" oninput="renderStudents()" placeholder="Cari siswa atau skill..." 
-                            class="w-full pl-9 pr-4 py-2 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
-                    </div>
-                </div>
-
-                <div id="students-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                    <!-- Dynamic Student Cards -->
+                <!-- Member Cards Grid -->
+                <div id="membersGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Populated dynamically via JS -->
                 </div>
             </section>
 
-            <!-- WALL NOTES / TIME CAPSULE SECTION -->
-            <section id="notes" class="space-y-6">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <!-- ================= SECTION 6: MEMORY WALL ================= -->
+            <section id="sec-wall" class="hidden space-y-8 animate-fadeIn">
+                <div class="border-b border-slate-800 pb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                        <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                            <i class="fas fa-sticky-note text-cyber-neonCyan"></i>
-                            <span>Class Wall Notes & Pesan Momen</span>
-                        </h2>
-                        <p class="text-slate-400 text-sm mt-1">Tinggalkan pesan singkat, quote koding, atau motivasi untuk kelas</p>
+                        <h2 class="text-3xl font-extrabold text-white">Tembok Pesan & Kesan</h2>
+                        <p class="text-slate-400 text-sm mt-1">Tinggalkan pesan kenangan, ucapan terima kasih, atau pesan lucu untuk RPL 3.</p>
                     </div>
-
-                    <button onclick="openNoteModal()" class="px-4 py-2 rounded-xl bg-cyber-neonPurple text-white font-bold text-xs shadow-glow-purple hover:opacity-90 transition-all flex items-center gap-2">
-                        <i class="fas fa-edit"></i>
-                        <span>Tulis Note Baru</span>
+                    <button onclick="openNoteModal()" class="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold shadow-lg shadow-blue-600/20 transition flex items-center gap-2 self-start">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span>Tulis Pesan Baru</span>
                     </button>
                 </div>
 
-                <div id="notes-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <!-- Dynamic Wall Notes -->
+                <!-- Notes Grid Container -->
+                <div id="notesBoard" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Notes loaded dynamically -->
                 </div>
             </section>
+
         </main>
 
-        <!-- Footer -->
-        <footer class="glass-panel border-t border-slate-800/80 mt-16 py-6 text-center">
-            <p class="text-xs text-slate-500 code-font">
-                © 2026 Website Resmi Kelas RPL 3. Diampu oleh Bu Bella (X), Bu Eka (XI), & Pak Bayu (XII) <i class="fas fa-heart text-cyber-neonPink ml-1"></i>
-            </p>
+        <!-- FOOTER -->
+        <footer class="glass border-t border-slate-800/80 mt-auto py-6">
+            <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 space-y-2">
+                <p>© 2026 RPL 3 Memories Hub — Diabadikan dengan <i class="fa-solid fa-heart text-red-500"></i> & Baris Kode.</p>
+                <p class="font-mono text-[11px]">"Once RPL 3, Always RPL 3"</p>
+            </div>
         </footer>
     </div>
 
-    <!-- MODAL 1: UPLOAD FOTO BARU -->
-    <div id="upload-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-        <div class="glass-panel w-full max-w-lg p-6 lg:p-8 rounded-3xl border border-slate-800 shadow-2xl relative">
-            <button onclick="closeUploadModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-lg">
-                <i class="fas fa-times"></i>
+    <!-- MEMBER DETAIL MODAL -->
+    <div id="memberModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+        <div class="glass max-w-md w-full p-6 rounded-3xl border border-slate-800 relative">
+            <button onclick="closeMemberModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
             </button>
+            <div id="memberModalContent" class="text-center">
+                <!-- Content inserted via JS -->
+            </div>
+        </div>
+    </div>
 
-            <h3 class="text-xl font-bold text-white mb-1 flex items-center gap-2">
-                <i class="fas fa-cloud-upload-alt text-cyber-neonCyan"></i>
-                <span>Tambah Foto Kenangan Baru</span>
-            </h3>
-            <p class="text-xs text-slate-400 mb-6">Unggah momen berharga ke album kelas yang sedang aktif.</p>
-
-            <form onsubmit="handleUploadSubmit(event)" class="space-y-4">
+    <!-- NEW MEMORY NOTE MODAL -->
+    <div id="noteModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+        <div class="glass max-w-md w-full p-6 rounded-3xl border border-slate-800 relative">
+            <button onclick="closeNoteModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 class="text-xl font-bold text-white mb-4">Tambah Pesan Kenangan</h3>
+            
+            <form onsubmit="saveNewNote(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-mono text-slate-300 mb-1">Target Tingkat Kelas</label>
-                    <select id="upload-class-level" required class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white bg-slate-900 focus:outline-none">
-                        <option value="X">Kelas X RPL 3 (Wali: Bu Bella)</option>
-                        <option value="XI">Kelas XI RPL 3 (Wali: Bu Eka)</option>
-                        <option value="XII">Kelas XII RPL 3 (Wali: Pak Bayu)</option>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Nama Pengirim</label>
+                    <input type="text" id="noteAuthor" required placeholder="Nama / Panggilan kamu" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Pesan / Kesan</label>
+                    <textarea id="noteContent" rows="4" required placeholder="Tuliskan momen berkesan atau doa untuk RPL 3..." class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-blue-500"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Warna Kartu</label>
+                    <select id="noteColor" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-blue-500">
+                        <option value="blue">Neon Blue</option>
+                        <option value="purple">Royal Purple</option>
+                        <option value="emerald">Emerald Green</option>
+                        <option value="amber">Warm Amber</option>
                     </select>
                 </div>
-
-                <div>
-                    <label class="block text-xs font-mono text-slate-300 mb-1">Judul Momen / Foto</label>
-                    <input type="text" id="upload-title" required placeholder="Contoh: Sesi Koding PBO di Lab Komputer" 
-                        class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-mono text-slate-300 mb-1">URL Foto (Direct Image Link)</label>
-                    <input type="url" id="upload-url" required placeholder="https://images.unsplash.com/..." 
-                        class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-mono text-slate-300 mb-1">Deskripsi / Cerita Momen</label>
-                    <textarea id="upload-desc" rows="3" required placeholder="Ceritakan kisah singkat dibalik foto ini..." 
-                        class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none"></textarea>
-                </div>
-
-                <div class="pt-2 flex gap-3">
-                    <button type="button" onclick="closeUploadModal()" class="w-1/2 py-2.5 rounded-xl border border-slate-700 text-xs font-bold hover:bg-slate-800">
-                        Batal
-                    </button>
-                    <button type="submit" class="w-1/2 py-2.5 rounded-xl bg-cyber-neonCyan text-slate-950 text-xs font-bold shadow-glow-cyan hover:opacity-90">
-                        Simpan Foto
-                    </button>
-                </div>
+                <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl text-sm transition">Posting Pesan</button>
             </form>
         </div>
     </div>
 
-    <!-- MODAL 2: LIGHTBOX & DETAIL FOTO -->
-    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-lg">
-        <div class="glass-panel w-full max-w-4xl max-h-[90vh] rounded-3xl border border-slate-800 shadow-2xl overflow-hidden flex flex-col md:flex-row relative">
-            <button onclick="closeLightboxModal()" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-slate-900/80 border border-slate-700 text-slate-300 hover:text-white flex items-center justify-center">
-                <i class="fas fa-times"></i>
+    <!-- MUSIC PLAYER MODAL -->
+    <div id="musicModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+        <div class="glass max-w-sm w-full p-6 rounded-3xl border border-slate-800 text-center relative">
+            <button onclick="toggleMusicModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-
-            <!-- Image View -->
-            <div class="md:w-3/5 bg-black flex items-center justify-center relative min-h-[280px] max-h-[500px]">
-                <img id="lightbox-img" src="" alt="Detail Foto" class="w-full h-full object-contain">
+            <div class="w-16 h-16 bg-green-500/10 text-green-400 rounded-2xl mx-auto flex items-center justify-center text-2xl mb-4 border border-green-500/20">
+                <i class="fa-solid fa-spotify"></i>
             </div>
-
-            <!-- Content & Comments -->
-            <div class="md:w-2/5 p-6 flex flex-col justify-between space-y-4 overflow-y-auto">
-                <div class="space-y-3">
-                    <span id="lightbox-badge" class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyber-neonCyan/10 text-cyber-neonCyan border border-cyber-neonCyan/30">
-                        KELAS X RPL 3
-                    </span>
-                    <h3 id="lightbox-title" class="text-xl font-bold text-white leading-tight">Judul Foto</h3>
-                    <p id="lightbox-desc" class="text-xs text-slate-300 leading-relaxed pt-2 border-t border-slate-800/80">
-                        Deskripsi foto...
-                    </p>
+            <h3 class="text-lg font-bold text-white">Playlist Nostalgia RPL 3</h3>
+            <p class="text-xs text-slate-400 mt-1 mb-4">Lagu-lagu pengiring saat koding & perpisahan.</p>
+            
+            <div class="space-y-2 mb-6 text-left">
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 flex items-center justify-between text-xs">
+                    <div>
+                        <p class="font-semibold text-white">Kita Ke Sana</p>
+                        <p class="text-slate-500">Hindia</p>
+                    </div>
+                    <i class="fa-solid fa-circle-play text-blue-400 text-base"></i>
                 </div>
-
-                <div class="space-y-4 pt-4 border-t border-slate-800/80">
-                    <div class="flex items-center justify-between">
-                        <button id="lightbox-like-btn" onclick="toggleLikeCurrentPhoto()" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyber-neonPink text-xs transition-all">
-                            <i id="lightbox-heart-icon" class="fas fa-heart text-cyber-neonPink"></i>
-                            <span id="lightbox-likes-count" class="font-bold">0</span>
-                        </button>
-                        <span class="text-[11px] text-slate-400 code-font">#MomenRPL3</span>
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 flex items-center justify-between text-xs">
+                    <div>
+                        <p class="font-semibold text-white">Kisah Klasik</p>
+                        <p class="text-slate-500">Sheila On 7</p>
                     </div>
-
-                    <!-- Comments -->
-                    <div class="space-y-2">
-                        <h4 class="text-xs font-mono text-slate-300">Pesan Kenangan:</h4>
-                        <div id="lightbox-comments-list" class="space-y-2 max-h-36 overflow-y-auto pr-1">
-                            <!-- Dynamic Comments -->
-                        </div>
+                    <i class="fa-solid fa-circle-play text-blue-400 text-base"></i>
+                </div>
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 flex items-center justify-between text-xs">
+                    <div>
+                        <p class="font-semibold text-white">Monokrom</p>
+                        <p class="text-slate-500">Tulus</p>
                     </div>
-
-                    <form onsubmit="handleAddComment(event)" class="flex gap-2">
-                        <input type="text" id="comment-input" required placeholder="Tuliskan pesan / komentar..." 
-                            class="flex-grow px-3 py-2 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
-                        <button type="submit" class="px-3.5 py-2 rounded-xl bg-cyber-neonCyan text-slate-950 font-bold text-xs hover:opacity-90">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
+                    <i class="fa-solid fa-circle-play text-blue-400 text-base"></i>
                 </div>
             </div>
+
+            <p class="text-[11px] text-slate-500">💡 Memutar lagu dalam mode kenangan internal</p>
         </div>
     </div>
 
-    <!-- MODAL 3: TULIS WALL NOTE BARU -->
-    <div id="note-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-        <div class="glass-panel w-full max-w-md p-6 rounded-3xl border border-slate-800 shadow-2xl relative">
-            <button onclick="closeNoteModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-lg">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <h3 class="text-xl font-bold text-white mb-1 flex items-center gap-2">
-                <i class="fas fa-edit text-cyber-neonPurple"></i>
-                <span>Tulis Wall Note Baru</span>
-            </h3>
-            <p class="text-xs text-slate-400 mb-5">Tinggalkan quote, kesan, atau motivasi singkat.</p>
-
-            <form onsubmit="handleNoteSubmit(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-mono text-slate-300 mb-1">Nama Pengirim</label>
-                    <input type="text" id="note-author" required placeholder="Contoh: Fajar (Absen 12)" 
-                        class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-mono text-slate-300 mb-1">Pesan / Quote</label>
-                    <textarea id="note-content" rows="3" required placeholder="Tuliskan kata-kata menarik..." 
-                        class="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-white placeholder-slate-500 focus:outline-none"></textarea>
-                </div>
-
-                <div class="pt-2 flex gap-3">
-                    <button type="button" onclick="closeNoteModal()" class="w-1/2 py-2.5 rounded-xl border border-slate-700 text-xs font-bold hover:bg-slate-800">
-                        Batal
-                    </button>
-                    <button type="submit" class="w-1/2 py-2.5 rounded-xl bg-cyber-neonPurple text-white text-xs font-bold shadow-glow-purple hover:opacity-90">
-                        Posting Note
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // --- DATA STRUCTURES FOR HOMEROOM TEACHERS & CURRICULUM SUBJECTS ---
-        const classData = {
-            'X': {
-                badge: 'KELAS X RPL 3',
-                subtitle: 'WELCOME TO CLASS X RPL 3',
-                title: 'Awal Perjalanan Kode',
-                desc: 'Tingkat pertama siswa Rekayasa Perangkat Lunak 3. Mempelajari logika dasar pemrograman, perakitan komputer, HTML, CSS, serta membangun fondasi sebagai calon pengembang software.',
-                homeroom: {
-                    name: 'Bu Bella, S.Kom.',
-                    role: 'Wali Kelas X RPL 3 & Pengajar Dasar Pemrograman',
-                    bio: 'Bu Bella bertindak sebagai pendamping utama kelas X RPL 3, membimbing adaptasi siswa baru dari logika dasar koding hingga menguasai perancangan web statis sederhana.',
-                    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400'
-                },
-                subjects: [
-                    { category: 'Kejuruan RPL', name: 'Dasar-Dasar PPLG', desc: 'Pemrograman Perangkat Lunak dan GIM, logika pemrograman, algoritma dasar & struktur data.', icon: 'fa-code', color: 'text-cyber-neonCyan' },
-                    { category: 'Kejuruan RPL', name: 'Pemrograman Web Dasar', desc: 'HTML5, CSS3, Flexbox/Grid, dan pengenalan JavaScript DOM interaktif.', icon: 'fa-globe', color: 'text-cyber-neonPurple' },
-                    { category: 'Kejuruan RPL', name: 'Informatika & Sistem Komputer', desc: 'Sistem operasi, jaringan dasar, logika perangkat keras, dan keamanan siber dasar.', icon: 'fa-desktop', color: 'text-cyber-neonPink' },
-                    { category: 'Umum', name: 'Matematika Terapan', desc: 'Aljabar, fungsi logika, dan gerbang logika matematika untuk algoritma koding.', icon: 'fa-calculator', color: 'text-cyber-neonYellow' },
-                    { category: 'Umum', name: 'IPAS (Ilmu Pengetahuan Alam & Sosial)', desc: 'Integrasi sains dasar dan wawasan lingkungan dalam kehidupan bermasyarakat.', icon: 'fa-flask', color: 'text-cyber-neonGreen' },
-                    { category: 'Umum', name: 'Bahasa Indonesia & Inggris', desc: 'Komunikasi formal, penyusunan laporan teknis, dan istilah IT dasar dalam Bahasa Inggris.', icon: 'fa-language', color: 'text-slate-300' },
-                    { category: 'Umum', name: 'Pendidikan Pancasila & Sejarah', desc: 'Pembentukan karakter integritas, kewarganegaraan, dan wawasan kebangsaan.', icon: 'fa-landmark', color: 'text-red-400' }
-                ]
-            },
-            'XI': {
-                badge: 'KELAS XI RPL 3',
-                subtitle: 'WELCOME TO CLASS XI RPL 3',
-                title: 'Pengembangan Berorientasi Objek',
-                desc: 'Tingkat menengah siswa Rekayasa Perangkat Lunak 3. Mendalami Pemrograman Berorientasi Objek (Java), Basis Data MySQL, Pemrograman Web PHP & JavaScript, serta UI/UX prototyping.',
-                homeroom: {
-                    name: 'Bu Eka, S.T.',
-                    role: 'Wali Kelas XI RPL 3 & Pengajar PBO & PWPB',
-                    bio: 'Bu Eka membimbing siswa kelas XI RPL 3 dalam penguasaan logika tingkat lanjut PBO, pengolahan basis data relasional, dan perancangan web dinamis skala menengah.',
-                    avatar: 'https://images.unsplash.com/photo-1580894732413-a7235a9d2012?auto=format&fit=crop&q=80&w=400'
-                },
-                subjects: [
-                    { category: 'Kejuruan Utama', name: 'Pemrograman Berorientasi Objek (PBO)', desc: 'Pemrograman Java OOP (Class, Object, Inheritance, Polymorphism, Encapsulation).', icon: 'fa-cubes', color: 'text-cyber-neonCyan' },
-                    { category: 'Kejuruan Utama', name: 'Pemrograman Web & Perangkat Bergerak (PWPB)', desc: 'Web dinamis menggunakan PHP, MySQL, JavaScript ES6, dan integrasi AJAX.', icon: 'fa-laptop-code', color: 'text-cyber-neonPurple' },
-                    { category: 'Kejuruan Utama', name: 'Basis Data & Pengelolaan Basdat', desc: 'Perancangan ERD, SQL query (DDL, DML), JOIN table, dan manajemen MySQL/MariaDB.', icon: 'fa-database', color: 'text-cyber-neonPink' },
-                    { category: 'Kejuruan Utama', name: 'Pemodelan Perangkat Lunak', desc: 'Sistem analisis UML (Use Case, Sequence, Activity Diagram) dan Figma UI/UX.', icon: 'fa-sitemap', color: 'text-cyber-neonGreen' },
-                    { category: 'Kewirausahaan', name: 'Produk Kreatif & Kewirausahaan (PKK)', desc: 'Perancangan produk software komersial, proposal bisnis IT, dan branding.', icon: 'fa-lightbulb', color: 'text-cyber-neonYellow' },
-                    { category: 'Umum', name: 'Matematika & Bahasa Inggris Lanjut', desc: 'Statistika, probabilitas, dan Bahasa Inggris untuk dokumentasi koding / API.', icon: 'fa-square-root-alt', color: 'text-slate-300' },
-                    { category: 'Umum', name: 'PPKn & Pendidikan Agama', desc: 'Penguatan moralitas, Etika Profesi IT, dan norma hukum hak cipta karya digital.', icon: 'fa-shield-alt', color: 'text-blue-400' }
-                ]
-            },
-            'XII': {
-                badge: 'KELAS XII RPL 3',
-                subtitle: 'WELCOME TO CLASS XII RPL 3',
-                title: 'Persiapan Karir & Project Akhir',
-                desc: 'Tingkat akhir siswa Rekayasa Perangkat Lunak 3. Penguasaan Framework Modern (Laravel & React), Mobile App Development (Flutter), Cloud Integration, serta persiapan UKK (Uji Kompetensi Keahlian).',
-                homeroom: {
-                    name: 'Pak Bayu, M.Kom.',
-                    role: 'Wali Kelas XII RPL 3 & Pembimbing Project Akhir / UKK',
-                    bio: 'Pak Bayu mendampingi kelas XII RPL 3 fokus pada kesiapan karir industri, pembimbingan Portofolio Fullstack Developer, serta kelulusan Uji Kompetensi Keahlian (UKK).',
-                    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400'
-                },
-                subjects: [
-                    { category: 'Kejuruan Lanjut', name: 'Pemrograman Web & Mobile Lanjut', desc: 'Pengembangan Fullstack dengan Laravel REST API, ReactJS, dan Mobile App Flutter.', icon: 'fa-mobile-alt', color: 'text-cyber-neonCyan' },
-                    { category: 'Kejuruan Lanjut', name: 'Administrasi Server & Cloud Integration', desc: 'Deployment aplikasi ke VPS Linux, Docker containerization, Nginx, & CI/CD basics.', icon: 'fa-cloud-upload-alt', color: 'text-cyber-neonPurple' },
-                    { category: 'Kejuruan Lanjut', name: 'Pengujian & Kualitas Perangkat Lunak (QA)', desc: 'Software Testing, Unit Testing, Blackbox/Whitebox Testing, dan Bug Fixing.', icon: 'fa-vial', color: 'text-cyber-neonPink' },
-                    { category: 'Project Akhir', name: 'PKK & Portfolio UKK (Tugas Akhir)', desc: 'Pembuatan aplikasi nyata dari tahap analisis, koding, hingga sidang pengujian UKK.', icon: 'fa-award', color: 'text-cyber-neonYellow' },
-                    { category: 'Karir Industri', name: 'Bahasa Inggris Industri & Interview Prep', desc: 'Persiapan CV software engineer, interview teknis, dan komunikasi profesional.', icon: 'fa-user-tie', color: 'text-cyber-neonGreen' },
-                    { category: 'Umum', name: 'Bahasa Indonesia & Bimbingan Karir', desc: 'Penyusunan dokumen teknis, laporan karya akhir, dan persiapan masuk Dunia Kerja/Kuliah.', icon: 'fa-graduation-cap', color: 'text-slate-300' }
-                ]
-            }
-        };
-
-        // --- INITIAL DATA PHOTOS & WALL NOTES ---
-        const initialPhotos = [
+        // Sample Classmates Data
+        const classMembers = [
             {
-                id: 'p1',
-                classLevel: 'X',
-                title: 'Perkenalan HTML & CSS Bersama Bu Bella',
-                date: '12 Agu 2024',
-                url: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800',
-                desc: 'Momen seru saat pertama kali mencoba ngetik Hello World di HTML & VS Code dibimbing Bu Bella.',
-                likes: 24,
-                comments: [{ author: 'Andra', text: 'Kocak banget pas pada lupa cara save file .html wkwk' }]
+                id: 1,
+                name: "Pak Budi Santoso, S.Kom",
+                role: "Wali Kelas",
+                nickname: "Pak Budi",
+                quote: "Codinglah dengan hati, kesalahan sintaks selalu bisa diperbaiki tapi kenangan kalian tidak ada pembaharuannya.",
+                dream: "Mencetak Programmer Sukses",
+                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80",
+                social: { github: "#", instagram: "#" }
             },
             {
-                id: 'p2',
-                classLevel: 'X',
-                title: 'Praktek Perakitan Komputer & Hardware',
-                date: '20 Okt 2024',
-                url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800',
-                desc: 'Bongkar pasang CPU dan belajar bagian motherboard di mata pelajaran Sistem Komputer.',
-                likes: 18,
-                comments: [{ author: 'Siti', text: 'Paling grogi pas masang processor Takut patah pinnya!' }]
+                id: 2,
+                name: "Aditya Pratama",
+                role: "Frontend",
+                nickname: "Adit CSS",
+                quote: "Gak masalah koding bertumpuk, yang penting tampilan rapi & responsive!",
+                dream: "Senior Frontend Engineer",
+                avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80",
+                social: { github: "#", instagram: "#" }
             },
             {
-                id: 'p3',
-                classLevel: 'XI',
-                title: 'Debugging PBO Java Bareng Bu Eka',
-                date: '15 Mar 2025',
-                url: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800',
-                desc: 'Diskusi nyari error 2 jam di modul Java OOP, ternyata cuma kurang titik koma (;) di baris 42.',
-                likes: 35,
-                comments: [{ author: 'Rizky', text: 'Titik koma legendaris Java wkwk' }]
+                id: 3,
+                name: "Siti Nurhaliza",
+                role: "UI/UX",
+                nickname: "Siti Figma",
+                quote: "Desain yang baik itu abstrak tapi solutif. Salam pengguna Figma!",
+                dream: "Product Designer di Unicorn",
+                avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80",
+                social: { github: "#", instagram: "#" }
             },
             {
-                id: 'p4',
-                classLevel: 'XI',
-                title: 'Design Wireframe UI/UX Aplikasi',
-                date: '10 Mei 2025',
-                url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
-                desc: 'Diskusi skema warna dan prototipe aplikasi toko online di mata pelajaran PWPB.',
-                likes: 29,
-                comments: [{ author: 'Maya', text: 'Kelompok kita dipuji Bu Eka karena Figma-nya rapi!' }]
+                id: 4,
+                name: "Rian Hidayat",
+                role: "Backend",
+                nickname: "Rian Laravel",
+                quote: "Error 500 adalah makanan sehari-hari. Sukses itu pas route::get berjalan!",
+                dream: "DevOps Specialist",
+                avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=300&q=80",
+                social: { github: "#", instagram: "#" }
             },
             {
-                id: 'p5',
-                classLevel: 'XII',
-                title: 'Mentoring Project UKK Bersama Pak Bayu',
-                date: '14 Feb 2026',
-                url: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=800',
-                desc: 'Sesi konsultasi REST API Laravel & Flutter app bareng Pak Bayu untuk persiapan UKK.',
-                likes: 48,
-                comments: [{ author: 'Farhan', text: 'Bismillah LULUS UKK nilai A++!' }]
+                id: 5,
+                name: "Dewi Anggraini",
+                role: "Frontend",
+                nickname: "Dewi",
+                quote: "Senyum dulu sebelum ketemu error javascript.",
+                dream: "Fullstack Web Developer",
+                avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&q=80",
+                social: { github: "#", instagram: "#" }
             },
             {
-                id: 'p6',
-                classLevel: 'XII',
-                title: 'Foto Sesi Buku Alumni / Yearbook RPL 3',
-                date: '28 Sep 2026',
-                url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
-                desc: 'Sesi foto kebersamaan dengan konsep outfit dark cyberpunk.',
-                likes: 62,
-                comments: [{ author: 'Jessica', text: 'RPL 3 angkatan paling solid!!' }]
+                id: 6,
+                name: "Fajar Ramadan",
+                role: "Gamer",
+                nickname: "Fajar MLBB",
+                quote: "Koding malam, push rank subuh. Hidup Seimbang!",
+                dream: "Game Developer & Esports Player",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+                social: { github: "#", instagram: "#" }
+            },
+            {
+                id: 7,
+                name: "Nabila Putri",
+                role: "UI/UX",
+                nickname: "Nabila",
+                quote: "Kenangan di RPL 3 tidak ada bug-nya, semuanya berkesan.",
+                dream: "UI Researcher",
+                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+                social: { github: "#", instagram: "#" }
+            },
+            {
+                id: 8,
+                name: "Bagas Kurnia",
+                role: "Backend",
+                nickname: "Bagas Database",
+                quote: "SELECT * FROM memories WHERE class = 'RPL3' ORDER BY happiness DESC;",
+                dream: "Database Architect",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
+                social: { github: "#", instagram: "#" }
             }
         ];
 
-        const initialStudents = [
-            { name: 'Andra Pratama', role: 'Absen 01', skill: 'Frontend & Tailwind CSS', avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200' },
-            { name: 'Ayu Lestari', role: 'Absen 02', skill: 'UI/UX Design & Figma', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200' },
-            { name: 'Bagus Setiawan', role: 'Absen 03', skill: 'Backend PHP & Laravel', avatar: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&q=80&w=200' },
-            { name: 'Citra Kirana', role: 'Absen 04', skill: 'Mobile Flutter Dev', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200' },
-            { name: 'Dimas Anggara', role: 'Absen 05', skill: 'Database MySQL & SQL', avatar: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&q=80&w=200' },
-            { name: 'Eko Prasetyo', role: 'Absen 06', skill: 'React JS & Frontend', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200' },
-            { name: 'Farhan Kholid', role: 'Absen 07', skill: 'Fullstack Laravel + React', avatar: 'https://images.unsplash.com/photo-1628157582853-a796fa650a6a?auto=format&fit=crop&q=80&w=200' },
-            { name: 'Jessica Tan', role: 'Absen 08', skill: 'DevOps & Cloud Hosting', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200' }
-        ];
-
+        // Sample Default Notes
         const initialNotes = [
-            { author: 'Farhan (XII RPL 3)', text: 'Error bukan akhir dari segalanya, tapi tanda kalau kamu lagi belajar hal baru!', date: '01 Okt 2026' },
-            { author: 'Siti (X RPL 3)', text: 'Terima kasih Bu Bella udah sabar ngajarin dasar algoritma pas kami masih belum mengerti!', date: '02 Okt 2026' },
-            { author: 'Rizky (XI RPL 3)', text: 'Titik koma (;) Java adalah ujian kesabaran terhebat selama di SMK.', date: '03 Okt 2026' }
+            {
+                id: 1,
+                author: "Aditya",
+                content: "Ingat gak pas pertama kali masuk lab terus komputernya gak bisa nyala padahal cuma lupa nyalain stopkontak? 😂 Kenangan konyol tapi kangen!",
+                color: "blue",
+                date: "12 Mei 2024"
+            },
+            {
+                author: "Siti",
+                content: "Terima kasih teman-teman RPL 3 udah selalu bantu pas aku kesulitan di kodingan. Kalian luar biasa!",
+                color: "purple",
+                date: "14 Mei 2024"
+            },
+            {
+                author: "Rian",
+                content: "Masa-masa UKK XII berasa cepet banget. Sukses terus kawan-kawan di manapun kalian berada!",
+                color: "emerald",
+                date: "20 Mei 2024"
+            }
         ];
 
-        // GLOBAL APP STATE
-        let currentClassLevel = 'X';
-        let photos = [];
-        let wallNotes = [];
-        let currentActivePhotoId = null;
+        let notesData = JSON.parse(localStorage.getItem('rpl3_notes')) || initialNotes;
 
-        window.onload = function() {
-            checkAuth();
-            loadStoredData();
-            switchClass('X');
-        };
-
-        // AUTHENTICATION LOGIC
-        function checkAuth() {
-            const isLoggedIn = localStorage.getItem('rpl3_login') === 'true' || sessionStorage.getItem('rpl3_login') === 'true';
-            const loginSection = document.getElementById('login-section');
-            const dashboardSection = document.getElementById('dashboard-section');
-
-            if (isLoggedIn) {
-                loginSection.classList.add('hidden');
-                dashboardSection.classList.remove('hidden');
-            } else {
-                loginSection.classList.remove('hidden');
-                dashboardSection.classList.add('hidden');
-            }
-        }
-
+        // Login Handler
         function handleLogin(e) {
             e.preventDefault();
-            const u = document.getElementById('username').value.trim();
-            const p = document.getElementById('password').value.trim();
-            const rememberMe = document.getElementById('remember-me').checked;
-            const errBox = document.getElementById('login-error');
+            const user = document.getElementById('usernameInput').value.trim();
+            const pass = document.getElementById('passwordInput').value.trim();
 
-            if (u === 'RPL3' && p === 'RPL3') {
-                errBox.classList.add('hidden');
-                if (rememberMe) {
-                    localStorage.setItem('rpl3_login', 'true');
-                } else {
-                    sessionStorage.setItem('rpl3_login', 'true');
-                }
-                showToast('Login Berhasil! Selamat datang di Portal RPL 3.', 'success');
-                setTimeout(() => checkAuth(), 300);
+            if (user.toUpperCase() === 'RPL3' && pass.toUpperCase() === 'RPL3') {
+                document.getElementById('loginOverlay').classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    document.getElementById('loginOverlay').classList.add('hidden');
+                    document.getElementById('mainContent').classList.remove('hidden');
+                    initApp();
+                }, 400);
             } else {
-                errBox.classList.remove('hidden');
+                const err = document.getElementById('loginError');
+                err.classList.remove('hidden');
+                err.classList.add('animate-bounce');
+                setTimeout(() => err.classList.remove('animate-bounce'), 1000);
             }
         }
 
-        function handleLogout() {
-            localStorage.removeItem('rpl3_login');
-            sessionStorage.removeItem('rpl3_login');
-            showToast('Anda telah keluar dari portal.', 'info');
-            setTimeout(() => checkAuth(), 300);
+        // Logout
+        function logout() {
+            document.getElementById('mainContent').classList.add('hidden');
+            document.getElementById('loginOverlay').classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+            document.getElementById('usernameInput').value = '';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('loginError').classList.add('hidden');
         }
 
-        // STORAGE MANAGEMENT
-        function loadStoredData() {
-            const storedPhotos = localStorage.getItem('rpl3_photos');
-            photos = storedPhotos ? JSON.parse(storedPhotos) : initialPhotos;
+        // Section Switcher
+        function switchSection(sectionId) {
+            const sections = ['home', 'kelasX', 'kelasXI', 'kelasXII', 'members', 'wall'];
+            sections.forEach(sec => {
+                const el = document.getElementById(`sec-${sec}`);
+                if (el) el.classList.add('hidden');
 
-            const storedNotes = localStorage.getItem('rpl3_notes');
-            wallNotes = storedNotes ? JSON.parse(storedNotes) : initialNotes;
-
-            saveData();
-        }
-
-        function saveData() {
-            localStorage.setItem('rpl3_photos', JSON.stringify(photos));
-            localStorage.setItem('rpl3_notes', JSON.stringify(wallNotes));
-            updateStats();
-        }
-
-        // CLASS SWITCHER
-        function switchClass(level) {
-            currentClassLevel = level;
-
-            // Switcher Tabs Styling
-            ['X', 'XI', 'XII'].forEach(lvl => {
-                const btn = document.getElementById(`btn-class-${lvl}`);
-                if (lvl === level) {
-                    btn.className = "flex-1 md:flex-none px-6 py-2 rounded-lg text-xs font-bold font-mono transition-all duration-300 bg-cyber-neonCyan text-slate-950 shadow-glow-cyan";
-                } else {
-                    btn.className = "flex-1 md:flex-none px-6 py-2 rounded-lg text-xs font-bold font-mono transition-all duration-300 text-slate-400 hover:text-white hover:bg-slate-800";
+                const navBtn = document.getElementById(`nav-${sec}`);
+                if (navBtn) {
+                    navBtn.classList.remove('text-blue-400', 'bg-slate-800');
+                    navBtn.classList.add('text-slate-400');
                 }
             });
 
-            // Update Dynamic Content
-            const data = classData[level];
-            document.getElementById('nav-class-badge').innerText = data.badge;
-            document.getElementById('hero-subtitle').innerText = data.subtitle;
-            document.getElementById('hero-title').innerText = data.title;
-            document.getElementById('hero-desc').innerText = data.desc;
+            const activeSec = document.getElementById(`sec-${sectionId}`);
+            if (activeSec) activeSec.classList.remove('hidden');
 
-            // Update Homeroom Profile Section
-            document.getElementById('homeroom-class-badge').innerText = data.badge;
-            document.getElementById('homeroom-name').innerText = data.homeroom.name;
-            document.getElementById('homeroom-title').innerText = data.homeroom.role;
-            document.getElementById('homeroom-bio').innerText = data.homeroom.bio;
-            document.getElementById('homeroom-img').src = data.homeroom.avatar;
-
-            renderCurriculum();
-            renderGallery();
-            renderStudents();
-            renderWallNotes();
-            updateStats();
+            const activeNav = document.getElementById(`nav-${sectionId}`);
+            if (activeNav) {
+                activeNav.classList.remove('text-slate-400');
+                activeNav.classList.add('text-blue-400', 'bg-slate-800');
+            }
         }
 
-        // RENDER CURRICULUM SUBJECTS (NO SCHEDULE TIME)
-        function renderCurriculum() {
-            const container = document.getElementById('curriculum-grid');
-            const subjects = classData[currentClassLevel].subjects;
-
-            container.innerHTML = subjects.map(s => `
-                <div class="glass-panel p-5 rounded-2xl border border-slate-800 hover:border-cyber-neonCyan transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded bg-slate-900 text-slate-400 border border-slate-800">${s.category}</span>
-                            <i class="fas ${s.icon} ${s.color} text-xl group-hover:scale-110 transition-transform"></i>
-                        </div>
-                        <h3 class="font-bold text-white text-base group-hover:text-cyber-neonCyan transition-colors">${s.name}</h3>
-                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">${s.desc}</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-cyber-neonCyan font-mono">
-                        <span>${currentClassLevel} RPL 3</span>
-                        <i class="fas fa-book-reader"></i>
-                    </div>
-                </div>
-            `).join('');
+        // App Initialization
+        function initApp() {
+            startCounter();
+            renderMembers(classMembers);
+            renderNotes();
         }
 
-        // RENDER GALLERY & LIGHTBOX
-        function renderGallery() {
-            const container = document.getElementById('gallery-grid');
-            const search = document.getElementById('gallery-search').value.toLowerCase();
+        // Start Time Counter (e.g. Starting from July 13, 2021)
+        function startCounter() {
+            const startDate = new Date('2021-07-13T07:00:00');
+            
+            function update() {
+                const now = new Date();
+                const diff = now - startDate;
 
-            let filtered = photos.filter(p => {
-                const matchClass = p.classLevel === currentClassLevel;
-                const matchSearch = p.title.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search);
-                return matchClass && matchSearch;
-            });
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
 
-            if (filtered.length === 0) {
-                container.innerHTML = `<div class="col-span-full py-12 text-center text-slate-500 font-mono text-xs">
-                    <i class="fas fa-camera text-3xl mb-2 block text-slate-600"></i>
-                    Belum ada foto kenangan di Kelas ${currentClassLevel} RPL 3. Tambahkan foto sekarang!
-                </div>`;
+                document.getElementById('daysCount').innerText = days;
+                document.getElementById('hoursCount').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutesCount').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('secondsCount').innerText = String(seconds).padStart(2, '0');
+            }
+            update();
+            setInterval(update, 1000);
+        }
+
+        // Render Members
+        function renderMembers(data) {
+            const grid = document.getElementById('membersGrid');
+            grid.innerHTML = '';
+
+            if (data.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center text-slate-500 py-8">Tidak ada anggota yang cocok dengan pencarian.</p>`;
                 return;
             }
 
-            container.innerHTML = filtered.map(p => `
-                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-cyber-neonCyan transition-all duration-300 group flex flex-col justify-between">
-                    <div>
-                        <div class="relative overflow-hidden aspect-video bg-black cursor-pointer" onclick="openLightboxModal('${p.id}')">
-                            <img src="${p.url}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                                <span class="text-[10px] text-cyber-neonCyan font-mono">Klik untuk Zoom & Komentar</span>
-                            </div>
-                        </div>
+            data.forEach(m => {
+                const card = document.createElement('div');
+                card.className = 'glass-card p-5 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-between cursor-pointer group';
+                card.onclick = () => openMemberModal(m);
 
-                        <div class="p-4 space-y-2">
-                            <span class="text-[9px] font-mono text-cyber-neonPurple px-2 py-0.5 rounded bg-cyber-neonPurple/10 border border-cyber-neonPurple/30 inline-block">
-                                KELAS ${p.classLevel} RPL 3
-                            </span>
-                            <h3 class="font-bold text-white text-sm line-clamp-1 group-hover:text-cyber-neonCyan transition-colors">${p.title}</h3>
-                            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">${p.desc}</p>
-                        </div>
+                card.innerHTML = `
+                    <div class="relative mb-3">
+                        <img src="${m.avatar}" alt="${m.name}" class="w-20 h-20 rounded-full object-cover border-2 border-blue-500/30 group-hover:border-blue-400 transition">
+                        <span class="absolute bottom-0 right-0 px-2 py-0.5 bg-slate-900 border border-slate-700 text-[10px] text-blue-400 font-mono rounded-full">${m.role}</span>
                     </div>
+                    <h4 class="font-bold text-white text-sm group-hover:text-blue-400 transition">${m.name}</h4>
+                    <p class="text-xs text-slate-500 mb-3">"${m.nickname}"</p>
+                    <p class="text-xs text-slate-400 italic line-clamp-2 mb-4">"${m.quote}"</p>
+                    <span class="text-[11px] font-semibold text-blue-400 hover:underline">Lihat Detail →</span>
+                `;
+                grid.appendChild(card);
+            });
+        }
 
-                    <div class="px-4 py-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
-                        <span class="text-[10px] font-mono">${p.date}</span>
-                        <div class="flex items-center space-x-3">
-                            <button onclick="likePhoto('${p.id}')" class="hover:text-cyber-neonPink transition-colors flex items-center gap-1">
-                                <i class="fas fa-heart text-cyber-neonPink"></i>
-                                <span>${p.likes}</span>
-                            </button>
-                            <span class="flex items-center gap-1 cursor-pointer" onclick="openLightboxModal('${p.id}')">
-                                <i class="fas fa-comment text-cyber-neonCyan"></i>
-                                <span>${p.comments ? p.comments.length : 0}</span>
-                            </span>
-                        </div>
-                    </div>
+        // Filter Members
+        function filterMembers() {
+            const query = document.getElementById('memberSearch').value.toLowerCase();
+            const role = document.getElementById('roleFilter').value;
+
+            const filtered = classMembers.filter(m => {
+                const matchName = m.name.toLowerCase().includes(query) || m.nickname.toLowerCase().includes(query);
+                const matchRole = role === 'ALL' || m.role === role;
+                return matchName && matchRole;
+            });
+
+            renderMembers(filtered);
+        }
+
+        // Member Detail Modal
+        function openMemberModal(m) {
+            const content = document.getElementById('memberModalContent');
+            content.innerHTML = `
+                <img src="${m.avatar}" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-2 border-blue-500/50 shadow-lg shadow-blue-500/20">
+                <span class="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-mono rounded-full border border-blue-500/20">${m.role}</span>
+                <h3 class="text-xl font-bold text-white mt-2">${m.name}</h3>
+                <p class="text-xs text-slate-400 font-mono">Panggilan: ${m.nickname}</p>
+                <div class="my-4 p-4 bg-slate-900/80 rounded-2xl border border-slate-800/80 text-xs text-slate-300 italic">
+                    "${m.quote}"
                 </div>
-            `).join('');
+                <div class="text-xs text-left space-y-2 mb-6">
+                    <p class="text-slate-400"><i class="fa-solid fa-bullseye text-blue-400 mr-2"></i><b>Cita-Cita:</b> ${m.dream}</p>
+                </div>
+                <button onclick="closeMemberModal()" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-xl border border-slate-700 transition">Tutup Modal</button>
+            `;
+            document.getElementById('memberModal').classList.remove('hidden');
         }
 
-        function filterGallery() {
-            renderGallery();
+        function closeMemberModal() {
+            document.getElementById('memberModal').classList.add('hidden');
         }
 
-        function likePhoto(id) {
-            const p = photos.find(item => item.id === id);
-            if (p) {
-                p.likes += 1;
-                saveData();
-                renderGallery();
-                if (currentActivePhotoId === id) updateLightboxContent(p);
-            }
-        }
+        // Render Notes
+        function renderNotes() {
+            const board = document.getElementById('notesBoard');
+            board.innerHTML = '';
 
-        function openLightboxModal(id) {
-            const p = photos.find(item => item.id === id);
-            if (!p) return;
-            currentActivePhotoId = id;
-            updateLightboxContent(p);
-            document.getElementById('lightbox-modal').classList.remove('hidden');
-        }
-
-        function updateLightboxContent(p) {
-            document.getElementById('lightbox-img').src = p.url;
-            document.getElementById('lightbox-badge').innerText = `KELAS ${p.classLevel} RPL 3`;
-            document.getElementById('lightbox-title').innerText = p.title;
-            document.getElementById('lightbox-desc').innerText = p.desc;
-            document.getElementById('lightbox-likes-count').innerText = p.likes;
-
-            const commentsBox = document.getElementById('lightbox-comments-list');
-            if (p.comments && p.comments.length > 0) {
-                commentsBox.innerHTML = p.comments.map(c => `
-                    <div class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-xs">
-                        <span class="font-bold text-cyber-neonCyan font-mono">${escapeHtml(c.author)}:</span>
-                        <span class="text-slate-300 ml-1">${escapeHtml(c.text)}</span>
-                    </div>
-                `).join('');
-            } else {
-                commentsBox.innerHTML = `<p class="text-[11px] text-slate-500 italic">Belum ada pesan. Tulis pesan pertamamu!</p>`;
-            }
-        }
-
-        function closeLightboxModal() {
-            document.getElementById('lightbox-modal').classList.add('hidden');
-            currentActivePhotoId = null;
-        }
-
-        function toggleLikeCurrentPhoto() {
-            if (currentActivePhotoId) likePhoto(currentActivePhotoId);
-        }
-
-        function handleAddComment(e) {
-            e.preventDefault();
-            const input = document.getElementById('comment-input');
-            const text = input.value.trim();
-
-            if (text && currentActivePhotoId) {
-                const p = photos.find(item => item.id === currentActivePhotoId);
-                if (p) {
-                    if (!p.comments) p.comments = [];
-                    p.comments.push({ author: 'Siswa RPL 3', text });
-                    saveData();
-                    updateLightboxContent(p);
-                    renderGallery();
-                    input.value = '';
-                }
-            }
-        }
-
-        // UPLOAD PHOTO LOGIC
-        function openUploadModal() {
-            document.getElementById('upload-class-level').value = currentClassLevel;
-            document.getElementById('upload-modal').classList.remove('hidden');
-        }
-
-        function closeUploadModal() {
-            document.getElementById('upload-modal').classList.add('hidden');
-        }
-
-        function handleUploadSubmit(e) {
-            e.preventDefault();
-            const classLevel = document.getElementById('upload-class-level').value;
-            const title = document.getElementById('upload-title').value.trim();
-            const url = document.getElementById('upload-url').value.trim();
-            const desc = document.getElementById('upload-desc').value.trim();
-
-            const newPhoto = {
-                id: 'p_' + Date.now(),
-                classLevel,
-                title,
-                date: 'Hari ini',
-                url,
-                desc,
-                likes: 1,
-                comments: []
+            const colorMap = {
+                blue: 'border-blue-500/30 bg-blue-950/20 text-blue-300',
+                purple: 'border-purple-500/30 bg-purple-950/20 text-purple-300',
+                emerald: 'border-emerald-500/30 bg-emerald-950/20 text-emerald-300',
+                amber: 'border-amber-500/30 bg-amber-950/20 text-amber-300'
             };
 
-            photos.unshift(newPhoto);
-            saveData();
-            renderGallery();
-            closeUploadModal();
-            showToast('Foto kenangan berhasil ditambahkan!', 'success');
-
-            document.getElementById('upload-title').value = '';
-            document.getElementById('upload-url').value = '';
-            document.getElementById('upload-desc').value = '';
-        }
-
-        // RENDER STUDENTS DIRECTORY
-        function renderStudents() {
-            const container = document.getElementById('students-grid');
-            const query = document.getElementById('student-search').value.toLowerCase();
-
-            const filtered = initialStudents.filter(s => 
-                s.name.toLowerCase().includes(query) || s.skill.toLowerCase().includes(query)
-            );
-
-            container.innerHTML = filtered.map(s => `
-                <div class="glass-panel p-4 rounded-2xl border border-slate-800 hover:border-cyber-neonCyan transition-all flex items-center space-x-3">
-                    <img src="${s.avatar}" alt="${s.name}" class="w-12 h-12 rounded-xl object-cover border border-slate-700 flex-shrink-0">
-                    <div class="overflow-hidden">
-                        <span class="text-[9px] font-mono text-cyber-neonCyan uppercase block">${s.role}</span>
-                        <h4 class="font-bold text-white text-sm truncate">${s.name}</h4>
-                        <p class="text-xs text-slate-400 truncate mt-0.5"><i class="fas fa-code text-[10px] mr-1 text-cyber-neonPurple"></i>${s.skill}</p>
+            notesData.forEach(n => {
+                const card = document.createElement('div');
+                const styleClass = colorMap[n.color] || colorMap.blue;
+                card.className = `glass p-5 rounded-2xl border ${styleClass} flex flex-col justify-between relative`;
+                card.innerHTML = `
+                    <p class="text-xs text-slate-200 leading-relaxed mb-4 font-sans">"${n.content}"</p>
+                    <div class="flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-800/60 pt-3">
+                        <span class="font-semibold text-white">— ${n.author}</span>
+                        <span class="font-mono text-[10px] text-slate-500">${n.date}</span>
                     </div>
-                </div>
-            `).join('');
-        }
-
-        // WALL NOTES LOGIC
-        function renderWallNotes() {
-            const container = document.getElementById('notes-grid');
-            container.innerHTML = wallNotes.map(n => `
-                <div class="glass-panel p-5 rounded-2xl border border-slate-800 hover:border-cyber-neonPurple transition-all flex flex-col justify-between space-y-3">
-                    <p class="text-xs text-slate-300 italic leading-relaxed">"${escapeHtml(n.text)}"</p>
-                    <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] font-mono text-slate-400">
-                        <span class="text-cyber-neonPurple font-bold">${escapeHtml(n.author)}</span>
-                        <span>${n.date}</span>
-                    </div>
-                </div>
-            `).join('');
+                `;
+                board.appendChild(card);
+            });
         }
 
         function openNoteModal() {
-            document.getElementById('note-modal').classList.remove('hidden');
+            document.getElementById('noteModal').classList.remove('hidden');
         }
 
         function closeNoteModal() {
-            document.getElementById('note-modal').classList.add('hidden');
+            document.getElementById('noteModal').classList.add('hidden');
         }
 
-        function handleNoteSubmit(e) {
+        function saveNewNote(e) {
             e.preventDefault();
-            const author = document.getElementById('note-author').value.trim();
-            const text = document.getElementById('note-content').value.trim();
+            const author = document.getElementById('noteAuthor').value.trim();
+            const content = document.getElementById('noteContent').value.trim();
+            const color = document.getElementById('noteColor').value;
 
-            wallNotes.unshift({
+            const dateStr = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+
+            const newNote = {
+                id: Date.now(),
                 author,
-                text,
-                date: 'Hari ini'
-            });
+                content,
+                color,
+                date: dateStr
+            };
 
-            saveData();
-            renderWallNotes();
+            notesData.unshift(newNote);
+            localStorage.setItem('rpl3_notes', JSON.stringify(notesData));
+
+            renderNotes();
             closeNoteModal();
-            showToast('Wall note berhasil di-posting!', 'success');
 
-            document.getElementById('note-author').value = '';
-            document.getElementById('note-content').value = '';
+            document.getElementById('noteAuthor').value = '';
+            document.getElementById('noteContent').value = '';
         }
 
-        // STATS & UTILS
-        function updateStats() {
-            document.getElementById('stat-total-photos').innerText = photos.length;
-            const totalLikes = photos.reduce((sum, p) => sum + p.likes, 0);
-            document.getElementById('stat-total-likes').innerText = totalLikes;
-            document.getElementById('stat-total-subjects').innerText = classData[currentClassLevel].subjects.length;
+        // Toggle Music Modal
+        function toggleMusicModal() {
+            const modal = document.getElementById('musicModal');
+            modal.classList.toggle('hidden');
         }
 
-        function scrollToSection(id) {
-            const el = document.getElementById(id);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-message').innerText = msg;
-            toast.classList.remove('translate-x-full');
-            setTimeout(() => toast.classList.add('translate-x-full'), 3000);
-        }
-
-        function escapeHtml(str) {
-            return str.replace(/[&<>"']/g, function(m) {
-                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
-            });
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
         }
     </script>
 </body>

@@ -269,7 +269,7 @@ nav{
 }
 
 /* =====================================================
-   SECTION
+   SECTION & STATISTIK
 ===================================================== */
 
 section{
@@ -288,6 +288,35 @@ section{
 
 .section-title p{
     color:#91a8bd;
+}
+
+.student-stats{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.stat-box{
+    background:#0d2238;
+    border:1px solid #1c4866;
+    padding:12px 24px;
+    border-radius:12px;
+    text-align:center;
+    min-width:140px;
+}
+
+.stat-box .count{
+    font-size:24px;
+    font-weight:bold;
+    color:#00c6ff;
+}
+
+.stat-box .label{
+    font-size:13px;
+    color:#a1b8cc;
+    margin-top:2px;
 }
 
 /* =====================================================
@@ -346,6 +375,9 @@ section{
     margin:35px 0 18px;
     font-size:22px;
     color:#63caff;
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
 
 .student-list{
@@ -640,9 +672,25 @@ footer strong{
             <p>Keluarga besar RPL 3</p>
         </div>
 
+        <!-- STATISTIK JUMLAH SISWA -->
+        <div class="student-stats">
+            <div class="stat-box">
+                <div class="count" id="countMale">0</div>
+                <div class="label">Laki-Laki</div>
+            </div>
+            <div class="stat-box">
+                <div class="count" id="countFemale">0</div>
+                <div class="label">Perempuan</div>
+            </div>
+            <div class="stat-box">
+                <div class="count" id="countTotal">0</div>
+                <div class="label">Total Siswa</div>
+            </div>
+        </div>
+
         <!-- LAKI-LAKI -->
-        <h3 class="gender-title">👨 Siswa Laki-Laki</h3>
-        <div class="student-list">
+        <h3 class="gender-title">👨 Siswa Laki-Laki (<span id="titleMaleCount">0</span>)</h3>
+        <div class="student-list" id="maleList">
             <div class="student">Apis</div>
             <div class="student">M Rizky R</div>
             <div class="student">Rizky</div>
@@ -674,8 +722,8 @@ footer strong{
         </div>
 
         <!-- PEREMPUAN -->
-        <h3 class="gender-title">👩 Siswa Perempuan</h3>
-        <div class="student-list">
+        <h3 class="gender-title">👩 Siswa Perempuan (<span id="titleFemaleCount">0</span>)</h3>
+        <div class="student-list" id="femaleList">
             <div class="student">Jenia Fitria Amelia</div>
             <div class="student">Donela</div>
             <div class="student">Oca</div>
@@ -736,6 +784,25 @@ footer strong{
 
 <script>
 /* =====================================================
+   HITUNG JUMLAH SISWA OTOMATIS
+===================================================== */
+
+function calculateStudents(){
+    const maleCount = document.querySelectorAll("#maleList .student").length;
+    const femaleCount = document.querySelectorAll("#femaleList .student").length;
+    const totalCount = maleCount + femaleCount;
+
+    document.getElementById("countMale").textContent = maleCount;
+    document.getElementById("countFemale").textContent = femaleCount;
+    document.getElementById("countTotal").textContent = totalCount;
+
+    document.getElementById("titleMaleCount").textContent = maleCount;
+    document.getElementById("titleFemaleCount").textContent = femaleCount;
+}
+
+window.addEventListener("DOMContentLoaded", calculateStudents);
+
+/* =====================================================
    LOGIN & LOGOUT
 ===================================================== */
 
@@ -754,7 +821,6 @@ function login(){
     }
 }
 
-// Handler Enter Key pada Login
 ["username", "password"].forEach(id => {
     document.getElementById(id).addEventListener("keypress", function(e){
         if(e.key === "Enter"){

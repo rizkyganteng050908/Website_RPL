@@ -118,7 +118,7 @@ section{padding:65px 7%}
 /* FOOTER + TOP */
 footer{padding:28px 15px;text-align:center;background:#030912;color:#8095a8;line-height:1.8}
 footer strong{color:#00bfff}
-#toTop{position:fixed;right:18px;bottom:18px;padding:0 16px;height:42px;border-radius:21px;font-size:14px!important;border:none;background:linear-gradient(135deg,#008cff,#743cff);color:#fff;cursor:pointer;display:none;z-index:90}
+#toTop{position:fixed;right:18px;bottom:18px;padding:0 16px;height:42px;border-radius:21px;font-size:14px!important;border:none;background:linear-gradient(135deg,#008cff,#743cff);color:#fff;font-size:20px;cursor:pointer;display:none;z-index:90}
 
 @media(max-width:1000px){.album{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:800px){.nav-toggle{display:block}
@@ -279,7 +279,7 @@ const FEMALE = ["Bunga","Donela Natalia Salim","Feby","Jenia Fitria Amelia","Kir
 const PHOTO_COUNT = 27;
 const USER = "RPL3", PASS = "RPL3";
 
-/* URL Google Apps Script terbaru kamu (berakhiran /exec) */
+/* URL Google Apps Script kamu */
 const SHEET_URL = "https://script.google.com/macros/s/AKfycby9Pp70X5YkR5Bd4j_O9cYrFoY_HSFPG_tJOcJOIUjr3QHiZI3bGcJhjQsfDu68tzub/exec";
 
 /* Storage aman */
@@ -383,7 +383,6 @@ function delMsg(i){
 function showSite(){
   $("loginPage").style.display="none"; 
   $("website").style.display="block"; 
-  // Otomatis isi nama di form pesan menggunakan nama yang dipakai saat login
   $("gName").value = store.get(sessionStorage,"rpl3_name") || "";
   window.scrollTo(0,0);
 }

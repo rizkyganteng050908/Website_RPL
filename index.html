@@ -105,15 +105,20 @@ section{padding:65px 7%}
 .download-photo{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);padding:13px 20px;border-radius:9px;background:linear-gradient(90deg,#008cff,#743cff);color:#fff;text-decoration:none;font-weight:bold;white-space:nowrap}
 
 /* PESAN & KESAN */
-.guest-form{max-width:560px;margin:0 auto 30px;display:grid;gap:10px}
+.guest-form{max-width:560px;margin:0 auto 24px;display:grid;gap:10px}
 .guest-form input,.guest-form textarea{padding:13px;border-radius:9px;border:1px solid #214866;background:#071522;color:#fff;outline:none;resize:vertical}
 .guest-form button{padding:13px;border:none;border-radius:9px;color:#fff;font-weight:bold;background:linear-gradient(90deg,#008cff,#743cff);cursor:pointer}
+.guest-form button:disabled{opacity:0.6;cursor:not-allowed}
+.msg-toolbar{max-width:700px;margin:0 auto 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.msg-status{font-size:13px;color:#8aa4ba}
+.refresh-btn{padding:8px 14px;border:1px solid #1c4866;border-radius:8px;background:#0d2238;color:#58c9ff;font-size:13px;font-weight:bold;cursor:pointer;transition:.2s}
+.refresh-btn:hover{background:#13304d;border-color:#00aaff}
+.refresh-btn:disabled{opacity:0.6;cursor:not-allowed}
 .msg-list{max-width:700px;margin:auto;display:grid;gap:12px}
 .msg{padding:16px;background:#0d2135;border:1px solid #1c415c;border-radius:12px}
 .msg strong{color:#51c8ff}
 .msg small{color:#7d95a9;margin-left:8px}
 .msg p{margin-top:6px;color:#d9e9f6;line-height:1.6;white-space:pre-wrap;word-break:break-word}
-.msg button{float:right;background:none;border:none;color:#e63946;cursor:pointer}
 .empty{text-align:center;color:#91a8bd}
 
 /* FOOTER + TOP + MUSIC */
@@ -246,14 +251,20 @@ footer strong{color:#00bfff}
   <section id="pesan" class="student-section">
     <div class="section-title">
       <h2>Pesan &amp; Kesan</h2>
-      <p>Tulis kenangan atau pesan untuk teman-teman RPL 3</p>
+      <p>Tulis kenangan atau pesan untuk teman-teman RPL 3 (tersimpan online)</p>
     </div>
     <div class="guest-form">
       <input id="gName" type="text" maxlength="40" placeholder="Nama kamu">
       <textarea id="gMsg" rows="3" maxlength="300" placeholder="Tulis pesan dan kesan..."></textarea>
-      <button type="button" onclick="addMsg()">Kirim Pesan</button>
+      <button type="button" id="sendMsgBtn" onclick="addMsg()">Kirim Pesan</button>
     </div>
-    <div class="msg-list" id="msgList"></div>
+    <div class="msg-toolbar">
+      <span class="msg-status" id="msgStatus">Auto-update aktif (setiap 15 detik)</span>
+      <button type="button" class="refresh-btn" id="refreshMsgBtn" onclick="manualRefreshMsgs()">↻ Muat Ulang Pesan</button>
+    </div>
+    <div class="msg-list" id="msgList">
+      <p class="empty">Memuat pesan teman-teman...</p>
+    </div>
   </section>
 
   <footer>
@@ -341,7 +352,6 @@ function toggleMusic() {
   playMusic();
 }
 
-/* Deteksi state YouTube: jika selesai (0) atau terjeda (2), paksa putar lagi */
 window.addEventListener("message", e => {
   if (!e.data || typeof e.data !== "string") return;
   try {
@@ -355,13 +365,11 @@ window.addEventListener("message", e => {
   } catch (err) {}
 });
 
-/* Daftarkan listener state YouTube setelah iframe siap */
 $("ytFrame").addEventListener("load", () => {
   $("ytFrame").contentWindow.postMessage(JSON.stringify({ event: "listening" }), "*");
   if (userInteracted) playMusic();
 });
 
-/* Mulai musik otomatis saat interaksi pertama di halaman */
 function triggerFirstAudio() {
   if (userInteracted) return;
   userInteracted = true;
@@ -376,9 +384,11 @@ const MALE = ["Alvian","Apis","Cristo","Dafa septian wibowo","Darbi","Dika","Dim
 const FEMALE = ["Bunga","Donela Natalia Salim","Feby","Jenia Fitria Amelia","Kirana","Latifah","Lusi","Oca","Septi"];
 const PHOTO_COUNT = 27;
 const USER = "RPL3", PASS = "RPL3";
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbwN3AIDdTrv8SfRc5bPl3FRj0XmI9L-hfgs8GjsEO4LHzswTvL_H2zcY7WA1zIMcj6srA/exec";
 
-const esc = t => t.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+/* URL Google Apps Script Terbaru */
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzxcDONXzE0MSdEXSXxUubEqVsSKxLr1y6Jn9hZmU_3LmAH5NwlL8sVhXEOpeZiyZ8M/exec";
+
+const esc = t => String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 /* ====== SISWA ====== */
 function renderStudents(){
@@ -449,24 +459,97 @@ $("lightbox").addEventListener("touchend",e=>{
   if(Math.abs(dx)>50) step(dx<0?1:-1);
 });
 
-/* ====== PESAN & KESAN ====== */
-let msgs=[];
-try{ msgs=JSON.parse(store.get("rpl3_msgs")||"[]"); }catch(e){ msgs=[]; }
-function renderMsgs(){
+/* ====== PESAN & KESAN (SINKRON GOOGLE SHEETS + AUTO-REFRESH) ====== */
+let msgs = [];
+let lastMsgHash = "";
+let isFetchingMsgs = false;
+
+function renderMsgs() {
   $("msgList").innerHTML = msgs.length
-    ? msgs.map((m,i)=>`<div class="msg"><button onclick="delMsg(${i})" aria-label="Hapus pesan">Hapus</button><strong>${esc(m.n)}</strong><small>${esc(m.d)}</small><p>${esc(m.t)}</p></div>`).join("")
+    ? msgs.map(m => `<div class="msg"><strong>${esc(m.n)}</strong><small>${esc(m.d)}</small><p>${esc(m.t)}</p></div>`).join("")
     : `<p class="empty">Belum ada pesan. Jadilah yang pertama menulis!</p>`;
 }
-function addMsg(){
-  const n=$("gName").value.trim(), t=$("gMsg").value.trim();
-  if(!n||!t){ alert("Isi nama dan pesan dulu ya."); return; }
-  msgs.unshift({n,t,d:new Date().toLocaleDateString("id-ID",{day:"numeric",month:"short",year:"numeric"})});
-  store.set("rpl3_msgs",JSON.stringify(msgs.slice(0,100)));
-  $("gMsg").value=""; renderMsgs();
+
+function updateStatusTime() {
+  const jam = new Date().toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  $("msgStatus").textContent = `Diperbarui pukul ${jam} • Auto-update tiap 15 dtk`;
 }
-function delMsg(i){
-  if(!confirm("Hapus pesan ini?")) return;
-  msgs.splice(i,1); store.set("rpl3_msgs",JSON.stringify(msgs)); renderMsgs();
+
+async function loadMsgs(isManual = false) {
+  if (!SHEET_URL || isFetchingMsgs) return;
+  isFetchingMsgs = true;
+
+  const btn = $("refreshMsgBtn");
+  if (isManual && btn) {
+    btn.disabled = true;
+    btn.textContent = "Memuat...";
+  }
+
+  try {
+    const res = await fetch(`${SHEET_URL}?t=${Date.now()}`);
+    const data = await res.json();
+    if (Array.isArray(data)) {
+      const currentHash = JSON.stringify(data);
+      if (currentHash !== lastMsgHash) {
+        lastMsgHash = currentHash;
+        msgs = data;
+        renderMsgs();
+      }
+      updateStatusTime();
+    }
+  } catch (e) {
+    if (!msgs.length) {
+      $("msgList").innerHTML = `<p class="empty">Gagal memuat pesan. Periksa koneksi internetmu.</p>`;
+    }
+  } finally {
+    isFetchingMsgs = false;
+    if (isManual && btn) {
+      btn.disabled = false;
+      btn.textContent = "↻ Muat Ulang Pesan";
+    }
+  }
+}
+
+function manualRefreshMsgs() {
+  loadMsgs(true);
+}
+
+setInterval(() => {
+  if (!document.hidden && $("website").style.display !== "none") {
+    loadMsgs(false);
+  }
+}, 15000);
+
+async function addMsg() {
+  const n = $("gName").value.trim();
+  const t = $("gMsg").value.trim();
+  const btn = $("sendMsgBtn");
+
+  if (!n || !t) {
+    alert("Isi nama dan pesan dulu ya.");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Mengirim...";
+
+  const tanggal = new Date().toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" });
+  msgs.unshift({ n, t, d: tanggal });
+  lastMsgHash = JSON.stringify(msgs);
+  renderMsgs();
+  $("gMsg").value = "";
+
+  try {
+    await fetch(SHEET_URL, {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify({ type: "pesan", nama: n, pesan: t })
+    });
+    setTimeout(() => loadMsgs(false), 2000);
+  } catch (e) {}
+
+  btn.disabled = false;
+  btn.textContent = "Kirim Pesan";
 }
 
 /* ====== LOGIN & SHEET ====== */
@@ -478,7 +561,7 @@ function sendName(nama){
   if(!SHEET_URL) return;
   try{
     fetch(SHEET_URL,{method:"POST",mode:"no-cors",keepalive:true,
-      body:JSON.stringify({nama:nama,waktu:new Date().toISOString()})}).catch(()=>{});
+      body:JSON.stringify({type:"login",nama:nama,waktu:new Date().toISOString()})}).catch(()=>{});
   }catch(e){}
 }
 function login(){
@@ -496,6 +579,7 @@ function login(){
   window.scrollTo(0,0);
   userInteracted = true;
   playMusic();
+  loadMsgs(false);
 }
 function logout(){
   store.del("rpl3_login");
@@ -528,7 +612,7 @@ window.addEventListener("resize",()=>{ if(innerWidth>800) setMenu(false); });
 $("toTop").onclick=()=>window.scrollTo({top:0});
 
 /* ====== INIT ====== */
-renderStudents(); renderAlbum(); renderMsgs();
+renderStudents(); renderAlbum(); loadMsgs(false);
 </script>
 </body>
 </html>

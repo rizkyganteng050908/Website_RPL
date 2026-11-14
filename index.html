@@ -120,7 +120,7 @@ section{padding:65px 7%}
 footer{padding:28px 15px;text-align:center;background:#030912;color:#8095a8;line-height:1.8}
 footer strong{color:#00bfff}
 #toTop{position:fixed;right:18px;bottom:18px;padding:0 16px;height:42px;border-radius:21px;font-size:14px!important;border:none;background:linear-gradient(135deg,#008cff,#743cff);color:#fff;cursor:pointer;display:none;z-index:90}
-#musicBtn{position:fixed;left:18px;bottom:18px;padding:0 16px;height:42px;border-radius:21px;font-size:13px;font-weight:bold;border:1px solid #168cff;background:#081728e6;color:#58c9ff;cursor:pointer;z-index:90;display:flex;align-items:center;gap:6px;box-shadow:0 4px 15px #00000080}
+#musicBtn{position:fixed;left:18px;bottom:18px;padding:0 16px;height:42px;border-radius:21px;font-size:13px;font-weight:bold;border:1px solid #168cff;background:#081728e6;color:#58c9ff;cursor:pointer;z-index:95;display:flex;align-items:center;gap:6px;box-shadow:0 4px 15px #00000080}
 #musicBtn:hover{background:#0d2238}
 #ytPlayerWrap{position:fixed;top:-200px;left:-200px;width:100px;height:100px;pointer-events:none}
 
@@ -261,11 +261,11 @@ footer strong{color:#00bfff}
     <p>SMK Wahidin Kota Cirebon</p>
     <p>Satu kelas • Banyak cerita • Selamanya menjadi kenangan</p>
   </footer>
-  <button id="musicBtn" onclick="toggleMusic()" aria-label="Kontrol musik latar">▶ Putar Lagu</button>
   <button id="toTop" aria-label="Kembali ke atas">Atas</button>
 </div>
 
-<!-- YOUTUBE AUDIO PLAYER -->
+<!-- GLOBAL MUSIC BUTTON & YOUTUBE PLAYER -->
+<button id="musicBtn" onclick="toggleMusic()" aria-label="Kontrol musik latar">▶ Putar Lagu</button>
 <div id="ytPlayerWrap"><div id="ytPlayer"></div></div>
 
 <!-- LIGHTBOX -->
@@ -283,7 +283,7 @@ footer strong{color:#00bfff}
 const $ = id => document.getElementById(id);
 
 /* ====== YOUTUBE MUSIC ====== */
-let ytPlayer = null, ytReady = false, isPlaying = false, shouldPlay = false;
+let ytPlayer = null, ytReady = false, isPlaying = false, shouldPlay = true, userInteracted = false;
 
 function onYouTubeIframeAPIReady() {
   ytPlayer = new YT.Player("ytPlayer", {
@@ -291,7 +291,7 @@ function onYouTubeIframeAPIReady() {
     width: "100",
     videoId: "jo-JkKpjmwY",
     playerVars: {
-      autoplay: 0,
+      autoplay: 1,
       loop: 0,
       controls: 0,
       disablekb: 1,
@@ -325,8 +325,6 @@ function playMusic() {
   if (ytReady && ytPlayer && ytPlayer.playVideo) {
     ytPlayer.setVolume(70);
     ytPlayer.playVideo();
-    isPlaying = true;
-    $("musicBtn").textContent = "⏸ Jeda Lagu";
   }
 }
 
@@ -340,12 +338,24 @@ function pauseMusic() {
 }
 
 function toggleMusic() {
+  userInteracted = true;
   if (isPlaying) {
     pauseMusic();
   } else {
     playMusic();
   }
 }
+
+/* Memulai musik otomatis saat interaksi pertama (termasuk di halaman login) */
+function triggerFirstAudio(e) {
+  if (userInteracted) return;
+  if (e.target && e.target.id === "musicBtn") return;
+  userInteracted = true;
+  if (shouldPlay && !isPlaying) playMusic();
+}
+["click", "touchstart", "keydown"].forEach(evt => {
+  document.addEventListener(evt, triggerFirstAudio, { once: true, passive: true });
+});
 
 /* ====== DATA ====== */
 const MALE = ["Alvian","Apis","Cristo","Dafa septian wibowo","Darbi","Dika","Dimas Eka Saputra","Fadly Irawan","Galih","Hafid","Ibnu Fajar Siqid","Januar Nurjati","Mochamad Rizky R","Muhammad Raihan","Rayhan Dzaky","Rifky Aristio","Rizky","Rizky Hartapi","Rizky Nursaman","Satria","Sharul","Syahrul","Syauqi"];
@@ -453,11 +463,11 @@ function delMsg(i){
   msgs.splice(i,1); store.set(localStorage,"rpl3_msgs",JSON.stringify(msgs)); renderMsgs();
 }
 
-/* ====== LOGIN & SHEET ====== */
+/* ====== LOGIN & SHEET (AUTO-LOGIN PERMANEN) ====== */
 function showSite(){
   $("loginPage").style.display="none"; 
   $("website").style.display="block"; 
-  $("gName").value = store.get(sessionStorage,"rpl3_name") || "";
+  $("gName").value = store.get(localStorage,"rpl3_name") || "";
   window.scrollTo(0,0);
 }
 function showError(msg){
@@ -480,14 +490,15 @@ function login(){
   if(u!==USER || p!==PASS) return showError("Username atau password salah!");
   $("error").style.display="none";
   sendName(n);
-  store.set(sessionStorage,"rpl3_login","1"); 
-  store.set(sessionStorage,"rpl3_name",n);
+  store.set(localStorage,"rpl3_login","1"); 
+  store.set(localStorage,"rpl3_name",n);
   showSite();
-  playMusic();
+  if(!isPlaying) playMusic();
 }
 function logout(){
   pauseMusic();
-  store.del(sessionStorage,"rpl3_login"); store.del(sessionStorage,"rpl3_name");
+  store.del(localStorage,"rpl3_login"); 
+  store.del(localStorage,"rpl3_name");
   $("website").style.display="none"; $("loginPage").style.display="flex";
   $("fullname").value=""; $("username").value=""; $("password").value=""; $("error").style.display="none";
   window.scrollTo(0,0);
@@ -517,7 +528,7 @@ $("toTop").onclick=()=>window.scrollTo({top:0});
 
 /* ====== INIT ====== */
 renderStudents(); renderAlbum(); renderMsgs();
-if(store.get(sessionStorage,"rpl3_login")==="1") showSite();
+if(store.get(localStorage,"rpl3_login")==="1") showSite();
 </script>
 </body>
 </html>

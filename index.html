@@ -264,10 +264,10 @@ footer strong{color:#00bfff}
   <button id="toTop" aria-label="Kembali ke atas">Atas</button>
 </div>
 
-<!-- GLOBAL MUSIC BUTTON & YOUTUBE IFRAME -->
-<button id="musicBtn" type="button" onclick="toggleMusic()" aria-label="Kontrol musik latar">▶ Putar Lagu</button>
+<!-- GLOBAL MUSIC BUTTON & YOUTUBE IFRAME (LOOP NON-STOP) -->
+<button id="musicBtn" type="button" onclick="toggleMusic()" aria-label="Status musik latar">▶ Putar Lagu</button>
 <iframe id="ytFrame"
-  src="https://www.youtube.com/embed/jo-JkKpjmwY?enablejsapi=1&controls=0&rel=0&playsinline=1"
+  src="https://www.youtube.com/embed/jo-JkKpjmwY?enablejsapi=1&controls=0&rel=0&playsinline=1&loop=1&playlist=jo-JkKpjmwY"
   allow="autoplay; encrypted-media"
   title="Musik Latar RPL 3"></iframe>
 
@@ -284,8 +284,42 @@ footer strong{color:#00bfff}
 <script>
 const $ = id => document.getElementById(id);
 
-/* ====== YOUTUBE MUSIC (POSTMESSAGE DIRECT CONTROL) ====== */
-let isPlaying = false, shouldPlay = true, userInteracted = false;
+/* ====== STORAGE PERMANEN (LOCALSTORAGE + COOKIE FALLBACK) ====== */
+const store = {
+  get(k) {
+    try {
+      const val = localStorage.getItem(k);
+      if (val !== null) return val;
+    } catch (e) {}
+    const m = document.cookie.match(new RegExp("(?:^|; )" + k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "=([^;]*)"));
+    return m ? decodeURIComponent(m[1]) : null;
+  },
+  set(k, v) {
+    try { localStorage.setItem(k, v); } catch (e) {}
+    try {
+      document.cookie = `${k}=${encodeURIComponent(v)}; max-age=31536000; path=/; SameSite=Lax`;
+    } catch (e) {}
+  },
+  del(k) {
+    try { localStorage.removeItem(k); } catch (e) {}
+    try {
+      document.cookie = `${k}=; max-age=0; path=/; SameSite=Lax`;
+    } catch (e) {}
+  }
+};
+
+/* ====== CEK AUTO-LOGIN SEGERA AGAR TIDAK BERKEDIP ====== */
+function showSite() {
+  $("loginPage").style.display = "none";
+  $("website").style.display = "block";
+  $("gName").value = store.get("rpl3_name") || "";
+}
+if (store.get("rpl3_login") === "1") {
+  showSite();
+}
+
+/* ====== YOUTUBE MUSIC (NON-STOP LOOP) ====== */
+let isPlaying = false, userInteracted = false;
 
 function ytCommand(func) {
   const frame = $("ytFrame");
@@ -297,37 +331,26 @@ function ytCommand(func) {
 }
 
 function playMusic() {
-  shouldPlay = true;
   isPlaying = true;
-  $("musicBtn").textContent = "⏸ Jeda Lagu";
+  $("musicBtn").textContent = "🔊 Musik Aktif";
   ytCommand("playVideo");
-}
-
-function pauseMusic() {
-  shouldPlay = false;
-  isPlaying = false;
-  $("musicBtn").textContent = "▶ Putar Lagu";
-  ytCommand("pauseVideo");
 }
 
 function toggleMusic() {
   userInteracted = true;
-  if (isPlaying) {
-    pauseMusic();
-  } else {
-    playMusic();
-  }
+  playMusic();
 }
 
-/* Deteksi jika video selesai diputar */
+/* Deteksi state YouTube: jika selesai (0) atau terjeda (2), paksa putar lagi */
 window.addEventListener("message", e => {
   if (!e.data || typeof e.data !== "string") return;
   try {
     const data = JSON.parse(e.data);
-    if (data.event === "infoDelivery" && data.info && data.info.playerState === 0) {
-      isPlaying = false;
-      shouldPlay = false;
-      $("musicBtn").textContent = "▶ Putar Ulang";
+    if (data.event === "infoDelivery" && data.info) {
+      const state = data.info.playerState;
+      if ((state === 0 || state === 2) && userInteracted) {
+        playMusic();
+      }
     }
   } catch (err) {}
 });
@@ -335,15 +358,14 @@ window.addEventListener("message", e => {
 /* Daftarkan listener state YouTube setelah iframe siap */
 $("ytFrame").addEventListener("load", () => {
   $("ytFrame").contentWindow.postMessage(JSON.stringify({ event: "listening" }), "*");
-  if (userInteracted && shouldPlay) playMusic();
+  if (userInteracted) playMusic();
 });
 
-/* Mulai musik otomatis saat interaksi pertama (termasuk di halaman login) */
-function triggerFirstAudio(e) {
+/* Mulai musik otomatis saat interaksi pertama di halaman */
+function triggerFirstAudio() {
   if (userInteracted) return;
-  if (e.target && e.target.id === "musicBtn") return;
   userInteracted = true;
-  if (shouldPlay && !isPlaying) playMusic();
+  playMusic();
 }
 ["click", "touchstart", "keydown"].forEach(evt => {
   document.addEventListener(evt, triggerFirstAudio, { once: true, passive: true });
@@ -354,16 +376,8 @@ const MALE = ["Alvian","Apis","Cristo","Dafa septian wibowo","Darbi","Dika","Dim
 const FEMALE = ["Bunga","Donela Natalia Salim","Feby","Jenia Fitria Amelia","Kirana","Latifah","Lusi","Oca","Septi"];
 const PHOTO_COUNT = 27;
 const USER = "RPL3", PASS = "RPL3";
-
-/* URL Google Apps Script terbaru kamu (berakhiran /exec) */
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbwN3AIDdTrv8SfRc5bPl3FRj0XmI9L-hfgs8GjsEO4LHzswTvL_H2zcY7WA1zIMcj6srA/exec";
 
-/* Storage aman */
-const store = {
-  get(s,k){try{return s.getItem(k)}catch(e){return null}},
-  set(s,k,v){try{s.setItem(k,v)}catch(e){}},
-  del(s,k){try{s.removeItem(k)}catch(e){}}
-};
 const esc = t => t.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 /* ====== SISWA ====== */
@@ -437,7 +451,7 @@ $("lightbox").addEventListener("touchend",e=>{
 
 /* ====== PESAN & KESAN ====== */
 let msgs=[];
-try{ msgs=JSON.parse(store.get(localStorage,"rpl3_msgs")||"[]"); }catch(e){ msgs=[]; }
+try{ msgs=JSON.parse(store.get("rpl3_msgs")||"[]"); }catch(e){ msgs=[]; }
 function renderMsgs(){
   $("msgList").innerHTML = msgs.length
     ? msgs.map((m,i)=>`<div class="msg"><button onclick="delMsg(${i})" aria-label="Hapus pesan">Hapus</button><strong>${esc(m.n)}</strong><small>${esc(m.d)}</small><p>${esc(m.t)}</p></div>`).join("")
@@ -447,21 +461,15 @@ function addMsg(){
   const n=$("gName").value.trim(), t=$("gMsg").value.trim();
   if(!n||!t){ alert("Isi nama dan pesan dulu ya."); return; }
   msgs.unshift({n,t,d:new Date().toLocaleDateString("id-ID",{day:"numeric",month:"short",year:"numeric"})});
-  store.set(localStorage,"rpl3_msgs",JSON.stringify(msgs.slice(0,100)));
+  store.set("rpl3_msgs",JSON.stringify(msgs.slice(0,100)));
   $("gMsg").value=""; renderMsgs();
 }
 function delMsg(i){
   if(!confirm("Hapus pesan ini?")) return;
-  msgs.splice(i,1); store.set(localStorage,"rpl3_msgs",JSON.stringify(msgs)); renderMsgs();
+  msgs.splice(i,1); store.set("rpl3_msgs",JSON.stringify(msgs)); renderMsgs();
 }
 
-/* ====== LOGIN & SHEET (AUTO-LOGIN PERMANEN) ====== */
-function showSite(){
-  $("loginPage").style.display="none"; 
-  $("website").style.display="block"; 
-  $("gName").value = store.get(localStorage,"rpl3_name") || "";
-  window.scrollTo(0,0);
-}
+/* ====== LOGIN & SHEET ====== */
 function showError(msg){
   const e=$("error"); e.textContent=msg; e.style.display="block";
   const b=$("loginBox"); b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake");
@@ -482,15 +490,16 @@ function login(){
   if(u!==USER || p!==PASS) return showError("Username atau password salah!");
   $("error").style.display="none";
   sendName(n);
-  store.set(localStorage,"rpl3_login","1"); 
-  store.set(localStorage,"rpl3_name",n);
+  store.set("rpl3_login","1");
+  store.set("rpl3_name",n);
   showSite();
-  if(!isPlaying && shouldPlay) playMusic();
+  window.scrollTo(0,0);
+  userInteracted = true;
+  playMusic();
 }
 function logout(){
-  pauseMusic();
-  store.del(localStorage,"rpl3_login"); 
-  store.del(localStorage,"rpl3_name");
+  store.del("rpl3_login");
+  store.del("rpl3_name");
   $("website").style.display="none"; $("loginPage").style.display="flex";
   $("fullname").value=""; $("username").value=""; $("password").value=""; $("error").style.display="none";
   window.scrollTo(0,0);
@@ -520,7 +529,6 @@ $("toTop").onclick=()=>window.scrollTo({top:0});
 
 /* ====== INIT ====== */
 renderStudents(); renderAlbum(); renderMsgs();
-if(store.get(localStorage,"rpl3_login")==="1") showSite();
 </script>
 </body>
 </html>

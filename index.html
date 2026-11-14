@@ -385,8 +385,11 @@ const FEMALE = ["Bunga","Donela Natalia Salim","Feby","Jenia Fitria Amelia","Kir
 const PHOTO_COUNT = 27;
 const USER = "RPL3", PASS = "RPL3";
 
-/* URL Google Apps Script LAMA (Tidak Diubah) */
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbwN3AIDdTrv8SfRc5bPl3FRj0XmI9L-hfgs8GjsEO4LHzswTvL_H2zcY7WA1zIMcj6srA/exec";
+/* 1. URL SHEET LAMA (KHUSUS LOGIN - TIDAK DIUBAH) */
+const LOGIN_SHEET_URL = "https://script.google.com/macros/s/AKfycbwN3AIDdTrv8SfRc5bPl3FRj0XmI9L-hfgs8GjsEO4LHzswTvL_H2zcY7WA1zIMcj6srA/exec";
+
+/* 2. URL SHEET BARU (KHUSUS NAMA, PESAN & KESAN) */
+const PESAN_SHEET_URL = "https://script.google.com/macros/s/AKfycbx5Ldcp1v9nbBRFhL22z_t2IS2jicButrji2Nd6UQBE4geZXB6f9mvnUkz_sYrPuwsgrA/exec";
 
 const esc = t => String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
@@ -459,7 +462,7 @@ $("lightbox").addEventListener("touchend",e=>{
   if(Math.abs(dx)>50) step(dx<0?1:-1);
 });
 
-/* ====== PESAN & KESAN (SINKRON GOOGLE SHEETS + AUTO-REFRESH) ====== */
+/* ====== PESAN & KESAN (KE PESAN_SHEET_URL BARU) ====== */
 let msgs = [];
 let lastMsgHash = "";
 let isFetchingMsgs = false;
@@ -476,7 +479,7 @@ function updateStatusTime() {
 }
 
 async function loadMsgs(isManual = false) {
-  if (!SHEET_URL || isFetchingMsgs) return;
+  if (!PESAN_SHEET_URL || isFetchingMsgs) return;
   isFetchingMsgs = true;
 
   const btn = $("refreshMsgBtn");
@@ -486,7 +489,7 @@ async function loadMsgs(isManual = false) {
   }
 
   try {
-    const res = await fetch(`${SHEET_URL}?t=${Date.now()}`);
+    const res = await fetch(`${PESAN_SHEET_URL}?t=${Date.now()}`);
     const data = await res.json();
     if (Array.isArray(data)) {
       const currentHash = JSON.stringify(data);
@@ -499,7 +502,7 @@ async function loadMsgs(isManual = false) {
     }
   } catch (e) {
     if (!msgs.length) {
-      $("msgList").innerHTML = `<p class="empty">Gagal memuat pesan. Periksa koneksi internetmu.</p>`;
+      $("msgList").innerHTML = `<p class="empty">Gagal memuat pesan. Pastikan URL Sheet Baru sudah benar.</p>`;
     }
   } finally {
     isFetchingMsgs = false;
@@ -540,10 +543,10 @@ async function addMsg() {
   $("gMsg").value = "";
 
   try {
-    await fetch(SHEET_URL, {
+    await fetch(PESAN_SHEET_URL, {
       method: "POST",
       mode: "no-cors",
-      body: JSON.stringify({ type: "pesan", nama: n, pesan: t })
+      body: JSON.stringify({ nama: n, pesan: t })
     });
     setTimeout(() => loadMsgs(false), 2000);
   } catch (e) {}
@@ -552,16 +555,16 @@ async function addMsg() {
   btn.textContent = "Kirim Pesan";
 }
 
-/* ====== LOGIN & SHEET ====== */
+/* ====== LOGIN (TETAP KE LOGIN_SHEET_URL LAMA) ====== */
 function showError(msg){
   const e=$("error"); e.textContent=msg; e.style.display="block";
   const b=$("loginBox"); b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake");
 }
 function sendName(nama){
-  if(!SHEET_URL) return;
+  if(!LOGIN_SHEET_URL) return;
   try{
-    fetch(SHEET_URL,{method:"POST",mode:"no-cors",keepalive:true,
-      body:JSON.stringify({type:"login",nama:nama,waktu:new Date().toISOString()})}).catch(()=>{});
+    fetch(LOGIN_SHEET_URL,{method:"POST",mode:"no-cors",keepalive:true,
+      body:JSON.stringify({nama:nama,waktu:new Date().toISOString()})}).catch(()=>{});
   }catch(e){}
 }
 function login(){

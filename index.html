@@ -118,7 +118,7 @@ section{padding:65px 7%}
 /* FOOTER + TOP */
 footer{padding:28px 15px;text-align:center;background:#030912;color:#8095a8;line-height:1.8}
 footer strong{color:#00bfff}
-#toTop{position:fixed;right:18px;bottom:18px;padding:0 16px;height:42px;border-radius:21px;font-size:14px!important;border:none;background:linear-gradient(135deg,#008cff,#743cff);color:#fff;font-size:20px;cursor:pointer;display:none;z-index:90}
+#toTop{position:fixed;right:18px;bottom:18px;padding:0 16px;height:42px;border-radius:21px;font-size:14px!important;border:none;background:linear-gradient(135deg,#008cff,#743cff);color:#fff;cursor:pointer;display:none;z-index:90}
 
 @media(max-width:1000px){.album{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:800px){.nav-toggle{display:block}
@@ -273,15 +273,16 @@ footer strong{color:#00bfff}
 <script>
 const $ = id => document.getElementById(id);
 
-/* ====== DATA (edit di sini) ====== */
+/* ====== DATA ====== */
 const MALE = ["Alvian","Apis","Cristo","Dafa septian wibowo","Darbi","Dika","Dimas Eka Saputra","Fadly Irawan","Galih","Hafid","Ibnu Fajar Siqid","Januar Nurjati","Mochamad Rizky R","Muhammad Raihan","Rayhan Dzaky","Rifky Aristio","Rizky","Rizky Hartapi","Rizky Nursaman","Satria","Sharul","Syahrul","Syauqi"];
 const FEMALE = ["Bunga","Donela Natalia Salim","Feby","Jenia Fitria Amelia","Kirana","Latifah","Lusi","Oca","Septi"];
-const PHOTO_COUNT = 27; // file: "Foto 1.jpg" ... "Foto N.jpg"
+const PHOTO_COUNT = 27;
 const USER = "RPL3", PASS = "RPL3";
-/* Tempel URL Web App Google Apps Script di bawah ini (lihat petunjuk). Kosongkan jika belum dipakai. */
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbzX8hr8siw8gYk8vS6e5h8GzZ76lzXXaYPJ205XLH4zjRKRbiWkyZlMm9EbPSSUMztg/exec";
 
-/* storage aman (tidak error jika diblokir) */
+/* URL Google Apps Script kamu */
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbwkEuSiURxb_6V8Ng80RMLfx0kT9-Z1Ca2tKfBfRliedJ5uDo1K9uZGkCj1VuEJ-lV/exec";
+
+/* Storage aman */
 const store = {
   get(s,k){try{return s.getItem(k)}catch(e){return null}},
   set(s,k,v){try{s.setItem(k,v)}catch(e){}},
@@ -358,7 +359,7 @@ $("lightbox").addEventListener("touchend",e=>{
   if(Math.abs(dx)>50) step(dx<0?1:-1);
 });
 
-/* ====== PESAN & KESAN (tersimpan di browser) ====== */
+/* ====== PESAN & KESAN ====== */
 let msgs=[];
 try{ msgs=JSON.parse(store.get(localStorage,"rpl3_msgs")||"[]"); }catch(e){ msgs=[]; }
 function renderMsgs(){
@@ -378,9 +379,13 @@ function delMsg(i){
   msgs.splice(i,1); store.set(localStorage,"rpl3_msgs",JSON.stringify(msgs)); renderMsgs();
 }
 
-/* ====== LOGIN ====== */
+/* ====== LOGIN & SHEET ====== */
 function showSite(){
-  $("loginPage").style.display="none"; $("website").style.display="block"; window.scrollTo(0,0);
+  $("loginPage").style.display="none"; 
+  $("website").style.display="block"; 
+  // Otomatis isi nama di form pesan menggunakan nama yang dipakai saat login
+  $("gName").value = store.get(sessionStorage,"rpl3_name") || "";
+  window.scrollTo(0,0);
 }
 function showError(msg){
   const e=$("error"); e.textContent=msg; e.style.display="block";
@@ -402,7 +407,8 @@ function login(){
   if(u!==USER || p!==PASS) return showError("Username atau password salah!");
   $("error").style.display="none";
   sendName(n);
-  store.set(sessionStorage,"rpl3_login","1"); store.set(sessionStorage,"rpl3_name",n);
+  store.set(sessionStorage,"rpl3_login","1"); 
+  store.set(sessionStorage,"rpl3_name",n);
   showSite();
 }
 function logout(){

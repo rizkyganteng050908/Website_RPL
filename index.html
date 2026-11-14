@@ -38,6 +38,7 @@ section>*{max-width:1200px;margin-left:auto;margin-right:auto}
 .nav-toggle{display:none;background:none;border:1px solid #1c4866;border-radius:8px;color:#fff;font-size:14px;padding:0 14px;height:40px;cursor:pointer}
 .nav-brand{display:flex;flex-direction:column;line-height:1.2}
 .nav-brand small{color:#8aa4ba;font-size:11px}
+
 /* NAV */
 #website{display:none}
 nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:15px 6%;background:#040e1bf2;border-bottom:1px solid #173a57}
@@ -115,10 +116,13 @@ section{padding:65px 7%}
 .msg button{float:right;background:none;border:none;color:#e63946;cursor:pointer}
 .empty{text-align:center;color:#91a8bd}
 
-/* FOOTER + TOP */
+/* FOOTER + TOP + MUSIC */
 footer{padding:28px 15px;text-align:center;background:#030912;color:#8095a8;line-height:1.8}
 footer strong{color:#00bfff}
 #toTop{position:fixed;right:18px;bottom:18px;padding:0 16px;height:42px;border-radius:21px;font-size:14px!important;border:none;background:linear-gradient(135deg,#008cff,#743cff);color:#fff;cursor:pointer;display:none;z-index:90}
+#musicBtn{position:fixed;left:18px;bottom:18px;padding:0 16px;height:42px;border-radius:21px;font-size:13px;font-weight:bold;border:1px solid #168cff;background:#081728e6;color:#58c9ff;cursor:pointer;z-index:90;display:flex;align-items:center;gap:6px;box-shadow:0 4px 15px #00000080}
+#musicBtn:hover{background:#0d2238}
+#ytPlayerWrap{position:fixed;top:-200px;left:-200px;width:100px;height:100px;pointer-events:none}
 
 @media(max-width:1000px){.album{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:800px){.nav-toggle{display:block}
@@ -257,8 +261,12 @@ footer strong{color:#00bfff}
     <p>SMK Wahidin Kota Cirebon</p>
     <p>Satu kelas • Banyak cerita • Selamanya menjadi kenangan</p>
   </footer>
+  <button id="musicBtn" onclick="toggleMusic()" aria-label="Kontrol musik latar">▶ Putar Lagu</button>
   <button id="toTop" aria-label="Kembali ke atas">Atas</button>
 </div>
+
+<!-- YOUTUBE AUDIO PLAYER -->
+<div id="ytPlayerWrap"><div id="ytPlayer"></div></div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
@@ -270,8 +278,74 @@ footer strong{color:#00bfff}
   <a id="downloadPhoto" class="download-photo" href="#" download>Download Foto</a>
 </div>
 
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
 const $ = id => document.getElementById(id);
+
+/* ====== YOUTUBE MUSIC ====== */
+let ytPlayer = null, ytReady = false, isPlaying = false, shouldPlay = false;
+
+function onYouTubeIframeAPIReady() {
+  ytPlayer = new YT.Player("ytPlayer", {
+    height: "100",
+    width: "100",
+    videoId: "jo-JkKpjmwY",
+    playerVars: {
+      autoplay: 0,
+      loop: 0,
+      controls: 0,
+      disablekb: 1,
+      playsinline: 1,
+      rel: 0
+    },
+    events: {
+      onReady: () => {
+        ytReady = true;
+        if (shouldPlay) playMusic();
+      },
+      onStateChange: e => {
+        if (e.data === YT.PlayerState.PLAYING) {
+          isPlaying = true;
+          $("musicBtn").textContent = "⏸ Jeda Lagu";
+        } else if (e.data === YT.PlayerState.PAUSED) {
+          isPlaying = false;
+          $("musicBtn").textContent = "▶ Putar Lagu";
+        } else if (e.data === YT.PlayerState.ENDED) {
+          isPlaying = false;
+          shouldPlay = false;
+          $("musicBtn").textContent = "▶ Putar Ulang";
+        }
+      }
+    }
+  });
+}
+
+function playMusic() {
+  shouldPlay = true;
+  if (ytReady && ytPlayer && ytPlayer.playVideo) {
+    ytPlayer.setVolume(70);
+    ytPlayer.playVideo();
+    isPlaying = true;
+    $("musicBtn").textContent = "⏸ Jeda Lagu";
+  }
+}
+
+function pauseMusic() {
+  shouldPlay = false;
+  isPlaying = false;
+  $("musicBtn").textContent = "▶ Putar Lagu";
+  if (ytReady && ytPlayer && ytPlayer.pauseVideo) {
+    ytPlayer.pauseVideo();
+  }
+}
+
+function toggleMusic() {
+  if (isPlaying) {
+    pauseMusic();
+  } else {
+    playMusic();
+  }
+}
 
 /* ====== DATA ====== */
 const MALE = ["Alvian","Apis","Cristo","Dafa septian wibowo","Darbi","Dika","Dimas Eka Saputra","Fadly Irawan","Galih","Hafid","Ibnu Fajar Siqid","Januar Nurjati","Mochamad Rizky R","Muhammad Raihan","Rayhan Dzaky","Rifky Aristio","Rizky","Rizky Hartapi","Rizky Nursaman","Satria","Sharul","Syahrul","Syauqi"];
@@ -409,8 +483,10 @@ function login(){
   store.set(sessionStorage,"rpl3_login","1"); 
   store.set(sessionStorage,"rpl3_name",n);
   showSite();
+  playMusic();
 }
 function logout(){
+  pauseMusic();
   store.del(sessionStorage,"rpl3_login"); store.del(sessionStorage,"rpl3_name");
   $("website").style.display="none"; $("loginPage").style.display="flex";
   $("fullname").value=""; $("username").value=""; $("password").value=""; $("error").style.display="none";

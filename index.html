@@ -382,7 +382,39 @@ function triggerFirstAudio() {
 /* ====== DATA ====== */
 const MALE = ["Alvian","Apis","Cristo","Dafa septian wibowo","Darbi","Dika","Dimas Eka Saputra","Fadly Irawan","Galih","Hafid","Ibnu Fajar Siqid","Januar Nurjati","Mochamad Rizky R","Muhammad Raihan","Rayhan Dzaky","Rifky Aristio","Rizky","Rizky Hartapi","Rizky Nursaman","Satria","Sharul","Syahrul","Syauqi"];
 const FEMALE = ["Bunga","Donela Natalia Salim","Feby","Jeni","Kirana","Latifah","Lusi","Oca","Septi"];
-const PHOTO_COUNT = 27;
+const PHOTO_URLS = [
+  "https://files.catbox.moe/mab1xi.jpeg",
+  "https://files.catbox.moe/fwjfo5.jpeg",
+  "https://files.catbox.moe/n0ykdu.jpeg",
+  "https://files.catbox.moe/tc0p7m.jpeg",
+  "https://files.catbox.moe/q4izyn.jpeg",
+  "https://files.catbox.moe/i7c4gw.jpeg",
+  "https://files.catbox.moe/h05low.jpeg",
+  "https://files.catbox.moe/ajue25.jpeg",
+  "https://files.catbox.moe/oxyba5.jpeg",
+  "https://files.catbox.moe/411mf3.jpeg",
+  "https://files.catbox.moe/wmgrx4.jpeg",
+  "https://files.catbox.moe/cmtd0s.jpeg",
+  "https://files.catbox.moe/opd4rk.jpeg",
+  "https://files.catbox.moe/9sca7f.jpeg",
+  "https://files.catbox.moe/yj5vjk.jpeg",
+  "https://files.catbox.moe/0msmwq.jpeg",
+  "https://files.catbox.moe/3bdus1.jpeg",
+  "https://files.catbox.moe/csjopm.jpeg",
+  "https://files.catbox.moe/9y846g.jpeg",
+  "https://files.catbox.moe/kn7nu6.jpeg",
+  "https://files.catbox.moe/qvonb1.jpeg",
+  "https://files.catbox.moe/6mysjf.jpeg",
+  "https://files.catbox.moe/qy0xos.jpeg",
+  "https://files.catbox.moe/ofql5l.jpg",
+  "https://files.catbox.moe/k8kw9d.jpg",
+  "https://files.catbox.moe/78p5zw.jpg",
+  "https://files.catbox.moe/4d4p41.jpg",
+  "https://files.catbox.moe/9vox0m.jpg",
+  "https://files.catbox.moe/vlskta.jpg",
+  "https://files.catbox.moe/9lzmai.jpg",
+  "https://files.catbox.moe/texvt0.jpg"
+];
 const USER = "RPL3", PASS = "RPL3";
 
 /* 1. URL SHEET LAMA (KHUSUS LOGIN - TIDAK DIUBAH) */
@@ -414,12 +446,10 @@ $("search").addEventListener("input",e=>{
 /* ====== ALBUM ====== */
 const photos=[];
 function renderAlbum(){
-  let html="";
-  for(let i=1;i<=PHOTO_COUNT;i++){
-    html+=`<button class="photo" data-i="${i-1}" aria-label="Buka foto ${i}"><img src="Foto ${i}.jpg" alt="Foto Kenangan ${i}" loading="lazy"></button>`;
-  }
-  $("albumGrid").innerHTML=html;
-  $("hPhotos").textContent=PHOTO_COUNT;
+  $("albumGrid").innerHTML = PHOTO_URLS.map((url, i) =>
+    `<button class="photo" data-i="${i}" aria-label="Buka foto ${i+1}"><img src="${url}" alt="Foto Kenangan ${i+1}" loading="lazy"></button>`
+  ).join("");
+  $("hPhotos").textContent=PHOTO_URLS.length;
   document.querySelectorAll(".photo").forEach(b=>{
     const img=b.querySelector("img");
     photos.push(img);
@@ -437,9 +467,10 @@ function openPhoto(i){
 function showPhoto(){
   const list=visibleList(); if(!list.length) return;
   cur=(cur+list.length)%list.length;
-  const img=list[cur], name=img.getAttribute("src");
+  const img=list[cur];
+  const fileName=img.src.split("/").pop() || `Foto-Kenangan-${cur+1}.jpg`;
   $("lightboxImg").src=img.src; $("lightboxImg").alt=img.alt;
-  $("downloadPhoto").href=img.src; $("downloadPhoto").setAttribute("download",name);
+  $("downloadPhoto").href=img.src; $("downloadPhoto").setAttribute("download",fileName);
   $("counter").textContent=(cur+1)+" / "+list.length;
 }
 function closePhoto(){ $("lightbox").style.display="none"; }

@@ -102,7 +102,8 @@ section{padding:65px 7%}
 .nav-photo{top:50%;transform:translateY(-50%);height:42px;padding:0 16px;border-radius:21px;font-size:14px}
 #prevBtn{left:12px}#nextBtn{right:12px}
 .counter{position:absolute;top:22px;left:50%;transform:translateX(-50%);color:#b7c8d8;font-size:14px}
-.download-photo{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);padding:13px 20px;border-radius:9px;background:linear-gradient(90deg,#008cff,#743cff);color:#fff;text-decoration:none;font-weight:bold;white-space:nowrap}
+.download-photo{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);padding:13px 20px;border:none;border-radius:9px;background:linear-gradient(90deg,#008cff,#743cff);color:#fff;font-size:14px;font-weight:bold;white-space:nowrap;cursor:pointer}
+.download-photo:disabled{opacity:.65;cursor:wait}
 
 /* PESAN & KESAN */
 .guest-form{max-width:560px;margin:0 auto 24px;display:grid;gap:10px}
@@ -289,7 +290,7 @@ footer strong{color:#00bfff}
   <div class="counter" id="counter"></div>
   <img id="lightboxImg" src="" alt="Foto Kenangan">
   <button class="lb-btn nav-photo" id="nextBtn" aria-label="Foto berikutnya">Lanjut</button>
-  <a id="downloadPhoto" class="download-photo" href="#" download>Download Foto</a>
+  <button type="button" id="downloadPhoto" class="download-photo">Download Foto</button>
 </div>
 
 <script>
@@ -458,8 +459,8 @@ function renderAlbum(){
   });
 }
 
-/* ====== LIGHTBOX ====== */
-let cur=0;
+/* ====== LIGHTBOX & DIRECT BLOB DOWNLOAD ====== */
+let cur=0, currentPhotoUrl="", currentFileName="";
 function visibleList(){return photos.filter(p=>p.parentElement.style.display!=="none")}
 function openPhoto(i){
   const list=visibleList(); cur=list.indexOf(photos[i]); showPhoto(); $("lightbox").style.display="flex";
@@ -468,17 +469,43 @@ function showPhoto(){
   const list=visibleList(); if(!list.length) return;
   cur=(cur+list.length)%list.length;
   const img=list[cur];
-  const fileName=img.src.split("/").pop() || `Foto-Kenangan-${cur+1}.jpg`;
-  $("lightboxImg").src=img.src; $("lightboxImg").alt=img.alt;
-  $("downloadPhoto").href=img.src; $("downloadPhoto").setAttribute("download",fileName);
+  currentPhotoUrl=img.src;
+  currentFileName=img.src.split("/").pop().split("?")[0] || `Foto-Kenangan-RPL3-${cur+1}.jpg`;
+  $("lightboxImg").src=currentPhotoUrl;
+  $("lightboxImg").alt=img.alt;
   $("counter").textContent=(cur+1)+" / "+list.length;
+}
+async function downloadCurrentPhoto(e){
+  e.stopPropagation();
+  if(!currentPhotoUrl) return;
+  const btn=$("downloadPhoto");
+  btn.disabled=true;
+  btn.textContent="Mengunduh...";
+  try{
+    const res=await fetch(currentPhotoUrl,{mode:"cors"});
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const blob=await res.blob();
+    const blobUrl=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=blobUrl;
+    a.download=currentFileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(blobUrl),1000);
+  }catch(err){
+    window.open(currentPhotoUrl,"_blank","noopener");
+  }finally{
+    btn.disabled=false;
+    btn.textContent="Download Foto";
+  }
 }
 function closePhoto(){ $("lightbox").style.display="none"; }
 function step(d){ cur+=d; showPhoto(); }
 $("closeBtn").onclick=closePhoto;
 $("prevBtn").onclick=e=>{e.stopPropagation();step(-1)};
 $("nextBtn").onclick=e=>{e.stopPropagation();step(1)};
-$("downloadPhoto").onclick=e=>e.stopPropagation();
+$("downloadPhoto").onclick=downloadCurrentPhoto;
 $("lightbox").addEventListener("click",e=>{ if(e.target.id==="lightbox") closePhoto(); });
 document.addEventListener("keydown",e=>{
   if($("lightbox").style.display!=="flex") return;

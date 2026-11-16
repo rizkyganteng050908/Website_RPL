@@ -88,9 +88,31 @@ section{padding:65px 6%}
 .search:focus{border-color:#00aaff}
 .gender-title{margin:28px 0 14px;color:#63caff;font-size:18px}
 .student-list{display:flex;flex-wrap:wrap;gap:10px}
-.student{padding:10px 14px;border-radius:9px;background:#0d2135;border:1px solid #1c415c;color:#d9e9f6;font-size:14px}
+.student{padding:10px 15px;border-radius:9px;background:#0d2135;border:1px solid #1c415c;color:#d9e9f6;font-size:14px;cursor:pointer;transition:.2s;text-align:left;display:inline-flex;align-items:center;gap:6px}
+.student:hover{background:#14314e;border-color:#00c6ff;color:#fff;transform:translateY(-2px)}
+.student:active{transform:scale(.97)}
+.student.has-work{border-color:#2b6cb0}
+.student .work-dot{width:7px;height:7px;border-radius:50%;background:#00c6ff;display:inline-block}
 .student.hide{display:none}
 #noResult{display:none;text-align:center;margin-top:25px;color:#91a8bd;font-size:15px}
+
+/* MODAL HOBI & KARYA SISWA */
+.hobby-modal{display:none;position:fixed;z-index:9998;inset:0;padding:18px;background:#000000d9;backdrop-filter:blur(4px);align-items:center;justify-content:center;overflow-y:auto}
+.hobby-card{width:100%;max-width:460px;max-height:90vh;overflow-y:auto;padding:26px 20px;background:linear-gradient(145deg,#0d2238,#071522);border:1px solid #168cff;border-radius:18px;box-shadow:0 12px 35px #000000b3;text-align:center;position:relative;animation:popIn .2s ease-out}
+@keyframes popIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.hobby-badge{display:inline-block;padding:5px 12px;border-radius:20px;background:#081728;border:1px solid #1c4866;color:#58c9ff;font-size:12px;margin-bottom:10px}
+.hobby-card h3{font-size:22px;color:#fff;margin-bottom:14px}
+.hobby-box{padding:15px;border-radius:12px;background:#07111f;border:1px solid #1b4667;margin-bottom:18px}
+.hobby-box span{display:block;font-size:12px;color:#8aa4ba;margin-bottom:6px;text-transform:uppercase;letter-spacing:.6px}
+.hobby-box p{font-size:16px;color:#51c8ff;font-weight:bold;line-height:1.5}
+.hobby-works{display:none;margin-bottom:18px;text-align:left}
+.hobby-works-title{font-size:12px;color:#8aa4ba;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;text-align:center}
+.hobby-works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.hobby-work-item{position:relative;aspect-ratio:1/1;border-radius:10px;overflow:hidden;border:1px solid #1c4866;background:#07111f;padding:0;cursor:pointer}
+.hobby-work-item img{width:100%;height:100%;object-fit:cover;display:block;transition:.25s}
+.hobby-work-item:hover img{transform:scale(1.06)}
+.hobby-work-hint{display:block;text-align:center;font-size:11px;color:#8aa4ba;margin-top:8px}
+.hobby-close{width:100%;padding:12px;border:none;border-radius:9px;background:linear-gradient(90deg,#008cff,#743cff);color:#fff;font-size:14px;font-weight:bold;cursor:pointer}
 
 /* ALBUM */
 .album{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
@@ -259,7 +281,7 @@ footer strong{color:#00bfff}
   <section id="siswa" class="student-section">
     <div class="section-title">
       <h2>Nama-Nama Siswa</h2>
-      <p>Keluarga besar RPL 3</p>
+      <p>Klik nama siswa untuk melihat hobi &amp; karya masing-masing</p>
     </div>
     <div class="student-stats">
       <div class="stat-box"><div class="count" id="countMale">0</div><div class="label">Laki-Laki</div></div>
@@ -307,6 +329,24 @@ footer strong{color:#00bfff}
     <p>Satu kelas • Banyak cerita • Selamanya menjadi kenangan</p>
   </footer>
   <button id="toTop" aria-label="Kembali ke atas">Atas ↑</button>
+</div>
+
+<!-- MODAL HOBI & KARYA SISWA -->
+<div class="hobby-modal" id="hobbyModal" role="dialog" aria-modal="true" aria-labelledby="hobbyStudentName">
+  <div class="hobby-card">
+    <div class="hobby-badge" id="hobbyGender">Siswa RPL 3</div>
+    <h3 id="hobbyStudentName">Nama Siswa</h3>
+    <div class="hobby-box">
+      <span>Hobi</span>
+      <p id="hobbyText">Hobi siswa</p>
+    </div>
+    <div class="hobby-works" id="hobbyWorksBox">
+      <div class="hobby-works-title">Hasil Karya</div>
+      <div class="hobby-works-grid" id="hobbyWorksGrid"></div>
+      <span class="hobby-work-hint">Klik foto karya untuk memperbesar</span>
+    </div>
+    <button type="button" class="hobby-close" id="closeHobbyBtn">Tutup</button>
+  </div>
 </div>
 
 <!-- GLOBAL MUSIC BUTTON & YOUTUBE IFRAME (LOOP NON-STOP) -->
@@ -413,9 +453,53 @@ function triggerFirstAudio() {
   document.addEventListener(evt, triggerFirstAudio, { once: true, passive: true });
 });
 
-/* ====== DATA ====== */
-const MALE = ["Alvian","Apis","Cristo","Dafa septian wibowo","Darbi","Dika","Dimas Eka Saputra","Fadly Irawan","Galih","Hafid","Ibnu Fajar Siqid","Januar Nurjati","Mochamad Rizky R","Muhammad Raihan","Rayhan Dzaky","Rifky Aristio","Rizky","Rizky Hartapi","Rizky Nursaman","Satria","Sharul","Syahrul","Syauqi"];
-const FEMALE = ["Bunga","Donela Natalia Salim","Feby","Jeni","Kirana","Latifah","Lusi","Oca","Septi"];
+/* ====== DATA SISWA, HOBI & KARYA MASING-MASING ====== */
+/* Tambahkan array karya: ["url1", "url2"] pada siswa yang memiliki foto karya */
+const MALE_STUDENTS = [
+  { nama: "Alvian", hobi: "Bermain game & olahraga" },
+  {
+    nama: "Apis",
+    hobi: "Menggambar",
+    karya: [
+      "https://files.catbox.moe/pymnsy.jpeg",
+      "https://files.catbox.moe/23k8su.jpeg"
+    ]
+  },
+  { nama: "Cristo", hobi: "Mendengarkan musik & bermain game" },
+  { nama: "Dafa septian wibowo", hobi: "Sepak bola & otomotif" },
+  { nama: "Darbi", hobi: "Bermain game online & jalan-jalan" },
+  { nama: "Dika", hobi: "Olahraga & menonton film" },
+  { nama: "Dimas Eka Saputra", hobi: "Gaming & desain grafis" },
+  { nama: "Fadly Irawan", hobi: "Futsal & bermain musik" },
+  { nama: "Galih", hobi: "Bermain game & ngoding" },
+  { nama: "Hafid", hobi: "Olahraga & otomotif" },
+  { nama: "Ibnu Fajar Siqid", hobi: "Menonton anime & gaming" },
+  { nama: "Januar Nurjati", hobi: "Fotografi & jalan-jalan" },
+  { nama: "Mochamad Rizky R", hobi: "Coding, desain UI/UX & gaming" },
+  { nama: "Muhammad Raihan", hobi: "Bermain game & mendengarkan musik" },
+  { nama: "Rayhan Dzaky", hobi: "Futsal & bermain game" },
+  { nama: "Rifky Aristio", hobi: "Otomotif & nongkrong" },
+  { nama: "Rizky", hobi: "Bermain game & olahraga" },
+  { nama: "Rizky Hartapi", hobi: "Musik & gaming" },
+  { nama: "Rizky Nursaman", hobi: "Olahraga & menonton film" },
+  { nama: "Satria", hobi: "Gaming & teknologi" },
+  { nama: "Sharul", hobi: "Futsal & mendengarkan musik" },
+  { nama: "Syahrul", hobi: "Bermain game & jalan-jalan" },
+  { nama: "Syauqi", hobi: "Ngoding & bermain game" }
+];
+
+const FEMALE_STUDENTS = [
+  { nama: "Bunga", hobi: "Mendengarkan musik & membaca novel" },
+  { nama: "Donela Natalia Salim", hobi: "Menonton film & kulineran" },
+  { nama: "Feby", hobi: "Fotografi & mendengarkan musik" },
+  { nama: "Jeni", hobi: "Membaca & menggambar" },
+  { nama: "Kirana", hobi: "Menonton drama & jalan-jalan" },
+  { nama: "Latifah", hobi: "Memasak & membaca" },
+  { nama: "Lusi", hobi: "Mendengarkan musik & kulineran" },
+  { nama: "Oca", hobi: "Menari & fotografi" },
+  { nama: "Septi", hobi: "Membaca cerita & menonton film" }
+];
+
 const PHOTO_URLS = [
   "https://files.catbox.moe/mab1xi.jpeg",
   "https://files.catbox.moe/fwjfo5.jpeg",
@@ -462,15 +546,79 @@ const PESAN_SHEET_URL = "https://script.google.com/macros/s/AKfycbx5Ldcp1v9nbBRF
 
 const esc = t => String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
-/* ====== SISWA ====== */
+/* ====== SISWA & POPUP HOBI + KARYA ====== */
+function openHobby(student, gender) {
+  $("hobbyGender").textContent = gender;
+  $("hobbyStudentName").textContent = student.nama;
+  $("hobbyText").textContent = student.hobi;
+
+  const worksBox = $("hobbyWorksBox");
+  const worksGrid = $("hobbyWorksGrid");
+
+  if (Array.isArray(student.karya) && student.karya.length > 0) {
+    worksGrid.innerHTML = student.karya.map((url, idx) =>
+      `<button type="button" class="hobby-work-item" data-widx="${idx}" aria-label="Lihat karya ${esc(student.nama)} ke-${idx + 1}">
+        <img src="${esc(url)}" alt="Karya ${esc(student.nama)} ${idx + 1}" loading="lazy">
+      </button>`
+    ).join("");
+
+    worksGrid.querySelectorAll(".hobby-work-item").forEach(item => {
+      item.addEventListener("click", () => {
+        const wIdx = +item.dataset.widx;
+        const gallery = student.karya.map((u, i) => ({
+          src: u,
+          alt: `Karya ${student.nama} (${i + 1})`
+        }));
+        openCustomGallery(gallery, wIdx);
+      });
+    });
+
+    worksBox.style.display = "block";
+  } else {
+    worksGrid.innerHTML = "";
+    worksBox.style.display = "none";
+  }
+
+  $("hobbyModal").style.display = "flex";
+}
+
+function closeHobby() {
+  $("hobbyModal").style.display = "none";
+}
+
+$("closeHobbyBtn").onclick = closeHobby;
+$("hobbyModal").addEventListener("click", e => {
+  if (e.target.id === "hobbyModal") closeHobby();
+});
+
 function renderStudents(){
-  $("maleList").innerHTML = MALE.map(n=>`<div class="student">${esc(n)}</div>`).join("");
-  $("femaleList").innerHTML = FEMALE.map(n=>`<div class="student">${esc(n)}</div>`).join("");
-  const m=MALE.length,f=FEMALE.length;
+  $("maleList").innerHTML = MALE_STUDENTS.map((s, idx) => {
+    const hasWork = Array.isArray(s.karya) && s.karya.length > 0;
+    return `<button type="button" class="student${hasWork ? " has-work" : ""}" data-gender="male" data-idx="${idx}">${esc(s.nama)}${hasWork ? '<span class="work-dot" title="Punya foto karya"></span>' : ""}</button>`;
+  }).join("");
+
+  $("femaleList").innerHTML = FEMALE_STUDENTS.map((s, idx) => {
+    const hasWork = Array.isArray(s.karya) && s.karya.length > 0;
+    return `<button type="button" class="student${hasWork ? " has-work" : ""}" data-gender="female" data-idx="${idx}">${esc(s.nama)}${hasWork ? '<span class="work-dot" title="Punya foto karya"></span>' : ""}</button>`;
+  }).join("");
+
+  document.querySelectorAll(".student").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const idx = +btn.dataset.idx;
+      if (btn.dataset.gender === "male") {
+        openHobby(MALE_STUDENTS[idx], "Siswa Laki-Laki • RPL 3");
+      } else {
+        openHobby(FEMALE_STUDENTS[idx], "Siswa Perempuan • RPL 3");
+      }
+    });
+  });
+
+  const m = MALE_STUDENTS.length, f = FEMALE_STUDENTS.length;
   $("countMale").textContent=m; $("countFemale").textContent=f; $("countTotal").textContent=m+f;
   $("titleMaleCount").textContent=m; $("titleFemaleCount").textContent=f;
   $("hStudents").textContent=m+f;
 }
+
 $("search").addEventListener("input",e=>{
   const q=e.target.value.trim().toLowerCase(); let shown=0;
   document.querySelectorAll(".student").forEach(el=>{
@@ -495,22 +643,40 @@ function renderAlbum(){
   });
 }
 
-/* ====== LIGHTBOX & DIRECT BLOB DOWNLOAD ====== */
-let cur=0, currentPhotoUrl="", currentFileName="";
-function visibleList(){return photos.filter(p=>p.parentElement.style.display!=="none")}
-function openPhoto(i){
-  const list=visibleList(); cur=list.indexOf(photos[i]); showPhoto(); $("lightbox").style.display="flex";
+/* ====== LIGHTBOX & DIRECT BLOB DOWNLOAD (ALBUM + KARYA) ====== */
+let cur=0, currentPhotoUrl="", currentFileName="", activeGallery=null;
+
+function getGalleryList(){
+  if(activeGallery) return activeGallery;
+  return photos.filter(p=>p.parentElement.style.display!=="none").map(p=>({src:p.src,alt:p.alt}));
 }
+
+function openPhoto(i){
+  activeGallery=null;
+  const visibleImgs=photos.filter(p=>p.parentElement.style.display!=="none");
+  cur=visibleImgs.indexOf(photos[i]);
+  showPhoto();
+  $("lightbox").style.display="flex";
+}
+
+function openCustomGallery(items, startIndex=0){
+  activeGallery=items;
+  cur=startIndex;
+  showPhoto();
+  $("lightbox").style.display="flex";
+}
+
 function showPhoto(){
-  const list=visibleList(); if(!list.length) return;
+  const list=getGalleryList(); if(!list.length) return;
   cur=(cur+list.length)%list.length;
-  const img=list[cur];
-  currentPhotoUrl=img.src;
-  currentFileName=img.src.split("/").pop().split("?")[0] || `Foto-Kenangan-RPL3-${cur+1}.jpg`;
+  const item=list[cur];
+  currentPhotoUrl=item.src;
+  currentFileName=item.src.split("/").pop().split("?")[0] || `Foto-Kenangan-RPL3-${cur+1}.jpg`;
   $("lightboxImg").src=currentPhotoUrl;
-  $("lightboxImg").alt=img.alt;
+  $("lightboxImg").alt=item.alt;
   $("counter").textContent=(cur+1)+" / "+list.length;
 }
+
 async function downloadCurrentPhoto(e){
   e.stopPropagation();
   if(!currentPhotoUrl) return;
@@ -536,7 +702,8 @@ async function downloadCurrentPhoto(e){
     btn.textContent="Download Foto";
   }
 }
-function closePhoto(){ $("lightbox").style.display="none"; }
+
+function closePhoto(){ $("lightbox").style.display="none"; activeGallery=null; }
 function step(d){ cur+=d; showPhoto(); }
 $("closeBtn").onclick=closePhoto;
 $("prevBtn").onclick=e=>{e.stopPropagation();step(-1)};
@@ -544,10 +711,13 @@ $("nextBtn").onclick=e=>{e.stopPropagation();step(1)};
 $("downloadPhoto").onclick=downloadCurrentPhoto;
 $("lightbox").addEventListener("click",e=>{ if(e.target.id==="lightbox") closePhoto(); });
 document.addEventListener("keydown",e=>{
-  if($("lightbox").style.display!=="flex") return;
-  if(e.key==="Escape") closePhoto();
-  if(e.key==="ArrowLeft") step(-1);
-  if(e.key==="ArrowRight") step(1);
+  if($("lightbox").style.display==="flex"){
+    if(e.key==="Escape") return closePhoto();
+    if(e.key==="ArrowLeft") return step(-1);
+    if(e.key==="ArrowRight") return step(1);
+    return;
+  }
+  if(e.key==="Escape" && $("hobbyModal").style.display==="flex") closeHobby();
 });
 let sx=0;
 $("lightbox").addEventListener("touchstart",e=>{sx=e.changedTouches[0].clientX},{passive:true});

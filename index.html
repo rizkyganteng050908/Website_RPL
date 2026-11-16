@@ -88,11 +88,11 @@ section{padding:65px 6%}
 .search:focus{border-color:#00aaff}
 .gender-title{margin:28px 0 14px;color:#63caff;font-size:18px}
 .student-list{display:flex;flex-wrap:wrap;gap:10px}
-.student{padding:10px 15px;border-radius:9px;background:#0d2135;border:1px solid #1c415c;color:#d9e9f6;font-size:14px;cursor:pointer;transition:.2s;text-align:left;display:inline-flex;align-items:center;gap:6px}
-.student:hover{background:#14314e;border-color:#00c6ff;color:#fff;transform:translateY(-2px)}
-.student:active{transform:scale(.97)}
-.student.has-work{border-color:#2b6cb0}
-.student .work-dot{width:7px;height:7px;border-radius:50%;background:#00c6ff;display:inline-block}
+.student{padding:10px 15px;border-radius:9px;background:#0d2135;border:1px solid #1c415c;color:#d9e9f6;font-size:14px;text-align:left;display:inline-flex;align-items:center;gap:6px}
+.student.clickable{cursor:pointer;border-color:#266394;transition:.2s}
+.student.clickable:hover{background:#14314e;border-color:#00c6ff;color:#fff;transform:translateY(-2px)}
+.student.clickable:active{transform:scale(.97)}
+.student .hobby-dot{width:7px;height:7px;border-radius:50%;background:#00c6ff;display:inline-block}
 .student.hide{display:none}
 #noResult{display:none;text-align:center;margin-top:25px;color:#91a8bd;font-size:15px}
 
@@ -282,7 +282,7 @@ footer strong{color:#00bfff}
   <section id="siswa" class="student-section">
     <div class="section-title">
       <h2>Nama-Nama Siswa</h2>
-      <p>Klik nama siswa untuk melihat hobi &amp; karya masing-masing</p>
+      <p>Klik nama yang bertanda titik biru untuk melihat hobi &amp; karya</p>
     </div>
     <div class="student-stats">
       <div class="stat-box"><div class="count" id="countMale">0</div><div class="label">Laki-Laki</div></div>
@@ -454,10 +454,9 @@ function triggerFirstAudio() {
   document.addEventListener(evt, triggerFirstAudio, { once: true, passive: true });
 });
 
-/* ====== DATA SISWA, HOBI & KARYA MASING-MASING ====== */
-/* Tambahkan array karya: ["url1", "url2"] pada siswa yang memiliki foto karya */
+/* ====== DATA SISWA ====== */
 const MALE_STUDENTS = [
-  { nama: "Alvian", hobi: "Bermain game & olahraga" },
+  { nama: "Alvian" },
   {
     nama: "Apis",
     hobi: "Menggambar",
@@ -467,15 +466,15 @@ const MALE_STUDENTS = [
     ]
   },
   { nama: "Cristo", hobi: "Main Game" },
-  { nama: "Dafa septian wibowo", hobi: "Sepak bola & otomotif" },
-  { nama: "Darbi", hobi: "Bermain game online & jalan-jalan" },
+  { nama: "Dafa septian wibowo" },
+  { nama: "Darbi" },
   { nama: "Dika", hobi: "Pelawak" },
-  { nama: "Dimas Eka Saputra", hobi: "Gaming & desain grafis" },
-  { nama: "Fadly Irawan", hobi: "Futsal & bermain musik" },
+  { nama: "Dimas Eka Saputra" },
+  { nama: "Fadly Irawan" },
   { nama: "Galih", hobi: "Bikin Velocity SM JJ" },
-  { nama: "Hafid", hobi: "Olahraga & otomotif" },
-  { nama: "Ibnu Fajar Siqid", hobi: "Menonton anime & gaming" },
-  { nama: "Januar Nurjati", hobi: "Fotografi & jalan-jalan" },
+  { nama: "Hafid" },
+  { nama: "Ibnu Fajar Siqid" },
+  { nama: "Januar Nurjati" },
   {
     nama: "Mochamad Rizky R",
     hobi: "Membuat Portofolio, Website dan juga APK",
@@ -485,28 +484,28 @@ const MALE_STUDENTS = [
       "https://files.catbox.moe/b0oamh.png"
     ]
   },
-  { nama: "Muhammad Raihan", hobi: "Bermain game & mendengarkan musik" },
-  { nama: "Rayhan Dzaky", hobi: "Futsal & bermain game" },
-  { nama: "Rifky Aristio", hobi: "Otomotif & nongkrong" },
-  { nama: "Rizky", hobi: "Bermain game & olahraga" },
-  { nama: "Rizky Hartapi", hobi: "Musik & gaming" },
-  { nama: "Rizky Nursaman", hobi: "Olahraga & menonton film" },
+  { nama: "Muhammad Raihan" },
+  { nama: "Rayhan Dzaky" },
+  { nama: "Rifky Aristio" },
+  { nama: "Rizky" },
+  { nama: "Rizky Hartapi" },
+  { nama: "Rizky Nursaman" },
   { nama: "Satria", hobi: "Bermain Bola" },
-  { nama: "Sharul", hobi: "Futsal & mendengarkan musik" },
-  { nama: "Syahrul", hobi: "Bermain game & jalan-jalan" },
-  { nama: "Syauqi", hobi: "Ngoding & bermain game" }
+  { nama: "Sharul" },
+  { nama: "Syahrul" },
+  { nama: "Syauqi" }
 ];
 
 const FEMALE_STUDENTS = [
-  { nama: "Bunga", hobi: "Mendengarkan musik & membaca novel" },
-  { nama: "Donela Natalia Salim", hobi: "Menonton film & kulineran" },
-  { nama: "Feby", hobi: "Fotografi & mendengarkan musik" },
-  { nama: "Jeni", hobi: "Membaca & menggambar" },
-  { nama: "Kirana", hobi: "Menonton drama & jalan-jalan" },
-  { nama: "Latifah", hobi: "Memasak & membaca" },
-  { nama: "Lusi", hobi: "Mendengarkan musik & kulineran" },
-  { nama: "Oca", hobi: "Menari & fotografi" },
-  { nama: "Septi", hobi: "Membaca cerita & menonton film" }
+  { nama: "Bunga" },
+  { nama: "Donela Natalia Salim" },
+  { nama: "Feby" },
+  { nama: "Jeni" },
+  { nama: "Kirana" },
+  { nama: "Latifah" },
+  { nama: "Lusi" },
+  { nama: "Oca" },
+  { nama: "Septi" }
 ];
 
 const PHOTO_URLS = [
@@ -557,6 +556,7 @@ const esc = t => String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 
 /* ====== SISWA & POPUP HOBI + KARYA ====== */
 function openHobby(student, gender) {
+  if (!student || !student.hobi) return;
   $("hobbyGender").textContent = gender;
   $("hobbyStudentName").textContent = student.nama;
   $("hobbyText").textContent = student.hobi;
@@ -603,17 +603,17 @@ $("hobbyModal").addEventListener("click", e => {
 });
 
 function renderStudents(){
-  $("maleList").innerHTML = MALE_STUDENTS.map((s, idx) => {
-    const hasWork = Array.isArray(s.karya) && s.karya.length > 0;
-    return `<button type="button" class="student${hasWork ? " has-work" : ""}" data-gender="male" data-idx="${idx}">${esc(s.nama)}${hasWork ? '<span class="work-dot" title="Punya foto karya"></span>' : ""}</button>`;
-  }).join("");
+  const renderItem = (s, gender, idx) => {
+    if (s.hobi) {
+      return `<button type="button" class="student clickable" data-gender="${gender}" data-idx="${idx}">${esc(s.nama)}<span class="hobby-dot" title="Klik untuk melihat hobi"></span></button>`;
+    }
+    return `<div class="student">${esc(s.nama)}</div>`;
+  };
 
-  $("femaleList").innerHTML = FEMALE_STUDENTS.map((s, idx) => {
-    const hasWork = Array.isArray(s.karya) && s.karya.length > 0;
-    return `<button type="button" class="student${hasWork ? " has-work" : ""}" data-gender="female" data-idx="${idx}">${esc(s.nama)}${hasWork ? '<span class="work-dot" title="Punya foto karya"></span>' : ""}</button>`;
-  }).join("");
+  $("maleList").innerHTML = MALE_STUDENTS.map((s, idx) => renderItem(s, "male", idx)).join("");
+  $("femaleList").innerHTML = FEMALE_STUDENTS.map((s, idx) => renderItem(s, "female", idx)).join("");
 
-  document.querySelectorAll(".student").forEach(btn => {
+  document.querySelectorAll(".student.clickable").forEach(btn => {
     btn.addEventListener("click", () => {
       const idx = +btn.dataset.idx;
       if (btn.dataset.gender === "male") {

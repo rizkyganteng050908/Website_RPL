@@ -545,8 +545,7 @@ const PHOTO_URLS = [
   "https://files.catbox.moe/1x5oqx.jpeg",
   "https://files.catbox.moe/p9pb7y.jpeg",
   "https://files.catbox.moe/maxhg1.jpeg",
-  "https://files.catbox.moe/w4tbwg.jpeg",
-  "https://files.catbox.moe/p9pb7y.jpeg"
+  "https://files.catbox.moe/w4tbwg.jpeg"
 ];
 const USER = "RPL3", PASS = "RPL3";
 
@@ -649,13 +648,23 @@ function renderAlbum(){
   $("albumGrid").innerHTML = PHOTO_URLS.map((url, i) =>
     `<button class="photo" data-i="${i}" aria-label="Buka foto ${i+1}"><img src="${url}" alt="Foto Kenangan ${i+1}" loading="lazy"></button>`
   ).join("");
-  $("hPhotos").textContent=PHOTO_URLS.length;
+
+  const updatePhotoCount = () => {
+    const validCount = photos.filter(p => p.parentElement.style.display !== "none").length;
+    $("hPhotos").textContent = validCount;
+  };
+
   document.querySelectorAll(".photo").forEach(b=>{
     const img=b.querySelector("img");
     photos.push(img);
-    img.addEventListener("error",()=>{b.style.display="none"});
+    img.addEventListener("error",()=>{
+      b.style.display="none";
+      updatePhotoCount();
+    });
     b.addEventListener("click",()=>openPhoto(+b.dataset.i));
   });
+
+  updatePhotoCount();
 }
 
 /* ====== LIGHTBOX & DIRECT BLOB DOWNLOAD (ALBUM + KARYA) ====== */

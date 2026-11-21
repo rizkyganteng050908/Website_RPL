@@ -688,7 +688,12 @@ function showPhoto(){
   cur=(cur+list.length)%list.length;
   const item=list[cur];
   currentPhotoUrl=item.src;
-  currentFileName=item.src.split("/").pop().split("?")[0] || `Foto-Kenangan-RPL3-${cur+1}.jpg`;
+  const rawName=item.src.split("/").pop().split("?")[0];
+  if(rawName && /\.(jpe?g|png|webp|gif)$/i.test(rawName)){
+    currentFileName=rawName;
+  }else{
+    currentFileName=(rawName ? rawName : `Foto-Kenangan-RPL3-${cur+1}`)+".jpg";
+  }
   $("lightboxImg").src=currentPhotoUrl;
   $("lightboxImg").alt=item.alt;
   $("counter").textContent=(cur+1)+" / "+list.length;
@@ -704,10 +709,15 @@ async function downloadCurrentPhoto(e){
     const res=await fetch(currentPhotoUrl,{mode:"cors"});
     if(!res.ok) throw new Error("HTTP "+res.status);
     const blob=await res.blob();
+    let fileName=currentFileName;
+    if(!/\.(jpe?g|png|webp|gif)$/i.test(fileName)){
+      const ext=(blob.type.split("/")[1]||"jpg").replace("jpeg","jpg");
+      fileName+=`.${ext}`;
+    }
     const blobUrl=URL.createObjectURL(blob);
     const a=document.createElement("a");
     a.href=blobUrl;
-    a.download=currentFileName;
+    a.download=fileName;
     document.body.appendChild(a);
     a.click();
     a.remove();
